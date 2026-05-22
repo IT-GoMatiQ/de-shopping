@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DE Outlets">
+<meta name="theme-color" content="#0b1220">
+<title>DE Outlet Tracker</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%9B%8D%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0b1220;--card:#151c2e;--card2:#1c2540;--border:#2a3654;
+  --text:#e8eef7;--muted:#8a96ad;--accent:#4a90e2;--accent2:#45c97a;
+  --warn:#f0a035;--danger:#e25555;--good:#45c97a;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);color:var(--text);font-size:16px;line-height:1.4;
+  padding-bottom:calc(70px + env(safe-area-inset-bottom));
+}
+header{
+  position:sticky;top:0;background:var(--card);
+  border-bottom:1px solid var(--border);padding:10px 14px;z-index:10;
+  padding-top:calc(10px + env(safe-area-inset-top));
+}
+.hd-title{font-weight:700;font-size:12px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
+.hd-current{font-size:17px;font-weight:600;margin-top:2px}
+.hd-stats{font-size:13px;color:var(--muted);margin-top:2px;display:flex;gap:10px;flex-wrap:wrap}
+.hd-stats span{display:inline-flex;align-items:center;gap:4px}
+
+main{padding:12px;max-width:720px;margin:0 auto}
+.tab{display:none}
+.tab.active{display:block}
+
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:none;border-radius:10px;padding:12px 14px;
+  background:var(--accent);color:#fff;font-weight:600;min-height:44px}
+button.secondary{background:var(--card2);color:var(--text);border:1px solid var(--border)}
+button.danger{background:var(--danger)}
+button.success{background:var(--good)}
+button.ghost{background:transparent;color:var(--accent);padding:8px;min-height:36px}
+button:active{transform:scale(.98)}
+button[disabled]{opacity:.4;cursor:not-allowed}
+
+.add-btn{width:100%;font-size:17px;background:var(--accent2);margin-bottom:14px;padding:16px}
+
+#tabnav{
+  position:fixed;bottom:0;left:0;right:0;display:flex;
+  background:var(--card);border-top:1px solid var(--border);z-index:20;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.tab-btn{
+  flex:1;border-radius:0;background:transparent;color:var(--muted);
+  font-size:12px;padding:10px 4px;min-height:60px;
+  display:flex;flex-direction:column;align-items:center;gap:2px;font-weight:500;
+}
+.tab-btn .ic{font-size:22px}
+.tab-btn.active{color:var(--accent)}
+.tab-btn .badge{
+  position:absolute;background:var(--accent2);color:#000;font-size:10px;
+  padding:1px 6px;border-radius:10px;margin-left:30px;margin-top:-2px;font-weight:700;
+}
+
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:12px;margin-bottom:10px;
+}
+.card.buy{border-color:var(--good);background:linear-gradient(180deg,rgba(69,201,122,.08),var(--card))}
+.card.skip{opacity:.5}
+
+.section-h{font-size:13px;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.5px;margin:18px 4px 8px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+
+label{display:block;margin:14px 0 6px;font-size:13px;color:var(--muted);font-weight:600}
+input[type=text],input[type=number],select,textarea{
+  width:100%;padding:12px;background:var(--bg);
+  border:1px solid var(--border);border-radius:8px;color:var(--text);
+  font-size:16px;-webkit-appearance:none;
+}
+textarea{resize:vertical;min-height:50px}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  border:2px solid var(--border);padding:8px 12px;border-radius:999px;
+  font-size:13px;background:var(--card2);color:var(--text);
+  display:inline-flex;align-items:center;gap:6px;font-weight:500;cursor:pointer;
+  min-height:38px;
+}
+.chip.sel{border-color:var(--accent);background:rgba(74,144,226,.2)}
+.color-sw{width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,.25);flex-shrink:0}
+
+.row{display:flex;gap:8px;align-items:center}
+.row > *{flex:1}
+.row.tight{gap:6px}
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;
+  display:flex;align-items:flex-end;justify-content:center}
+.modal.hidden{display:none}
+.modal-content{
+  background:var(--card);width:100%;max-width:720px;max-height:94vh;
+  overflow-y:auto;border-radius:16px 16px 0 0;padding:18px;
+  padding-bottom:calc(18px + env(safe-area-inset-bottom));
+}
+.modal-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.modal-h h2{margin:0;font-size:18px}
+
+.store-card{padding:12px;display:flex;align-items:center;gap:10px}
+.store-num{background:var(--card2);padding:4px 8px;border-radius:6px;font-size:12px;
+  color:var(--muted);font-weight:600;min-width:50px;text-align:center}
+.store-name{font-weight:600;flex:1}
+.store-meta{font-size:12px;color:var(--muted)}
+.store-status{font-size:13px;padding:4px 8px;border-radius:6px;font-weight:600}
+.st-pending{background:var(--card2);color:var(--muted)}
+.st-current{background:var(--accent);color:#fff}
+.st-done{background:var(--good);color:#000}
+.st-skip{background:var(--border);color:var(--muted)}
+
+.item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.item-title{font-weight:600;font-size:16px}
+.item-meta{font-size:12px;color:var(--muted);margin-top:2px}
+.item-prices{display:flex;gap:8px;align-items:baseline;margin-top:6px;flex-wrap:wrap}
+.final-price{font-size:20px;font-weight:700;color:var(--good)}
+.tag-strike{font-size:13px;color:var(--muted);text-decoration:line-through}
+.disc-badge{background:var(--warn);color:#000;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:700}
+.pairs{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;font-size:12px;color:var(--muted)}
+.pair-pill{background:var(--card2);padding:2px 8px;border-radius:999px;display:inline-flex;align-items:center;gap:4px}
+
+.item-actions{display:flex;gap:6px;margin-top:10px}
+.item-actions button{flex:1;padding:8px;font-size:13px;min-height:36px}
+
+.empty{padding:30px 20px;text-align:center;color:var(--muted)}
+.empty-em{font-size:40px;margin-bottom:10px}
+
+.banner{padding:12px;border-radius:8px;margin-bottom:12px;font-size:14px}
+.banner.info{background:rgba(74,144,226,.15);border:1px solid var(--accent)}
+.banner.warn{background:rgba(240,160,53,.15);border:1px solid var(--warn)}
+
+.plan-deal{display:flex;justify-content:space-between;gap:8px;padding:10px;
+  border-bottom:1px solid var(--border)}
+.plan-deal:last-child{border:none}
+.outfit{padding:10px;background:var(--card2);border-radius:8px;margin-bottom:6px;font-size:14px}
+.outfit-total{font-weight:700;color:var(--good)}
+
+.fab-row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.fab-row button{flex:1;font-size:13px;padding:10px}
+
+details summary{cursor:pointer;padding:10px;color:var(--muted);font-size:13px;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary:before{content:'▸ ';color:var(--accent)}
+details[open] summary:before{content:'▾ '}
+
+.fl-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.fl-row button{padding:6px 10px;min-height:32px;font-size:12px;background:var(--card2);color:var(--text);border:1px solid var(--border)}
+.fl-row button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hd-title">🛍️ DE Outlet Tracker · Tanger Rehoboth</div>
+  <div class="hd-current" id="hdCurrent">No store set</div>
+  <div class="hd-stats" id="hdStats"></div>
+</header>
+
+<main>
+  <!-- ITEMS TAB -->
+  <section id="tab-items" class="tab active">
+    <button class="add-btn" onclick="openItemForm()">+ Log Item</button>
+    <div class="fl-row" id="filterRow"></div>
+    <div id="itemsList"></div>
+  </section>
+
+  <!-- STORES TAB -->
+  <section id="tab-stores" class="tab">
+    <div class="banner info">Tap a store to set it as the one you're in. Items you log will auto-tag to it.</div>
+    <div id="storesList"></div>
+  </section>
+
+  <!-- PLAN TAB -->
+  <section id="tab-plan" class="tab">
+    <div id="planContent"></div>
+  </section>
+
+  <!-- MORE TAB -->
+  <section id="tab-more" class="tab">
+    <div class="section-h">Data</div>
+    <div class="card">
+      <button class="secondary" onclick="exportData()">Export JSON</button>
+      <div style="height:8px"></div>
+      <button class="secondary" onclick="document.getElementById('importFile').click()">Import JSON</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+      <div style="height:8px"></div>
+      <button class="danger" onclick="confirmReset()">Reset everything</button>
+    </div>
+    <div class="section-h">Route map</div>
+    <div class="card">
+      <strong>① Seaside</strong> (you're here)<br>
+      <small>Calvin Klein 1700 → Merrell 1750 → Banana Republic 1800 → Clarks 1825</small>
+      <hr style="border-color:var(--border);margin:8px 0">
+      <strong>② Bayside</strong> (cross Rt 1 north)<br>
+      <small>Old Navy 150 → North Face 420 → Under Armour 610</small>
+      <hr style="border-color:var(--border);margin:8px 0">
+      <strong>③ Surfside</strong> (1.8 mi east on Rt 1)<br>
+      <small>Cole Haan 107 → Lacoste 119 → Boss 307 → Polo Ralph Lauren 313</small>
+    </div>
+    <div class="section-h">About</div>
+    <div class="card" style="font-size:13px;color:var(--muted)">
+      Data lives in your phone's local storage. No server, no account.
+      Save this page to your home screen for one-tap access.
+    </div>
+  </section>
+</main>
+
+<nav id="tabnav">
+  <button class="tab-btn active" data-tab="items"><span class="ic">📝</span>Items</button>
+  <button class="tab-btn" data-tab="stores"><span class="ic">🏪</span>Stores</button>
+  <button class="tab-btn" data-tab="plan"><span class="ic">💰</span>Plan</button>
+  <button class="tab-btn" data-tab="more"><span class="ic">⋯</span>More</button>
+</nav>
+
+<!-- ITEM FORM MODAL -->
+<div id="itemFormModal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-h">
+      <h2 id="formTitle">Log Item</h2>
+      <button class="ghost" onclick="closeItemForm()">✕</button>
+    </div>
+    <form id="itemForm" onsubmit="saveItem(event)">
+      <input type="hidden" name="id">
+
+      <label>Store</label>
+      <select name="storeId" required id="formStore"></select>
+
+      <label>Type</label>
+      <div class="chips" id="formType"></div>
+      <input type="hidden" name="type" required>
+
+      <label>Color of the item</label>
+      <div class="chips" id="formColor"></div>
+      <input type="hidden" name="color" required>
+
+      <label>Tag price ($)</label>
+      <input type="number" step="0.01" inputmode="decimal" name="tagPrice" required placeholder="89.50" oninput="recalcFinal()">
+
+      <label>Discount</label>
+      <div class="chips" id="formDiscQuick"></div>
+      <div class="row tight" style="margin-top:6px">
+        <input type="number" step="0.01" inputmode="decimal" name="discountValue" placeholder="0" oninput="recalcFinal()">
+        <select name="discountMode" onchange="recalcFinal()" style="max-width:90px">
+          <option value="pct">% off</option>
+          <option value="amt">$ off</option>
+        </select>
+      </div>
+
+      <label>Final price ($) <span style="color:var(--muted);font-weight:400">— auto, editable</span></label>
+      <input type="number" step="0.01" inputmode="decimal" name="finalPrice" required>
+
+      <label>Pairs with (colors) <span style="color:var(--muted);font-weight:400">— optional</span></label>
+      <div class="chips" id="formPairs"></div>
+
+      <label>Notes <span style="color:var(--muted);font-weight:400">— optional</span></label>
+      <textarea name="notes" placeholder="size 32, slim fit, maybe..."></textarea>
+
+      <div class="row" style="margin-top:18px">
+        <button type="button" class="secondary" onclick="closeItemForm()">Cancel</button>
+        <button type="submit" class="success">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ============ DATA ============ */
+const STORES_INITIAL = [
+  {id:1,name:'Calvin Klein',num:'1700',center:'Seaside',order:1},
+  {id:2,name:'Merrell',num:'1750',center:'Seaside',order:2},
+  {id:3,name:'Banana Republic Factory',num:'1800',center:'Seaside',order:3},
+  {id:4,name:'Clarks Outlet',num:'1825',center:'Seaside',order:4},
+  {id:5,name:'Old Navy',num:'150',center:'Bayside',order:5},
+  {id:6,name:'The North Face',num:'420',center:'Bayside',order:6},
+  {id:7,name:'Under Armour',num:'610',center:'Bayside',order:7},
+  {id:8,name:'Cole Haan',num:'107',center:'Surfside',order:8},
+  {id:9,name:'Lacoste',num:'119',center:'Surfside',order:9},
+  {id:10,name:'Boss',num:'307',center:'Surfside',order:10},
+  {id:11,name:'Polo Ralph Lauren',num:'313',center:'Surfside',order:11},
+];
+
+const COLORS = [
+  {n:'Black',h:'#0a0a0a'},{n:'White',h:'#f5f5f5'},{n:'Grey',h:'#808080'},
+  {n:'Charcoal',h:'#36454F'},{n:'Navy',h:'#1a2848'},{n:'Blue',h:'#2e6cd6'},
+  {n:'Light Blue',h:'#7ec0ee'},{n:'Green',h:'#2e8b57'},{n:'Olive',h:'#556B2F'},
+  {n:'Khaki',h:'#c3b091'},{n:'Tan',h:'#d2b48c'},{n:'Beige',h:'#e8d5b7'},
+  {n:'Brown',h:'#8B4513'},{n:'Cream',h:'#fff8dc'},{n:'Red',h:'#c0392b'},
+  {n:'Burgundy',h:'#722F37'},{n:'Pink',h:'#f08080'},{n:'Yellow',h:'#FFD700'},
+  {n:'Orange',h:'#ff8c00'},{n:'Purple',h:'#7d4f9c'},
+];
+const colorByName = Object.fromEntries(COLORS.map(c=>[c.n.toLowerCase(),c]));
+const colorHex = n => (colorByName[(n||'').toLowerCase()]||{h:'#888'}).h;
+
+const TYPES = ['pants','shorts','shirt','polo','t-shirt','jacket','belt','shoes','socks','hat','other'];
+const QUICK_DISC = [20,25,30,40,50,60,70];
+
+const STORAGE_KEY = 'de-shopping-v1';
+
+const DEFAULT_STATE = {
+  stores: STORES_INITIAL.map(s=>({...s,status:'pending'})),
+  currentStoreId: null,
+  items: [],
+  nextItemId: 1,
+};
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) {
+      const s = JSON.parse(raw);
+      // merge in any new stores from initial list
+      const have = new Set(s.stores.map(x=>x.id));
+      STORES_INITIAL.forEach(i=>{if(!have.has(i.id)) s.stores.push({...i,status:'pending'})});
+      return s;
+    }
+  }catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_STATE));
+}
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+
+let state = loadState();
+let filterStoreId = null;
+let filterType = null;
+
+/* ============ UTIL ============ */
+const $ = id => document.getElementById(id);
+const $$ = sel => document.querySelectorAll(sel);
+const fmt = n => '$'+(Number(n)||0).toFixed(2);
+const storeById = id => state.stores.find(s=>s.id===id);
+const storeLabel = id => {const s=storeById(id);return s?`${s.name} #${s.num}`:'?'};
+
+/* ============ HEADER ============ */
+function renderHeader(){
+  const cur = storeById(state.currentStoreId);
+  $('hdCurrent').textContent = cur ? `🛒 ${cur.name} #${cur.num}` : 'No store set — tap Stores tab';
+  const items = state.items;
+  const totalSpend = items.reduce((s,i)=>s+(+i.finalPrice||0),0);
+  const buyItems = items.filter(i=>i.decision==='buy');
+  const buySpend = buyItems.reduce((s,i)=>s+(+i.finalPrice||0),0);
+  $('hdStats').innerHTML =
+    `<span>📦 ${items.length} logged</span>`+
+    `<span>💵 ${fmt(totalSpend)} all</span>`+
+    (buyItems.length?`<span style="color:var(--good)">✓ ${buyItems.length} = ${fmt(buySpend)}</span>`:'');
+}
+
+/* ============ TABS ============ */
+$$('.tab-btn').forEach(b=>{
+  b.onclick = () => {
+    $$('.tab-btn').forEach(x=>x.classList.remove('active'));
+    $$('.tab').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    $('tab-'+b.dataset.tab).classList.add('active');
+    if(b.dataset.tab==='plan') renderPlan();
+  };
+});
+
+/* ============ STORES ============ */
+function renderStores(){
+  const centers = ['Seaside','Bayside','Surfside'];
+  let html = '';
+  centers.forEach(center=>{
+    const ss = state.stores.filter(s=>s.center===center).sort((a,b)=>a.order-b.order);
+    if(!ss.length) return;
+    html += `<div class="section-h">Tanger ${center}</div>`;
+    ss.forEach(s=>{
+      const isCurrent = s.id===state.currentStoreId;
+      let stCls='st-pending',stTxt='not yet';
+      if(isCurrent){stCls='st-current';stTxt='in store';}
+      else if(s.status==='done'){stCls='st-done';stTxt='done';}
+      else if(s.status==='skip'){stCls='st-skip';stTxt='skipped';}
+      const count = state.items.filter(i=>i.storeId===s.id).length;
+      html += `<div class="card store-card" onclick="setCurrentStore(${s.id})">
+        <div class="store-num">#${s.num}</div>
+        <div style="flex:1">
+          <div class="store-name">${s.name}</div>
+          <div class="store-meta">${count} item${count===1?'':'s'} logged</div>
+        </div>
+        <div class="store-status ${stCls}">${stTxt}</div>
+      </div>`;
+    });
+  });
+  $('storesList').innerHTML = html;
+}
+
+function setCurrentStore(id){
+  // mark previous current as done if it had items
+  const prev = storeById(state.currentStoreId);
+  if(prev){
+    const had = state.items.some(i=>i.storeId===prev.id);
+    prev.status = had ? 'done' : 'skip';
+  }
+  if(state.currentStoreId===id){
+    state.currentStoreId = null;
+  } else {
+    state.currentStoreId = id;
+    const s = storeById(id);
+    if(s) s.status = 'current';
+  }
+  save();renderAll();
+}
+
+/* ============ ITEMS ============ */
+function renderFilters(){
+  const stores = [...new Set(state.items.map(i=>i.storeId))];
+  const types = [...new Set(state.items.map(i=>i.type))];
+  let html = '';
+  if(state.items.length){
+    html += `<button class="${filterStoreId===null&&filterType===null?'active':''}" onclick="clearFilter()">All (${state.items.length})</button>`;
+    stores.forEach(sid=>{
+      const c = state.items.filter(i=>i.storeId===sid).length;
+      html += `<button class="${filterStoreId===sid?'active':''}" onclick="setFilter('store',${sid})">${storeLabel(sid)} (${c})</button>`;
+    });
+    types.forEach(t=>{
+      const c = state.items.filter(i=>i.type===t).length;
+      html += `<button class="${filterType===t?'active':''}" onclick="setFilter('type','${t}')">${t} (${c})</button>`;
+    });
+  }
+  $('filterRow').innerHTML = html;
+}
+function setFilter(kind,val){
+  if(kind==='store'){filterStoreId=filterStoreId===val?null:val;filterType=null;}
+  else{filterType=filterType===val?null:val;filterStoreId=null;}
+  renderItems();
+}
+function clearFilter(){filterStoreId=null;filterType=null;renderItems()}
+
+function renderItems(){
+  renderFilters();
+  let items = state.items.slice().sort((a,b)=>b.id-a.id);
+  if(filterStoreId!==null) items = items.filter(i=>i.storeId===filterStoreId);
+  if(filterType!==null) items = items.filter(i=>i.type===filterType);
+  if(!items.length){
+    $('itemsList').innerHTML = `<div class="empty">
+      <div class="empty-em">🛍️</div>
+      <div><strong>No items yet.</strong></div>
+      <div style="margin-top:6px">Walk into a store, set it as current,<br>then tap "+ Log Item" above.</div>
+    </div>`;
+    return;
+  }
+  let html = '';
+  items.forEach(it=>{
+    const tag = +it.tagPrice||0, fin = +it.finalPrice||0;
+    const off = tag>0 ? Math.round((1-fin/tag)*100) : 0;
+    const cls = it.decision==='buy'?'buy':it.decision==='skip'?'skip':'';
+    html += `<div class="card item-card ${cls}">
+      <div class="item-head">
+        <div>
+          <div class="item-title">
+            <span class="color-sw" style="background:${colorHex(it.color)};display:inline-block;vertical-align:middle"></span>
+            ${it.color} ${it.type}
+          </div>
+          <div class="item-meta">${storeLabel(it.storeId)}${it.notes?' · '+escapeHtml(it.notes):''}</div>
+        </div>
+      </div>
+      <div class="item-prices">
+        <span class="final-price">${fmt(fin)}</span>
+        ${tag>fin?`<span class="tag-strike">${fmt(tag)}</span><span class="disc-badge">${off}% off</span>`:''}
+      </div>
+      ${(it.pairsWith||[]).length?`<div class="pairs">Pairs with: ${
+        it.pairsWith.map(c=>`<span class="pair-pill"><span class="color-sw" style="background:${colorHex(c)}"></span>${c}</span>`).join('')
+      }</div>`:''}
+      <div class="item-actions">
+        <button class="${it.decision==='buy'?'success':'secondary'}" onclick="setDecision(${it.id},'buy')">✓ Buy</button>
+        <button class="${it.decision==='skip'?'danger':'secondary'}" onclick="setDecision(${it.id},'skip')">✗ Skip</button>
+        <button class="secondary" onclick="editItem(${it.id})">✎</button>
+        <button class="secondary" onclick="deleteItem(${it.id})">🗑</button>
+      </div>
+    </div>`;
+  });
+  $('itemsList').innerHTML = html;
+}
+
+function setDecision(id,d){
+  const it = state.items.find(x=>x.id===id);
+  if(!it) return;
+  it.decision = it.decision===d?'undecided':d;
+  save();renderAll();
+}
+function deleteItem(id){
+  if(!confirm('Delete this item?')) return;
+  state.items = state.items.filter(i=>i.id!==id);
+  save();renderAll();
+}
+
+/* ============ FORM ============ */
+function buildStoreSelect(){
+  const sel = $('formStore');
+  sel.innerHTML = '<option value="">-- pick a store --</option>' +
+    ['Seaside','Bayside','Surfside'].map(c=>{
+      const ss = state.stores.filter(s=>s.center===c).sort((a,b)=>a.order-b.order);
+      return `<optgroup label="${c}">`+ss.map(s=>`<option value="${s.id}">${s.name} #${s.num}</option>`).join('')+`</optgroup>`;
+    }).join('');
+}
+function buildTypeChips(){
+  $('formType').innerHTML = TYPES.map(t=>
+    `<div class="chip" data-val="${t}" onclick="pickType('${t}',this)">${t}</div>`).join('');
+}
+function buildColorChips(targetId,multi){
+  const el = $(targetId);
+  el.innerHTML = COLORS.map(c=>
+    `<div class="chip" data-val="${c.n}" onclick="${multi?'toggleMulti':'pickColor'}('${targetId}','${c.n}',this)">
+      <span class="color-sw" style="background:${c.h}"></span>${c.n}
+    </div>`).join('');
+}
+function buildDiscQuick(){
+  $('formDiscQuick').innerHTML = QUICK_DISC.map(d=>
+    `<div class="chip" onclick="pickDisc(${d},this)">${d}%</div>`).join('');
+}
+function pickType(v,el){
+  document.querySelectorAll('#formType .chip').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  $('itemForm').type.value = v;
+}
+function pickColor(targetId,v,el){
+  document.querySelectorAll('#'+targetId+' .chip').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  $('itemForm').color.value = v;
+}
+function toggleMulti(targetId,v,el){
+  el.classList.toggle('sel');
+}
+function pickDisc(d,el){
+  document.querySelectorAll('#formDiscQuick .chip').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  const form = $('itemForm');
+  form.discountMode.value='pct';
+  form.discountValue.value=d;
+  recalcFinal();
+}
+function recalcFinal(){
+  const f = $('itemForm');
+  const tag = +f.tagPrice.value||0;
+  const d = +f.discountValue.value||0;
+  let fin = tag;
+  if(f.discountMode.value==='pct') fin = tag*(1-d/100);
+  else fin = tag - d;
+  if(fin<0) fin=0;
+  f.finalPrice.value = fin.toFixed(2);
+}
+
+let editingId = null;
+function openItemForm(prefill){
+  buildStoreSelect();buildTypeChips();
+  buildColorChips('formColor',false);buildColorChips('formPairs',true);
+  buildDiscQuick();
+  const f = $('itemForm');
+  f.reset();
+  editingId = null;
+  $('formTitle').textContent = 'Log Item';
+  if(state.currentStoreId) f.storeId.value = state.currentStoreId;
+  f.discountMode.value='pct';
+  if(prefill){
+    editingId = prefill.id;
+    $('formTitle').textContent = 'Edit Item';
+    f.id.value = prefill.id;
+    f.storeId.value = prefill.storeId;
+    f.tagPrice.value = prefill.tagPrice;
+    f.discountMode.value = prefill.discountMode||'pct';
+    f.discountValue.value = prefill.discountValue||0;
+    f.finalPrice.value = prefill.finalPrice;
+    f.notes.value = prefill.notes||'';
+    // chip selections
+    setTimeout(()=>{
+      document.querySelectorAll('#formType .chip').forEach(c=>{if(c.dataset.val===prefill.type)c.classList.add('sel')});
+      f.type.value = prefill.type;
+      document.querySelectorAll('#formColor .chip').forEach(c=>{if(c.dataset.val===prefill.color)c.classList.add('sel')});
+      f.color.value = prefill.color;
+      const pw = new Set(prefill.pairsWith||[]);
+      document.querySelectorAll('#formPairs .chip').forEach(c=>{if(pw.has(c.dataset.val))c.classList.add('sel')});
+    },0);
+  }
+  $('itemFormModal').classList.remove('hidden');
+}
+function closeItemForm(){$('itemFormModal').classList.add('hidden')}
+function editItem(id){
+  const it = state.items.find(x=>x.id===id);
+  if(it) openItemForm(it);
+}
+function saveItem(e){
+  e.preventDefault();
+  const f = e.target;
+  if(!f.type.value){alert('Pick an item type');return}
+  if(!f.color.value){alert('Pick a color');return}
+  const pairs = [...document.querySelectorAll('#formPairs .chip.sel')].map(c=>c.dataset.val);
+  const data = {
+    storeId: +f.storeId.value,
+    type: f.type.value,
+    color: f.color.value,
+    tagPrice: +f.tagPrice.value,
+    discountMode: f.discountMode.value,
+    discountValue: +f.discountValue.value||0,
+    finalPrice: +f.finalPrice.value,
+    pairsWith: pairs,
+    notes: f.notes.value.trim(),
+  };
+  if(editingId){
+    const it = state.items.find(x=>x.id===editingId);
+    Object.assign(it,data);
+  } else {
+    state.items.push({id:state.nextItemId++,decision:'undecided',...data});
+  }
+  save();closeItemForm();renderAll();
+}
+
+/* ============ PLAN ============ */
+function renderPlan(){
+  const items = state.items;
+  if(!items.length){
+    $('planContent').innerHTML = `<div class="empty">
+      <div class="empty-em">💰</div>
+      <div><strong>Log a few items first.</strong></div>
+      <div style="margin-top:6px">Once you've got items in the system,<br>this tab will tell you exactly where to buy what.</div>
+    </div>`;return;
+  }
+
+  // Cheapest by type+color
+  const bestByKey = {};
+  items.forEach(it=>{
+    const k = it.type+'|'+(it.color||'').toLowerCase();
+    if(!bestByKey[k] || (+it.finalPrice<+bestByKey[k].finalPrice)) bestByKey[k]=it;
+  });
+  const bests = Object.values(bestByKey).sort((a,b)=>a.type.localeCompare(b.type)||a.color.localeCompare(b.color));
+
+  // Outfit suggestions: bottoms × matching tops
+  const bottoms = items.filter(i=>['pants','shorts'].includes(i.type));
+  const tops = items.filter(i=>['shirt','polo','t-shirt'].includes(i.type));
+  const outfits = [];
+  bottoms.forEach(b=>{
+    (b.pairsWith||[]).forEach(c=>{
+      tops.filter(t=>t.color && t.color.toLowerCase()===c.toLowerCase()).forEach(t=>{
+        outfits.push({b,t,total:+b.finalPrice+ +t.finalPrice});
+      });
+    });
+  });
+  outfits.sort((a,b)=>a.total-b.total);
+
+  // Best discounts
+  const deals = items.map(it=>{
+    const tag = +it.tagPrice||0, fin = +it.finalPrice||0;
+    return {...it,pct: tag>0?(1-fin/tag)*100:0};
+  }).sort((a,b)=>b.pct-a.pct).slice(0,5);
+
+  // Final shopping list
+  const buyItems = items.filter(i=>i.decision==='buy');
+  const byStore = {};
+  buyItems.forEach(it=>{
+    (byStore[it.storeId]=byStore[it.storeId]||[]).push(it);
+  });
+
+  let html = '';
+
+  if(buyItems.length){
+    const total = buyItems.reduce((s,i)=>s+(+i.finalPrice||0),0);
+    html += `<div class="banner info">
+      <strong>Your buy list:</strong> ${buyItems.length} items, <strong>${fmt(total)}</strong> total (DE = no tax!)
+    </div>`;
+    Object.keys(byStore).sort((a,b)=>storeById(+a).order-storeById(+b).order).forEach(sid=>{
+      const s = storeById(+sid);
+      const its = byStore[sid];
+      const sub = its.reduce((s,i)=>s+(+i.finalPrice||0),0);
+      html += `<div class="card buy">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <strong>${s.name} #${s.num}</strong>
+          <span style="color:var(--good);font-weight:700">${fmt(sub)}</span>
+        </div>
+        <div style="font-size:12px;color:var(--muted)">Tanger ${s.center}</div>
+        <ul style="margin:8px 0 0;padding-left:20px">
+          ${its.map(i=>`<li>${i.color} ${i.type} — ${fmt(i.finalPrice)}${i.notes?` <span style="color:var(--muted)">(${escapeHtml(i.notes)})</span>`:''}</li>`).join('')}
+        </ul>
+      </div>`;
+    });
+  } else {
+    html += `<div class="banner warn">
+      No items marked "Buy" yet. Tap ✓ Buy on items in the Items tab to add them to your buy list.
+    </div>`;
+  }
+
+  html += `<div class="section-h">Cheapest by type + color</div>`;
+  bests.forEach(it=>{
+    html += `<div class="plan-deal">
+      <div>
+        <span class="color-sw" style="background:${colorHex(it.color)};display:inline-block;vertical-align:middle"></span>
+        <strong>${it.color} ${it.type}</strong>
+        <div style="font-size:12px;color:var(--muted)">${storeLabel(it.storeId)}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="final-price" style="font-size:16px">${fmt(it.finalPrice)}</div>
+      </div>
+    </div>`;
+  });
+
+  if(outfits.length){
+    html += `<div class="section-h">Outfit combos (cheapest first)</div>`;
+    outfits.slice(0,8).forEach(o=>{
+      html += `<div class="outfit">
+        <div><strong>${o.b.color} ${o.b.type}</strong> from ${storeLabel(o.b.storeId)} (${fmt(o.b.finalPrice)})</div>
+        <div>+ <strong>${o.t.color} ${o.t.type}</strong> from ${storeLabel(o.t.storeId)} (${fmt(o.t.finalPrice)})</div>
+        <div class="outfit-total">= ${fmt(o.total)} total</div>
+      </div>`;
+    });
+  } else if(bottoms.length){
+    html += `<div class="section-h">Outfit combos</div>
+      <div class="card" style="color:var(--muted);font-size:13px">
+        Log some shirts/polos with matching colors and I'll pair them with your pants/shorts here.
+      </div>`;
+  }
+
+  html += `<div class="section-h">Top discounts</div>`;
+  deals.forEach(it=>{
+    html += `<div class="plan-deal">
+      <div>
+        <strong>${it.color} ${it.type}</strong>
+        <div style="font-size:12px;color:var(--muted)">${storeLabel(it.storeId)}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="disc-badge">${Math.round(it.pct)}% off</div>
+        <div style="font-size:13px;margin-top:4px">${fmt(it.finalPrice)} <span class="tag-strike">${fmt(it.tagPrice)}</span></div>
+      </div>
+    </div>`;
+  });
+
+  html += `<div style="height:20px"></div>
+    <button class="secondary" style="width:100%" onclick="autoPickBuys()">⚡ Auto-pick cheapest of each (type+color)</button>`;
+
+  $('planContent').innerHTML = html;
+}
+
+function autoPickBuys(){
+  if(!confirm('Auto-mark the cheapest item of each (type+color) as Buy?\n\nThis will overwrite current Buy/Skip marks.')) return;
+  const best = {};
+  state.items.forEach(it=>{
+    const k = it.type+'|'+(it.color||'').toLowerCase();
+    if(!best[k] || +it.finalPrice<+best[k].finalPrice) best[k]=it;
+  });
+  const bestIds = new Set(Object.values(best).map(i=>i.id));
+  state.items.forEach(it=>{ it.decision = bestIds.has(it.id) ? 'buy' : 'skip'; });
+  save();renderAll();
+}
+
+/* ============ EXPORT/IMPORT/RESET ============ */
+function exportData(){
+  const blob = new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'de-shopping-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+function importData(e){
+  const f = e.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try{ state = JSON.parse(r.result); save(); renderAll(); alert('Imported!'); }
+    catch(err){ alert('Bad JSON: '+err.message); }
+  };
+  r.readAsText(f);
+  e.target.value='';
+}
+function confirmReset(){
+  if(!confirm('Reset ALL data? This deletes every logged item.')) return;
+  if(!confirm('Are you sure? This cannot be undone.')) return;
+  state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  save();renderAll();
+}
+
+/* ============ ESCAPE ============ */
+function escapeHtml(s){
+  return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ============ INIT ============ */
+function renderAll(){
+  renderHeader();renderStores();renderItems();
+}
+renderAll();
+// close modal on backdrop tap
+$('itemFormModal').addEventListener('click', e => {
+  if(e.target.id==='itemFormModal') closeItemForm();
+});
+</script>
+
+</body>
+</html>
