@@ -38,6 +38,7 @@
     {"id":24,"storeId":15,"type":"slacks","color":"Tan","tagPrice":89.50,"finalPrice":44.75,"pairsWith":[],"notes":"TH straight fit · 50% off · pairing TBD","decision":"undecided"},
     {"id":25,"storeId":15,"type":"slacks","color":"Cream","tagPrice":89.50,"finalPrice":44.75,"pairsWith":[],"notes":"TH straight fit · 50% off · pairing TBD","decision":"undecided"},
     {"id":26,"storeId":15,"type":"slacks","color":"Navy","tagPrice":89.50,"finalPrice":44.75,"pairsWith":[],"notes":"TH straight fit · 50% off · pairing TBD","decision":"undecided"},
-    {"id":27,"storeId":15,"type":"slacks","color":"Black","tagPrice":89.50,"finalPrice":44.75,"pairsWith":[],"notes":"TH straight fit · 50% off · pairing TBD","decision":"undecided"}
+    {"id":27,"storeId":15,"type":"slacks","color":"Black","tagPrice":89.50,"finalPrice":44.75,"pairsWith":[],"notes":"TH straight fit · 50% off · pairing TBD","decision":"undecided"},
+    {"id":28,"storeId":15,"type":"polo","color":"Light Green","tagPrice":69.50,"finalPrice":27.80,"pairsWith":["Tan","Grey","Navy","Cream"],"notes":"TH · 60% off","decision":"undecided"}
   ]
 }
