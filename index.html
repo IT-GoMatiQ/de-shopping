@@ -34,78 +34,233 @@ header{
 .h-stat{background:var(--card2);padding:6px 10px;border-radius:8px;
   font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border)}
 .h-stat strong{color:var(--good);font-size:14px}
+.h-stat.buy{border-color:var(--good);background:rgba(69,201,122,.1)}
 
 main{max-width:760px;margin:0 auto;padding:16px}
 section{margin-bottom:22px}
 h2{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;
-  margin:0 0 10px;font-weight:700}
+  margin:0 0 10px;font-weight:700;display:flex;align-items:center;gap:8px}
+h2 .badge{background:var(--card2);color:var(--muted);font-size:11px;padding:2px 8px;border-radius:999px;text-transform:none;letter-spacing:0;font-weight:600}
+h3{font-size:16px;margin:0 0 8px;font-weight:700}
+.t-count{font-size:11px;color:var(--muted);font-weight:500}
 
-.banner{padding:14px 16px;border-radius:10px;font-size:14px;margin-bottom:14px;line-height:1.5}
+.banner{padding:12px 14px;border-radius:10px;font-size:14px;margin-bottom:12px;line-height:1.5}
 .banner.next{background:linear-gradient(135deg,rgba(74,144,226,.2),rgba(74,144,226,.05));border:1px solid var(--accent)}
 .banner.next strong{color:var(--accent)}
+.banner.deal{background:linear-gradient(135deg,rgba(240,160,53,.18),rgba(240,160,53,.04));border:1px solid var(--warn)}
+.banner.deal strong{color:var(--warn)}
 .banner.info{background:rgba(69,201,122,.1);border:1px solid var(--good)}
+.banner.gold{background:linear-gradient(135deg,rgba(240,192,64,.15),rgba(240,192,64,.04));border:1px solid rgba(240,192,64,.4)}
 
 .empty-state{background:var(--card);border:2px dashed var(--border);border-radius:12px;
-  padding:30px 20px;text-align:center;color:var(--muted)}
-.empty-state .em{font-size:46px;margin-bottom:8px}
-.empty-state strong{color:var(--text);font-size:16px}
-.empty-state .hint{margin-top:8px;font-size:13px}
+  padding:24px 16px;text-align:center;color:var(--muted)}
+.empty-state .em{font-size:38px;margin-bottom:6px}
+.empty-state strong{color:var(--text);font-size:15px}
 
 /* MAP */
-.map-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px;overflow:hidden}
+.map-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px}
 .map-svg{width:100%;height:auto;display:block}
 .map-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)}
 .map-legend .lg{display:inline-flex;align-items:center;gap:5px}
 .lg-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
-.lg-dot.you{background:#ff6464;box-shadow:0 0 0 3px rgba(255,100,100,.3)}
-.lg-dot.next{background:var(--good);box-shadow:0 0 0 3px rgba(69,201,122,.3)}
+.lg-dot.you{background:#ff6464}
+.lg-dot.next{background:var(--good)}
 .lg-dot.todo{background:var(--card2);border:1px solid var(--muted)}
 .lg-dot.done{background:var(--muted)}
 
-@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6}}
-.you-pulse{animation:pulse 1.5s infinite}
+/* TOP 2 cards */
+.t2-block{margin-bottom:14px}
+.t2-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:380px){.t2-row{grid-template-columns:1fr}}
+.t2-card{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:12px;position:relative}
+.t2-card.rank1{border-color:rgba(240,192,64,.6);background:linear-gradient(135deg,rgba(240,192,64,.1),var(--card))}
+.t2-card.rank2{border-color:rgba(184,192,212,.4)}
+.t2-card.buy{border-color:var(--good)!important;background:linear-gradient(135deg,rgba(69,201,122,.15),var(--card))!important}
+.t2-card.skip{opacity:.4}
+.t2-card.empty-rank{opacity:.4;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;min-height:100px;text-align:center;padding:8px}
+.rank-medal{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;
+  background:var(--gold);color:#000;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:12px;border:2px solid var(--bg)}
+.rank2 .rank-medal{background:var(--silver)}
+.t2-color{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:5px;font-weight:600}
+.t2-price{font-size:22px;font-weight:800;color:var(--good);margin:6px 0 2px;line-height:1.1}
+.t2-disc{display:inline-block;background:var(--warn);color:#000;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:800;margin-left:4px;vertical-align:middle}
+.t2-tag{font-size:11px;color:var(--muted);text-decoration:line-through}
+.t2-store{font-size:11px;color:var(--muted);margin-top:2px}
+.t2-notes{font-size:11px;color:var(--muted);font-style:italic;margin-top:4px}
+
+.sw{width:12px;height:12px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:inline-block;vertical-align:middle;flex-shrink:0}
+
+/* ITEM CARDS */
+.item-row{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:6px}
+.item-row.buy{border-color:var(--good);background:linear-gradient(135deg,rgba(69,201,122,.1),var(--card))}
+.item-row.skip{opacity:.4}
+.item-head{display:flex;align-items:flex-start;gap:8px}
+.item-info{flex:1}
+.item-id{font-size:10px;color:var(--muted);background:var(--card2);padding:1px 6px;border-radius:3px;font-weight:600}
+.item-name{font-weight:600;font-size:15px;margin-top:2px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.item-store{font-size:11px;color:var(--muted);margin-top:1px}
+.item-notes{font-size:11px;color:var(--muted);font-style:italic;margin-top:2px}
+.item-prices{display:flex;gap:8px;align-items:baseline;margin-top:6px;flex-wrap:wrap}
+.item-fp{font-size:18px;font-weight:700;color:var(--good)}
+.item-tp{font-size:12px;color:var(--muted);text-decoration:line-through}
+.item-disc{background:var(--warn);color:#000;font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px}
+.item-pairs{font-size:11px;color:var(--muted);margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.pair-pill{background:var(--card2);padding:2px 7px;border-radius:999px;display:inline-flex;align-items:center;gap:3px}
+
+.mark-btns{display:flex;gap:6px;margin-top:10px}
+.mark-btn{font:inherit;flex:1;font-size:13px;padding:8px;border-radius:6px;
+  background:var(--card2);color:var(--text);border:1px solid var(--border);
+  cursor:pointer;font-weight:600;min-height:36px}
+.mark-btn.on-buy{background:var(--good);color:#000;border-color:var(--good)}
+.mark-btn.on-skip{background:var(--danger);color:#fff;border-color:var(--danger)}
+.mark-btn:active{transform:scale(.98)}
+
+.itag{font-size:10px;padding:1px 5px;border-radius:3px;font-weight:600;background:var(--card2);color:var(--muted)}
+.itag.best{background:var(--gold);color:#000}
+
+.buy-section{background:linear-gradient(135deg,rgba(69,201,122,.15),var(--card));border:2px solid var(--good);border-radius:12px;padding:14px;margin-bottom:18px}
+.buy-section .buy-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.buy-section .buy-title{font-size:16px;font-weight:700;color:var(--good)}
+.buy-section .buy-total{font-size:22px;font-weight:800;color:var(--good)}
+.buy-section .buy-empty{font-size:13px;color:var(--muted);text-align:center;padding:10px 0}
+.buy-store{background:var(--card2);border-radius:8px;padding:10px;margin-bottom:6px}
+.buy-store-head{display:flex;justify-content:space-between;font-weight:600;font-size:13px;margin-bottom:4px}
+.buy-store-items{font-size:12px;color:var(--muted);line-height:1.6}
+.buy-actions{display:flex;gap:6px;margin-top:10px}
+.buy-actions button{flex:1;padding:8px 12px;border:none;border-radius:8px;font:inherit;
+  font-weight:600;font-size:13px;cursor:pointer;min-height:38px}
+.btn-copy{background:var(--good);color:#000}
+.btn-clear{background:var(--card2);color:var(--text);border:1px solid var(--border)!important}
+
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+  background:var(--card);border:1px solid var(--good);padding:10px 16px;
+  border-radius:8px;font-size:13px;z-index:200;color:var(--good);font-weight:600}
+.toast.hidden{display:none}
 
 /* TIMELINE */
 .timeline{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;font-size:13px}
-.tl-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;position:relative}
-.tl-item .num{width:26px;height:26px;border-radius:50%;background:var(--card2);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--muted);flex-shrink:0;margin-top:1px}
+.tl-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0;position:relative}
+.tl-item .num{width:24px;height:24px;border-radius:50%;background:var(--card2);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:var(--muted);flex-shrink:0;margin-top:1px}
 .tl-item.you .num{background:#ff6464;color:#fff;border-color:#ff6464}
 .tl-item.next .num{background:var(--good);color:#000;border-color:var(--good)}
 .tl-item.done .num{background:var(--muted);color:#000;border-color:var(--muted)}
 .tl-item .body{flex:1}
 .tl-item .nm{font-weight:600}
-.tl-item.you .nm,.tl-item.next .nm{color:var(--good)}
+.tl-item.you .nm{color:#ff6464}
+.tl-item.next .nm{color:var(--good)}
+.tl-item.done .nm{color:var(--muted);text-decoration:line-through}
 .tl-item .ad{font-size:11px;color:var(--muted)}
 .tl-item.next .ad{color:var(--accent);font-weight:600}
-.tl-leg{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
-.tl-leg::before{content:'';flex:1;height:1px;background:var(--border)}
-.tl-leg::after{content:'';flex:1;height:1px;background:var(--border)}
-.tl-arrow{margin-left:12px;font-size:14px;color:var(--accent);line-height:1}
+.tl-leg{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700;padding:8px 0 4px}
+.tl-arrow{margin-left:8px;font-size:12px;color:var(--accent);line-height:1.4;padding:2px 0}
 
 footer{text-align:center;color:var(--muted);font-size:11px;padding:20px;border-top:1px solid var(--border);margin-top:20px}
 footer .ts{font-weight:600;color:var(--text)}
+
+/* color swatches */
+.c-Black{background:#0a0a0a}.c-White{background:#f5f5f5}.c-Grey{background:#808080}
+.c-Charcoal{background:#36454F}.c-Navy{background:#1a2848}.c-Blue{background:#2e6cd6}
+.c-LightBlue{background:#7ec0ee}.c-Green{background:#2e8b57}.c-Olive{background:#556B2F}
+.c-Khaki{background:#c3b091}.c-Tan{background:#d2b48c}.c-Beige{background:#e8d5b7}
+.c-Brown{background:#8B4513}.c-Cream{background:#fff8dc}.c-Red{background:#c0392b}
+.c-Burgundy{background:#722F37}.c-Pink{background:#f08080}.c-Yellow{background:#FFD700}
+.c-Orange{background:#ff8c00}.c-Purple{background:#7d4f9c}
 </style>
 </head>
 <body>
 
 <header>
   <div class="h-title">🛍️ Tanger Outlets Rehoboth · No Tax</div>
-  <div class="h-loc">🚶 Leaving Applebee's → Calvin Klein #1700</div>
-  <div class="h-meta">Real shopping started · 2026-05-22</div>
+  <div class="h-loc">🛒 In Calvin Klein #1700</div>
+  <div class="h-meta">Tanger Seaside · 1 item logged</div>
   <div class="h-stats">
-    <div class="h-stat">📦 <strong>0</strong> items</div>
-    <div class="h-stat">🏪 <strong>0</strong> visited</div>
-    <div class="h-stat">💵 <strong>$0.00</strong></div>
+    <div class="h-stat">📦 <strong>1</strong> item</div>
+    <div class="h-stat">💵 <strong>$31.99</strong> total</div>
+    <div class="h-stat buy" id="hdBuyStat" style="display:none">✓ <strong id="hdBuyCount">0</strong> = <strong id="hdBuyTotal">$0.00</strong></div>
   </div>
 </header>
 
 <main>
 
 <section>
+  <div class="banner deal">
+    🏷️ <strong>Calvin Klein store-wide deal:</strong> additional <strong>20% OFF the entire order</strong> at checkout. Already applied to every item below.
+  </div>
   <div class="banner next">
-    <strong>🚶 NEXT STOP — Calvin Klein #1700</strong><br>
-    Exit Applebee's <strong>WEST</strong>. Pass Jockey → Hey Dude → Children's Place. CK is on the <strong>south side</strong>, ~3 min walk.
+    <strong>📍 Currently in Calvin Klein #1700.</strong> Keep browsing — pants, shorts, anything that catches your eye. When done, exit and walk west to <strong>Merrell #1750</strong>.
+  </div>
+</section>
+
+<section>
+  <h2>🛒 Your Buy List</h2>
+  <div class="buy-section" id="buySection">
+    <div class="buy-head">
+      <div class="buy-title">Items marked to buy</div>
+      <div class="buy-total" id="buyTotal">$0.00</div>
+    </div>
+    <div id="buyContent">
+      <div class="buy-empty">Tap ✓ on items below to add to your buy list.</div>
+    </div>
+    <div class="buy-actions" id="buyActions" style="display:none">
+      <button class="btn-copy" onclick="copyBuyList()">📋 Copy to share</button>
+      <button class="btn-clear" onclick="clearMarks()">Clear marks</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>⭐ Top 2 Cheapest Per Type <span class="badge">tap to mark</span></h2>
+
+  <div class="t2-block">
+    <h3>🎽 Polos <span class="t-count">· 1 logged</span></h3>
+    <div class="t2-row">
+      <div class="t2-card rank1" data-item-id="1">
+        <div class="rank-medal">1</div>
+        <div class="t2-color"><span class="sw c-Green"></span> Green</div>
+        <div class="t2-price">$31.99<span class="t2-disc">20%</span></div>
+        <span class="t2-tag">$39.99</span>
+        <div class="t2-store">Calvin Klein #1700</div>
+        <div class="t2-notes">pairs with grey/black/tan pants &amp; shorts</div>
+        <div class="mark-btns">
+          <button class="mark-btn" data-act="buy" data-id="1">✓ Buy</button>
+          <button class="mark-btn" data-act="skip" data-id="1">✗ Skip</button>
+        </div>
+      </div>
+      <div class="t2-card empty-rank">only 1 logged — bring more to compare</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>📦 All Items <span class="badge">1</span></h2>
+  <div class="item-row" data-item-id="1">
+    <div class="item-head">
+      <div class="item-info">
+        <span class="item-id">#1</span>
+        <div class="item-name"><span class="sw c-Green"></span> Green polo</div>
+        <div class="item-store">Calvin Klein #1700 · Tanger Seaside</div>
+      </div>
+      <div style="text-align:right">
+        <div class="item-fp">$31.99</div>
+        <div style="display:flex;gap:4px;justify-content:flex-end;align-items:center;margin-top:2px">
+          <span class="item-tp">$39.99</span>
+          <span class="item-disc">20%</span>
+        </div>
+      </div>
+    </div>
+    <div class="item-pairs">Pairs with:
+      <span class="pair-pill"><span class="sw c-Grey"></span>Grey</span>
+      <span class="pair-pill"><span class="sw c-Black"></span>Black</span>
+      <span class="pair-pill"><span class="sw c-Tan"></span>Tan</span>
+      <span style="color:var(--muted)">· pants &amp; shorts</span>
+    </div>
+    <div class="mark-btns">
+      <button class="mark-btn" data-act="buy" data-id="1">✓ Buy</button>
+      <button class="mark-btn" data-act="skip" data-id="1">✗ Skip</button>
+    </div>
   </div>
 </section>
 
@@ -119,99 +274,75 @@ footer .ts{font-weight:600;color:var(--text)}
         </marker>
       </defs>
 
-      <!-- BAYSIDE box (top left) -->
+      <!-- BAYSIDE -->
       <rect x="10" y="20" width="155" height="155" fill="rgba(74,144,226,0.08)" stroke="#2a3654" stroke-width="1.5" rx="8"/>
       <text x="87" y="40" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER BAYSIDE</text>
-      <!-- Stores in Bayside -->
-      <!-- ⑦ Under Armour (far west) -->
-      <circle cx="40" cy="80" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="40" y="84" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">7</text>
-      <text x="40" y="105" fill="#e8eef7" font-size="9" text-anchor="middle">U.Armour</text>
-      <text x="40" y="116" fill="#8a96ad" font-size="8" text-anchor="middle">#610</text>
-      <!-- ⑥ North Face (upper right) -->
-      <circle cx="120" cy="70" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="120" y="74" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">6</text>
-      <text x="120" y="95" fill="#e8eef7" font-size="9" text-anchor="middle">N.Face</text>
-      <text x="120" y="106" fill="#8a96ad" font-size="8" text-anchor="middle">#420</text>
-      <!-- ⑤ Old Navy (south, near Rt 1) -->
-      <circle cx="90" cy="145" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="90" y="149" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">5</text>
-      <text x="90" y="165" fill="#e8eef7" font-size="9" text-anchor="middle">Old Navy #150</text>
+      <circle cx="40" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="40" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">7</text>
+      <text x="40" y="100" fill="#e8eef7" font-size="8" text-anchor="middle">U.Armour #610</text>
+      <circle cx="120" cy="70" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="120" y="74" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">6</text>
+      <text x="120" y="90" fill="#e8eef7" font-size="8" text-anchor="middle">N.Face #420</text>
+      <circle cx="90" cy="135" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="90" y="139" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">5</text>
+      <text x="90" y="155" fill="#e8eef7" font-size="8" text-anchor="middle">Old Navy #150</text>
 
-      <!-- SURFSIDE box (top right) -->
+      <!-- SURFSIDE -->
       <rect x="195" y="20" width="155" height="170" fill="rgba(74,144,226,0.08)" stroke="#2a3654" stroke-width="1.5" rx="8"/>
       <text x="272" y="40" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER SURFSIDE</text>
-      <!-- ⑪ Polo RL (west leg, south) -->
-      <circle cx="225" cy="155" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="225" y="159" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">11</text>
-      <text x="225" y="178" fill="#e8eef7" font-size="9" text-anchor="middle">Polo RL #313</text>
-      <!-- ⑩ Boss (west leg, north) -->
-      <circle cx="225" cy="80" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="225" y="84" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">10</text>
-      <text x="225" y="65" fill="#e8eef7" font-size="9" text-anchor="middle">Boss #307</text>
-      <!-- ⑨ Lacoste (east leg, north) -->
-      <circle cx="320" cy="80" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="320" y="84" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">9</text>
-      <text x="320" y="65" fill="#e8eef7" font-size="9" text-anchor="middle">Lacoste #119</text>
-      <!-- ⑧ Cole Haan (east leg, south) -->
-      <circle cx="320" cy="155" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="320" y="159" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">8</text>
-      <text x="320" y="178" fill="#e8eef7" font-size="9" text-anchor="middle">Cole Haan #107</text>
+      <circle cx="225" cy="150" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="225" y="154" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">11</text>
+      <text x="225" y="172" fill="#e8eef7" font-size="8" text-anchor="middle">Polo RL #313</text>
+      <circle cx="225" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="225" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">10</text>
+      <text x="225" y="65" fill="#e8eef7" font-size="8" text-anchor="middle">Boss #307</text>
+      <circle cx="320" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="320" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">9</text>
+      <text x="320" y="65" fill="#e8eef7" font-size="8" text-anchor="middle">Lacoste #119</text>
+      <circle cx="320" cy="150" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="320" y="154" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">8</text>
+      <text x="320" y="172" fill="#e8eef7" font-size="8" text-anchor="middle">Cole Haan #107</text>
 
       <!-- ROUTE 1 -->
       <line x1="80" y1="210" x2="290" y2="210" stroke="#4a90e2" stroke-width="2" stroke-dasharray="6,4"/>
       <text x="185" y="205" fill="#4a90e2" font-size="10" font-weight="700" text-anchor="middle">ROUTE 1 · 1.8 mi</text>
-      <!-- bus icons -->
       <text x="75" y="215" fill="#4a90e2" font-size="11" text-anchor="middle">🚌</text>
       <text x="295" y="215" fill="#4a90e2" font-size="11" text-anchor="middle">🚌</text>
-
-      <!-- connectors from centers to Rt 1 -->
-      <line x1="90" y1="175" x2="90" y2="210" stroke="#2a3654" stroke-width="1"/>
+      <line x1="90" y1="165" x2="90" y2="210" stroke="#2a3654" stroke-width="1"/>
       <line x1="270" y1="190" x2="270" y2="210" stroke="#2a3654" stroke-width="1"/>
 
-      <!-- SEASIDE box (bottom) -->
+      <!-- SEASIDE -->
       <rect x="10" y="225" width="340" height="200" fill="rgba(74,144,226,0.08)" stroke="#2a3654" stroke-width="1.5" rx="8"/>
       <text x="180" y="245" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER SEASIDE</text>
-
-      <!-- connector from Rt 1 down -->
       <line x1="180" y1="210" x2="180" y2="225" stroke="#2a3654" stroke-width="1"/>
 
-      <!-- Seaside stores (along south strip, west→east) -->
-      <!-- ④ Clarks (far west, north corner) -->
-      <circle cx="40" cy="280" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="40" y="284" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">4</text>
-      <text x="40" y="265" fill="#e8eef7" font-size="9" text-anchor="middle">Clarks #1825</text>
-      <!-- ③ Banana Republic (far west) -->
-      <circle cx="40" cy="335" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="40" y="339" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">3</text>
-      <text x="40" y="357" fill="#e8eef7" font-size="9" text-anchor="middle">Banana Rep</text>
-      <text x="40" y="368" fill="#8a96ad" font-size="8" text-anchor="middle">#1800</text>
-      <!-- ② Merrell -->
-      <circle cx="115" cy="380" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="115" y="384" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">2</text>
-      <text x="115" y="402" fill="#e8eef7" font-size="9" text-anchor="middle">Merrell #1750</text>
-      <!-- ① Calvin Klein (NEXT) -->
-      <circle cx="195" cy="380" r="12" fill="#45c97a" stroke="#fff" stroke-width="2"/>
-      <text x="195" y="385" fill="#000" font-size="12" font-weight="800" text-anchor="middle">1</text>
-      <text x="195" y="402" fill="#45c97a" font-size="10" font-weight="700" text-anchor="middle">Calvin Klein #1700</text>
-      <text x="195" y="413" fill="#45c97a" font-size="9" font-weight="600" text-anchor="middle">← NEXT STOP</text>
-      <!-- 🍔 Applebee's (YOU) -->
-      <circle cx="290" cy="380" r="11" fill="#ff6464" stroke="#fff" stroke-width="2">
-        <animate attributeName="r" values="11;15;11" dur="1.5s" repeatCount="indefinite"/>
-      </circle>
-      <text x="290" y="385" fill="#fff" font-size="11" text-anchor="middle">🍔</text>
-      <text x="290" y="402" fill="#ff6464" font-size="10" font-weight="700" text-anchor="middle">Applebee's</text>
-      <text x="290" y="413" fill="#ff6464" font-size="9" font-weight="600" text-anchor="middle">← YOU ARE HERE</text>
+      <circle cx="40" cy="280" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="40" y="284" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">4</text>
+      <text x="40" y="265" fill="#e8eef7" font-size="8" text-anchor="middle">Clarks #1825</text>
+      <circle cx="40" cy="335" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="40" y="339" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">3</text>
+      <text x="40" y="355" fill="#e8eef7" font-size="8" text-anchor="middle">Banana Rep</text>
+      <circle cx="115" cy="380" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="115" y="384" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">2</text>
+      <text x="115" y="400" fill="#e8eef7" font-size="8" text-anchor="middle">Merrell #1750</text>
 
-      <!-- WALKING ARROW from Applebee's → Calvin Klein -->
-      <path d="M 278 380 Q 240 365 215 378" stroke="#45c97a" stroke-width="2.5" fill="none" marker-end="url(#arr)" stroke-dasharray="4,3"/>
-      <text x="245" y="358" fill="#45c97a" font-size="9" font-weight="700" text-anchor="middle">walk west</text>
+      <!-- ① Calvin Klein — CURRENT -->
+      <circle cx="195" cy="380" r="13" fill="#ff6464" stroke="#fff" stroke-width="2">
+        <animate attributeName="r" values="13;17;13" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <text x="195" y="385" fill="#fff" font-size="13" font-weight="800" text-anchor="middle">1</text>
+      <text x="195" y="402" fill="#ff6464" font-size="10" font-weight="700" text-anchor="middle">Calvin Klein #1700</text>
+      <text x="195" y="413" fill="#ff6464" font-size="9" font-weight="600" text-anchor="middle">← YOU ARE HERE</text>
+
+      <!-- Applebee's (done) -->
+      <text x="290" y="380" fill="#8a96ad" font-size="14" text-anchor="middle">🍔</text>
+      <text x="290" y="400" fill="#8a96ad" font-size="9" text-anchor="middle">Applebee's ✓</text>
     </svg>
     <div class="map-legend">
-      <span class="lg"><span class="lg-dot you you-pulse"></span> You</span>
-      <span class="lg"><span class="lg-dot next"></span> Next stop</span>
+      <span class="lg"><span class="lg-dot you"></span> You</span>
+      <span class="lg"><span class="lg-dot next"></span> Next</span>
       <span class="lg"><span class="lg-dot todo"></span> To visit</span>
-      <span class="lg">🚌 DART shuttle stop</span>
+      <span class="lg"><span class="lg-dot done"></span> Done</span>
     </div>
   </div>
 </section>
@@ -219,132 +350,158 @@ footer .ts{font-weight:600;color:var(--text)}
 <section>
   <h2>📍 Route Timeline</h2>
   <div class="timeline">
-    <div class="tl-leg">① SEASIDE — walk west</div>
-    <div class="tl-item you">
+    <div class="tl-leg">① SEASIDE</div>
+    <div class="tl-item done">
       <div class="num">🍔</div>
-      <div class="body">
-        <div class="nm">Applebee's</div>
-        <div class="ad">YOU ARE HERE · Tanger Seaside east-center</div>
-      </div>
+      <div class="body"><div class="nm">Applebee's</div><div class="ad">lunch ✓</div></div>
     </div>
-    <div class="tl-arrow">↓ walk WEST along south strip · ~3 min</div>
-    <div class="tl-item next">
+    <div class="tl-item you">
       <div class="num">1</div>
-      <div class="body">
-        <div class="nm">Calvin Klein #1700</div>
-        <div class="ad">NEXT — pants &amp; slacks</div>
-      </div>
+      <div class="body"><div class="nm">Calvin Klein #1700</div><div class="ad">🛒 IN STORE NOW · 20% off entire order</div></div>
     </div>
-    <div class="tl-arrow">↓ keep walking west</div>
-    <div class="tl-item">
+    <div class="tl-arrow">↓ keep walking WEST when done</div>
+    <div class="tl-item next">
       <div class="num">2</div>
-      <div class="body">
-        <div class="nm">Merrell #1750</div>
-        <div class="ad">shoes (optional)</div>
-      </div>
+      <div class="body"><div class="nm">Merrell #1750</div><div class="ad">NEXT — shoes (optional)</div></div>
     </div>
-    <div class="tl-arrow">↓ west then turn right (north) onto west spur</div>
     <div class="tl-item">
       <div class="num">3</div>
-      <div class="body">
-        <div class="nm">Banana Republic Factory #1800</div>
-        <div class="ad">pants, slacks, shirts</div>
-      </div>
+      <div class="body"><div class="nm">Banana Republic Factory #1800</div><div class="ad">pants, slacks, shirts</div></div>
     </div>
-    <div class="tl-arrow">↓ one door north</div>
     <div class="tl-item">
       <div class="num">4</div>
-      <div class="body">
-        <div class="nm">Clarks Outlet #1825</div>
-        <div class="ad">shoes (optional)</div>
-      </div>
+      <div class="body"><div class="nm">Clarks Outlet #1825</div><div class="ad">shoes (optional)</div></div>
     </div>
     <div class="tl-leg">② BAYSIDE — cross Rt 1 north</div>
-    <div class="tl-arrow">↓ exit Seaside west, cross Route 1</div>
-    <div class="tl-item">
-      <div class="num">5</div>
-      <div class="body">
-        <div class="nm">Old Navy #150</div>
-        <div class="ad">budget pants &amp; shirts · right at south entry</div>
-      </div>
-    </div>
-    <div class="tl-arrow">↓ walk north to upper strip</div>
-    <div class="tl-item">
-      <div class="num">6</div>
-      <div class="body">
-        <div class="nm">The North Face #420</div>
-        <div class="ad">technical pants</div>
-      </div>
-    </div>
-    <div class="tl-arrow">↓ walk west, far end</div>
-    <div class="tl-item">
-      <div class="num">7</div>
-      <div class="body">
-        <div class="nm">Under Armour #610</div>
-        <div class="ad">athletic pants &amp; shorts</div>
-      </div>
-    </div>
-    <div class="tl-leg">③ SURFSIDE — DART east 1.8 mi</div>
-    <div class="tl-arrow">↓ shuttle or drive east on Rt 1</div>
-    <div class="tl-item">
-      <div class="num">8</div>
-      <div class="body">
-        <div class="nm">Cole Haan #107</div>
-        <div class="ad">pants · enter east leg of U</div>
-      </div>
-    </div>
-    <div class="tl-arrow">↓ continue up east leg</div>
-    <div class="tl-item">
-      <div class="num">9</div>
-      <div class="body">
-        <div class="nm">Lacoste #119</div>
-        <div class="ad">polos &amp; pants</div>
-      </div>
-    </div>
-    <div class="tl-arrow">↓ cross top of U to west leg</div>
-    <div class="tl-item">
-      <div class="num">10</div>
-      <div class="body">
-        <div class="nm">Boss #307</div>
-        <div class="ad">slacks · dressier</div>
-      </div>
-    </div>
-    <div class="tl-arrow">↓ one door south</div>
-    <div class="tl-item">
-      <div class="num">11</div>
-      <div class="body">
-        <div class="nm">Polo Ralph Lauren #313</div>
-        <div class="ad">pants, shirts, polos — last stop!</div>
-      </div>
-    </div>
-    <div class="tl-arrow">✅ DONE — review buy list and go shopping</div>
-  </div>
-</section>
-
-<section>
-  <h2>🛒 Your Buy List</h2>
-  <div class="empty-state">
-    <div class="em">🛍️</div>
-    <strong>Nothing logged yet</strong>
-    <div class="hint">Tell me items in chat as you find them.<br>This page will fill in as you go.</div>
-  </div>
-</section>
-
-<section>
-  <h2>💬 How to log</h2>
-  <div class="banner info">
-    Tell me in chat like:<br>
-    <em style="color:var(--text)">"Grey chinos, tag $89.50, 40% off, pairs with white &amp; navy"</em><br>
-    I'll add it here. Pull down to refresh after each item.
+    <div class="tl-item"><div class="num">5</div><div class="body"><div class="nm">Old Navy #150</div><div class="ad">budget</div></div></div>
+    <div class="tl-item"><div class="num">6</div><div class="body"><div class="nm">The North Face #420</div></div></div>
+    <div class="tl-item"><div class="num">7</div><div class="body"><div class="nm">Under Armour #610</div></div></div>
+    <div class="tl-leg">③ SURFSIDE — DART 1.8 mi east</div>
+    <div class="tl-item"><div class="num">8</div><div class="body"><div class="nm">Cole Haan #107</div></div></div>
+    <div class="tl-item"><div class="num">9</div><div class="body"><div class="nm">Lacoste #119</div></div></div>
+    <div class="tl-item"><div class="num">10</div><div class="body"><div class="nm">Boss #307</div></div></div>
+    <div class="tl-item"><div class="num">11</div><div class="body"><div class="nm">Polo Ralph Lauren #313</div></div></div>
   </div>
 </section>
 
 </main>
 
+<div id="toast" class="toast hidden"></div>
+
 <footer>
-  <div class="ts">Last updated: 2026-05-22 16:00 · ready to shop</div>
-  <div style="margin-top:4px">Pull down to refresh after each item.</div>
+  <div class="ts">Updated 2026-05-22 16:15 · 1 item</div>
+  <div style="margin-top:4px">Marks save to your phone. Tap ✓ on items you want.</div>
 </footer>
+
+<script>
+const ITEMS = {
+  1:{store:'Calvin Klein #1700',type:'Green polo',price:31.99},
+};
+const STORE_ORDER={'Calvin Klein #1700':1,'Merrell #1750':2,'Banana Republic #1800':3,'Clarks #1825':4,'Old Navy #150':5,'North Face #420':6,'Under Armour #610':7,'Cole Haan #107':8,'Lacoste #119':9,'Boss #307':10,'Polo Ralph Lauren #313':11};
+const STORAGE_KEY = 'de-shopping-marks';
+
+function loadMarks(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}}}
+function saveMarks(m){localStorage.setItem(STORAGE_KEY,JSON.stringify(m))}
+let marks = loadMarks();
+
+function applyVisualState(){
+  document.querySelectorAll('.mark-btn').forEach(b=>{
+    const id = b.dataset.id, act = b.dataset.act;
+    b.classList.remove('on-buy','on-skip');
+    if(marks[id]==='buy' && act==='buy') b.classList.add('on-buy');
+    if(marks[id]==='skip' && act==='skip') b.classList.add('on-skip');
+  });
+  document.querySelectorAll('[data-item-id]').forEach(el=>{
+    const id = el.dataset.itemId;
+    el.classList.remove('buy','skip');
+    if(marks[id]==='buy') el.classList.add('buy');
+    if(marks[id]==='skip') el.classList.add('skip');
+  });
+}
+
+function fmt(n){return '$'+(Number(n)||0).toFixed(2)}
+
+function renderBuyList(){
+  const ids = Object.keys(marks).filter(k=>marks[k]==='buy');
+  const total = ids.reduce((s,id)=>s+(ITEMS[id]?ITEMS[id].price:0),0);
+  document.getElementById('buyTotal').textContent = fmt(total);
+
+  const hdStat = document.getElementById('hdBuyStat');
+  if(ids.length){
+    hdStat.style.display='inline-flex';
+    document.getElementById('hdBuyCount').textContent = ids.length;
+    document.getElementById('hdBuyTotal').textContent = fmt(total);
+    document.getElementById('buyActions').style.display='flex';
+  } else {
+    hdStat.style.display='none';
+    document.getElementById('buyActions').style.display='none';
+    document.getElementById('buyContent').innerHTML = '<div class="buy-empty">Tap ✓ on items below to add to your buy list.</div>';
+    return;
+  }
+  const byStore = {};
+  ids.forEach(id=>{
+    const it = ITEMS[id];if(!it)return;
+    (byStore[it.store]=byStore[it.store]||[]).push({id,...it});
+  });
+  const storeKeys = Object.keys(byStore).sort((a,b)=>(STORE_ORDER[a]||99)-(STORE_ORDER[b]||99));
+  let html = '';
+  storeKeys.forEach(s=>{
+    const its = byStore[s];
+    const sub = its.reduce((s,i)=>s+i.price,0);
+    html += `<div class="buy-store">
+      <div class="buy-store-head"><span>${s}</span><span style="color:var(--good)">${fmt(sub)}</span></div>
+      <div class="buy-store-items">${its.map(i=>`• #${i.id} ${i.type} — ${fmt(i.price)}`).join('<br>')}</div>
+    </div>`;
+  });
+  document.getElementById('buyContent').innerHTML = html;
+}
+
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;t.classList.remove('hidden');
+  clearTimeout(window._tt);window._tt = setTimeout(()=>t.classList.add('hidden'), 2500);
+}
+
+document.querySelectorAll('.mark-btn').forEach(btn=>{
+  btn.addEventListener('click', e=>{
+    e.stopPropagation();
+    const id = btn.dataset.id, act = btn.dataset.act;
+    if(marks[id]===act) delete marks[id]; else marks[id]=act;
+    saveMarks(marks);applyVisualState();renderBuyList();
+  });
+});
+
+function copyBuyList(){
+  const ids = Object.keys(marks).filter(k=>marks[k]==='buy');
+  if(!ids.length){toast('Nothing marked yet');return}
+  const byStore = {};
+  ids.forEach(id=>{const it=ITEMS[id];if(!it)return;(byStore[it.store]=byStore[it.store]||[]).push({id,...it})});
+  const total = ids.reduce((s,id)=>s+(ITEMS[id]?ITEMS[id].price:0),0);
+  const storeKeys = Object.keys(byStore).sort((a,b)=>(STORE_ORDER[a]||99)-(STORE_ORDER[b]||99));
+  let text = `MY BUY LIST — ${ids.length} items, ${fmt(total)} total\n\n`;
+  storeKeys.forEach(s=>{
+    const its = byStore[s], sub = its.reduce((s,i)=>s+i.price,0);
+    text += `${s} — ${fmt(sub)}\n`;
+    its.forEach(i=>{text+=`  • #${i.id} ${i.type} — ${fmt(i.price)}\n`});
+    text += '\n';
+  });
+  text += `IDs to buy: ${ids.sort((a,b)=>+a-+b).join(', ')}`;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(()=>toast('Copied! Paste it in chat')).catch(()=>fallbackCopy(text));
+  } else fallbackCopy(text);
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');toast('Copied!')}catch(e){toast('Copy failed')}
+  ta.remove();
+}
+function clearMarks(){
+  if(!confirm('Clear all ✓/✗ marks?'))return;
+  marks={};saveMarks(marks);applyVisualState();renderBuyList();
+}
+
+applyVisualState();renderBuyList();
+</script>
 
 </body>
 </html>
