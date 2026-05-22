@@ -1,13 +1,14 @@
 {
   "version": 1,
-  "lastUpdate": "2026-05-22T17:05:00Z",
-  "currentStoreId": 13,
-  "currentStoreName": "J.Crew Factory #1770",
-  "nextItemId": 16,
+  "lastUpdate": "2026-05-22T17:30:00Z",
+  "currentStoreId": 14,
+  "currentStoreName": "Vineyard Vines #106",
+  "nextItemId": 22,
   "storeDiscounts": {
-    "1": {"type":"pct","value":20,"note":"20% off entire order"},
-    "12": {"type":"pct","value":40,"note":"everything 40% off"},
-    "13": {"type":"pct","value":50,"note":"polos 50% off"}
+    "1": {"type":"pct","value":20},
+    "12": {"type":"pct","value":40},
+    "13": {"type":"pct","value":50},
+    "14": {"type":"pct","value":40}
   },
   "items": [
     {"id":1,"storeId":1,"type":"polo","color":"Green","size":"L","tagPrice":39.99,"finalPrice":31.99,"pairsWith":["Grey","Black","Tan"],"notes":"size L · 20% off","decision":"undecided"},
@@ -15,15 +16,21 @@
     {"id":3,"storeId":1,"type":"polo","color":"Grey","size":"L","tagPrice":39.99,"finalPrice":31.99,"pairsWith":["Navy","Tan","Black"],"notes":"size L · 20% off","decision":"undecided"},
     {"id":4,"storeId":1,"type":"shorts","color":"Tan","tagPrice":79.99,"finalPrice":38.39,"pairsWith":["Green","Dark Green","Navy"],"notes":"40%+20% off","decision":"undecided"},
     {"id":5,"storeId":1,"type":"shorts","color":"Grey","tagPrice":79.99,"finalPrice":38.39,"pairsWith":["Green","Dark Green","Navy"],"notes":"40%+20% off","decision":"undecided"},
-    {"id":6,"storeId":1,"type":"pants","color":"Grey","tagPrice":39.99,"finalPrice":31.99,"pairsWith":["Green","Dark Green","Grey"],"notes":"slim fit · 20% off","decision":"undecided"},
-    {"id":7,"storeId":1,"type":"pants","color":"Tan","tagPrice":39.99,"finalPrice":31.99,"pairsWith":["Green","Dark Green","Grey"],"notes":"slim fit · 20% off","decision":"undecided"},
-    {"id":8,"storeId":1,"type":"pants","color":"Black","tagPrice":39.99,"finalPrice":31.99,"pairsWith":[],"notes":"slim fit · 20% off · pairing TBD","decision":"undecided"},
-    {"id":9,"storeId":1,"type":"pants","color":"Light Blue","tagPrice":39.99,"finalPrice":31.99,"pairsWith":[],"notes":"slim sky blue · 20% off · pairing TBD","decision":"undecided"},
+    {"id":6,"storeId":1,"type":"pants","color":"Grey","tagPrice":39.99,"finalPrice":31.99,"pairsWith":["Green","Dark Green","Grey"],"notes":"slim · 20% off","decision":"undecided"},
+    {"id":7,"storeId":1,"type":"pants","color":"Tan","tagPrice":39.99,"finalPrice":31.99,"pairsWith":["Green","Dark Green","Grey"],"notes":"slim · 20% off","decision":"undecided"},
+    {"id":8,"storeId":1,"type":"pants","color":"Black","tagPrice":39.99,"finalPrice":31.99,"pairsWith":[],"notes":"slim · TBD","decision":"undecided"},
+    {"id":9,"storeId":1,"type":"pants","color":"Light Blue","tagPrice":39.99,"finalPrice":31.99,"pairsWith":[],"notes":"slim sky blue · TBD","decision":"undecided"},
     {"id":10,"storeId":12,"type":"pants","color":"Grey","tagPrice":88.00,"finalPrice":52.80,"pairsWith":["Green","Dark Green"],"notes":"Express slim · 40% off","decision":"undecided"},
     {"id":11,"storeId":12,"type":"pants","color":"Dark Grey","tagPrice":88.00,"finalPrice":52.80,"pairsWith":["Green","Dark Green"],"notes":"Express slim · 40% off","decision":"undecided"},
-    {"id":12,"storeId":12,"type":"polo","color":"Dark Green","tagPrice":54.00,"finalPrice":32.40,"pairsWith":["Grey","Dark Grey","Black","Tan"],"notes":"white pinstripe collar · 40% off","decision":"undecided"},
-    {"id":13,"storeId":12,"type":"polo","color":"Cream","tagPrice":54.00,"finalPrice":32.40,"pairsWith":[],"notes":"black pinstripe collar · 40% off · pairing TBD","decision":"undecided"},
+    {"id":12,"storeId":12,"type":"polo","color":"Dark Green","tagPrice":54.00,"finalPrice":32.40,"pairsWith":["Grey","Dark Grey","Black","Tan"],"notes":"pinstripe · 40% off","decision":"undecided"},
+    {"id":13,"storeId":12,"type":"polo","color":"Cream","tagPrice":54.00,"finalPrice":32.40,"pairsWith":[],"notes":"pinstripe · TBD","decision":"undecided"},
     {"id":14,"storeId":13,"type":"polo","color":"Teal","tagPrice":79.50,"finalPrice":39.75,"pairsWith":["Tan","Grey"],"notes":"J.Crew · 50% off","decision":"undecided"},
-    {"id":15,"storeId":13,"type":"polo","color":"Medium Green","tagPrice":79.50,"finalPrice":39.75,"pairsWith":["Tan","Grey","Navy"],"notes":"J.Crew · 50% off","decision":"undecided"}
+    {"id":15,"storeId":13,"type":"polo","color":"Medium Green","tagPrice":79.50,"finalPrice":39.75,"pairsWith":["Tan","Grey","Navy"],"notes":"J.Crew · 50% off","decision":"undecided"},
+    {"id":16,"storeId":14,"type":"pants","color":"Grey","tagPrice":99.00,"finalPrice":59.40,"pairsWith":["Green","Dark Green","Grey"],"notes":"VV slim khaki · 40% off","decision":"undecided"},
+    {"id":17,"storeId":14,"type":"pants","color":"Navy","tagPrice":99.00,"finalPrice":59.40,"pairsWith":["Grey","White"],"notes":"VV slim khaki · 40% off","decision":"undecided"},
+    {"id":18,"storeId":14,"type":"pants","color":"Tan","tagPrice":99.00,"finalPrice":59.40,"pairsWith":["Green","Dark Green","Grey"],"notes":"VV slim khaki · 40% off","decision":"undecided"},
+    {"id":19,"storeId":14,"type":"shorts","color":"Grey","tagPrice":69.99,"finalPrice":41.99,"pairsWith":["Green","Dark Green","Navy"],"notes":"VV · 40% off","decision":"undecided"},
+    {"id":20,"storeId":14,"type":"shorts","color":"Navy","tagPrice":69.99,"finalPrice":41.99,"pairsWith":["Grey","White"],"notes":"VV · 40% off","decision":"undecided"},
+    {"id":21,"storeId":14,"type":"shorts","color":"Tan","tagPrice":69.99,"finalPrice":41.99,"pairsWith":["Green","Dark Green","Navy"],"notes":"VV · 40% off","decision":"undecided"}
   ]
 }
