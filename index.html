@@ -11,55 +11,33 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%9B%8D%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{
-  --bg:#0b1220;--card:#151c2e;--card2:#1c2540;--border:#2a3654;
-  --text:#e8eef7;--muted:#8a96ad;--accent:#4a90e2;--good:#45c97a;
-  --warn:#f0a035;--gold:#f0c040;--silver:#b8c0d4;--danger:#e25555;
-}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-  background:var(--bg);color:var(--text);font-size:15px;line-height:1.45;
-  padding-bottom:60px;-webkit-text-size-adjust:100%;
-}
-header{
-  background:linear-gradient(180deg,#1a2342,var(--card));
-  padding:calc(14px + env(safe-area-inset-top)) 16px 14px;
-  border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5;
-  box-shadow:0 2px 10px rgba(0,0,0,.3);
-}
+:root{--bg:#0b1220;--card:#151c2e;--card2:#1c2540;--border:#2a3654;--text:#e8eef7;--muted:#8a96ad;--accent:#4a90e2;--good:#45c97a;--warn:#f0a035;--gold:#f0c040;--silver:#b8c0d4;--danger:#e25555}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.45;padding-bottom:60px;-webkit-text-size-adjust:100%}
+header{background:linear-gradient(180deg,#1a2342,var(--card));padding:calc(14px + env(safe-area-inset-top)) 16px 14px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(0,0,0,.3)}
 .h-title{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:600}
 .h-loc{font-size:20px;font-weight:700;margin-top:3px}
 .h-meta{font-size:12px;color:var(--muted);margin-top:2px}
 .h-stats{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
-.h-stat{background:var(--card2);padding:6px 10px;border-radius:8px;
-  font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border)}
+.h-stat{background:var(--card2);padding:6px 10px;border-radius:8px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border)}
 .h-stat strong{color:var(--good);font-size:14px}
 .h-stat.buy{border-color:var(--good);background:rgba(69,201,122,.1)}
-
 main{max-width:760px;margin:0 auto;padding:16px}
 section{margin-bottom:22px}
-h2{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;
-  margin:0 0 10px;font-weight:700;display:flex;align-items:center;gap:8px}
+h2{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin:0 0 10px;font-weight:700;display:flex;align-items:center;gap:8px}
 h2 .badge{background:var(--card2);color:var(--muted);font-size:11px;padding:2px 8px;border-radius:999px;text-transform:none;letter-spacing:0;font-weight:600}
 h3{font-size:16px;margin:0 0 8px;font-weight:700}
 .t-count{font-size:11px;color:var(--muted);font-weight:500}
-
 .banner{padding:12px 14px;border-radius:10px;font-size:14px;margin-bottom:12px;line-height:1.5}
 .banner.next{background:linear-gradient(135deg,rgba(74,144,226,.2),rgba(74,144,226,.05));border:1px solid var(--accent)}
 .banner.next strong{color:var(--accent)}
 .banner.deal{background:linear-gradient(135deg,rgba(240,160,53,.18),rgba(240,160,53,.04));border:1px solid var(--warn)}
 .banner.deal strong{color:var(--warn)}
-
-/* MAP */
 .map-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px}
 .map-svg{width:100%;height:auto;display:block}
 .map-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)}
-.map-legend .lg{display:inline-flex;align-items:center;gap:5px}
+.lg{display:inline-flex;align-items:center;gap:5px}
 .lg-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
-.lg-dot.you{background:#ff6464}.lg-dot.next{background:var(--good)}
-.lg-dot.todo{background:var(--card2);border:1px solid var(--muted)}.lg-dot.done{background:var(--muted)}
-
-/* TOP 2 cards */
+.lg-dot.you{background:#ff6464}.lg-dot.next{background:var(--good)}.lg-dot.todo{background:var(--card2);border:1px solid var(--muted)}.lg-dot.done{background:var(--muted)}
 .t2-block{margin-bottom:14px}
 .t2-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media(max-width:380px){.t2-row{grid-template-columns:1fr}}
@@ -68,10 +46,7 @@ h3{font-size:16px;margin:0 0 8px;font-weight:700}
 .t2-card.rank2{border-color:rgba(184,192,212,.4)}
 .t2-card.buy{border-color:var(--good)!important;background:linear-gradient(135deg,rgba(69,201,122,.15),var(--card))!important}
 .t2-card.skip{opacity:.4}
-.t2-card.empty-rank{opacity:.4;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;min-height:100px;text-align:center;padding:8px}
-.rank-medal{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;
-  background:var(--gold);color:#000;display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:12px;border:2px solid var(--bg)}
+.rank-medal{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:var(--gold);color:#000;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;border:2px solid var(--bg)}
 .rank2 .rank-medal{background:var(--silver)}
 .t2-color{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:5px;font-weight:600}
 .t2-price{font-size:22px;font-weight:800;color:var(--good);margin:6px 0 2px;line-height:1.1}
@@ -79,10 +54,7 @@ h3{font-size:16px;margin:0 0 8px;font-weight:700}
 .t2-tag{font-size:11px;color:var(--muted);text-decoration:line-through}
 .t2-store{font-size:11px;color:var(--muted);margin-top:2px}
 .t2-notes{font-size:11px;color:var(--muted);font-style:italic;margin-top:4px}
-
 .sw{width:12px;height:12px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:inline-block;vertical-align:middle;flex-shrink:0}
-
-/* ITEM CARDS */
 .item-row{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:6px}
 .item-row.buy{border-color:var(--good);background:linear-gradient(135deg,rgba(69,201,122,.1),var(--card))}
 .item-row.skip{opacity:.4}
@@ -98,20 +70,20 @@ h3{font-size:16px;margin:0 0 8px;font-weight:700}
 .item-disc{background:var(--warn);color:#000;font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px}
 .item-pairs{font-size:11px;color:var(--muted);margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
 .pair-pill{background:var(--card2);padding:2px 7px;border-radius:999px;display:inline-flex;align-items:center;gap:3px}
-
 .mark-btns{display:flex;gap:6px;margin-top:10px}
-.mark-btn{font:inherit;flex:1;font-size:13px;padding:8px;border-radius:6px;
-  background:var(--card2);color:var(--text);border:1px solid var(--border);
-  cursor:pointer;font-weight:600;min-height:36px}
+.mark-btn{font:inherit;flex:1;font-size:13px;padding:8px;border-radius:6px;background:var(--card2);color:var(--text);border:1px solid var(--border);cursor:pointer;font-weight:600;min-height:36px}
 .mark-btn.on-buy{background:var(--good);color:#000;border-color:var(--good)}
 .mark-btn.on-skip{background:var(--danger);color:#fff;border-color:var(--danger)}
 .mark-btn:active{transform:scale(.98)}
-
+.outfit{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:6px;border-left:3px solid var(--good)}
+.outfit .top{font-size:13px;margin-bottom:3px;display:flex;align-items:center;gap:5px}
+.outfit .tot{margin-top:4px;padding-top:5px;border-top:1px solid var(--border);font-weight:800;color:var(--good);font-size:15px;display:flex;justify-content:space-between}
+.outfit .ss{font-size:10px;background:var(--good);color:#000;padding:1px 5px;border-radius:3px;font-weight:700}
 .buy-section{background:linear-gradient(135deg,rgba(69,201,122,.15),var(--card));border:2px solid var(--good);border-radius:12px;padding:14px;margin-bottom:18px}
-.buy-section .buy-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.buy-section .buy-title{font-size:16px;font-weight:700;color:var(--good)}
-.buy-section .buy-total{font-size:22px;font-weight:800;color:var(--good)}
-.buy-section .buy-empty{font-size:13px;color:var(--muted);text-align:center;padding:10px 0}
+.buy-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.buy-title{font-size:16px;font-weight:700;color:var(--good)}
+.buy-total{font-size:22px;font-weight:800;color:var(--good)}
+.buy-empty{font-size:13px;color:var(--muted);text-align:center;padding:10px 0}
 .buy-store{background:var(--card2);border-radius:8px;padding:10px;margin-bottom:6px}
 .buy-store-head{display:flex;justify-content:space-between;font-weight:600;font-size:13px;margin-bottom:4px}
 .buy-store-items{font-size:12px;color:var(--muted);line-height:1.6}
@@ -119,17 +91,11 @@ h3{font-size:16px;margin:0 0 8px;font-weight:700}
 .buy-actions button{flex:1;padding:8px 12px;border:none;border-radius:8px;font:inherit;font-weight:600;font-size:13px;cursor:pointer;min-height:38px}
 .btn-copy{background:var(--good);color:#000}
 .btn-clear{background:var(--card2);color:var(--text);border:1px solid var(--border)!important}
-
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
-  background:var(--card);border:1px solid var(--good);padding:10px 16px;
-  border-radius:8px;font-size:13px;z-index:200;color:var(--good);font-weight:600}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--good);padding:10px 16px;border-radius:8px;font-size:13px;z-index:200;color:var(--good);font-weight:600}
 .toast.hidden{display:none}
-
-/* TIMELINE */
 .timeline{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;font-size:13px}
 .tl-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0}
-.tl-item .num{width:24px;height:24px;border-radius:50%;background:var(--card2);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:var(--muted);flex-shrink:0;margin-top:1px}
+.tl-item .num{width:24px;height:24px;border-radius:50%;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:var(--muted);flex-shrink:0;margin-top:1px}
 .tl-item.you .num{background:#ff6464;color:#fff;border-color:#ff6464}
 .tl-item.next .num{background:var(--good);color:#000;border-color:var(--good)}
 .tl-item.done .num{background:var(--muted);color:#000;border-color:var(--muted)}
@@ -140,10 +106,8 @@ h3{font-size:16px;margin:0 0 8px;font-weight:700}
 .tl-item.next .ad{color:var(--accent);font-weight:600}
 .tl-leg{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700;padding:8px 0 4px}
 .tl-arrow{margin-left:8px;font-size:12px;color:var(--accent);padding:2px 0}
-
 footer{text-align:center;color:var(--muted);font-size:11px;padding:20px;border-top:1px solid var(--border);margin-top:20px}
 footer .ts{font-weight:600;color:var(--text)}
-
 .c-Black{background:#0a0a0a}.c-White{background:#f5f5f5}.c-Grey{background:#808080}
 .c-Charcoal{background:#36454F}.c-Navy{background:#1a2848}.c-Blue{background:#2e6cd6}
 .c-LightBlue{background:#7ec0ee}.c-Green{background:#2e8b57}.c-DarkGreen{background:#1e4d2b}
@@ -151,6 +115,8 @@ footer .ts{font-weight:600;color:var(--text)}
 .c-Beige{background:#e8d5b7}.c-Brown{background:#8B4513}.c-Cream{background:#fff8dc}
 .c-Red{background:#c0392b}.c-Burgundy{background:#722F37}.c-Pink{background:#f08080}
 .c-Yellow{background:#FFD700}.c-Orange{background:#ff8c00}.c-Purple{background:#7d4f9c}
+.discount-chain{font-size:10px;color:var(--muted);margin-top:2px}
+.cat-h{font-size:15px;font-weight:700;color:var(--muted);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.5px}
 </style>
 </head>
 <body>
@@ -158,10 +124,10 @@ footer .ts{font-weight:600;color:var(--text)}
 <header>
   <div class="h-title">🛍️ Tanger Outlets Rehoboth · No Tax</div>
   <div class="h-loc">🛒 In Calvin Klein #1700</div>
-  <div class="h-meta">Tanger Seaside · 3 items logged · all size L</div>
+  <div class="h-meta">Tanger Seaside · 9 items logged</div>
   <div class="h-stats">
-    <div class="h-stat">📦 <strong>3</strong> items</div>
-    <div class="h-stat">💵 <strong>$95.97</strong> total</div>
+    <div class="h-stat">📦 <strong>9</strong> items</div>
+    <div class="h-stat">💵 <strong>$319.10</strong> all</div>
     <div class="h-stat buy" id="hdBuyStat" style="display:none">✓ <strong id="hdBuyCount">0</strong> = <strong id="hdBuyTotal">$0.00</strong></div>
   </div>
 </header>
@@ -170,23 +136,18 @@ footer .ts{font-weight:600;color:var(--text)}
 
 <section>
   <div class="banner deal">
-    🏷️ <strong>Calvin Klein:</strong> additional <strong>20% OFF the entire order</strong> at checkout. Already applied to every item.
+    🏷️ <strong>Calvin Klein:</strong> 20% off entire order · shorts also have 40% off ticket. Discounts stack at checkout.
   </div>
   <div class="banner next">
-    <strong>📍 Still in Calvin Klein.</strong> Need pants/shorts to pair with these polos. Looking for: <strong>grey, black, tan, or navy</strong>. When done, walk west to <strong>Merrell #1750</strong>.
+    <strong>📍 Still in Calvin Klein.</strong> Lots of options now — you've got 3 polos, 4 pants, 2 shorts. When done, head <strong>west to Merrell #1750</strong>.
   </div>
 </section>
 
 <section>
   <h2>🛒 Your Buy List</h2>
   <div class="buy-section">
-    <div class="buy-head">
-      <div class="buy-title">Items marked to buy</div>
-      <div class="buy-total" id="buyTotal">$0.00</div>
-    </div>
-    <div id="buyContent">
-      <div class="buy-empty">Tap ✓ on items below to add to your buy list.</div>
-    </div>
+    <div class="buy-head"><div class="buy-title">Items marked to buy</div><div class="buy-total" id="buyTotal">$0.00</div></div>
+    <div id="buyContent"><div class="buy-empty">Tap ✓ on items below to add to your buy list.</div></div>
     <div class="buy-actions" id="buyActions" style="display:none">
       <button class="btn-copy" onclick="copyBuyList()">📋 Copy to share</button>
       <button class="btn-clear" onclick="clearMarks()">Clear marks</button>
@@ -195,113 +156,63 @@ footer .ts{font-weight:600;color:var(--text)}
 </section>
 
 <section>
+  <h2>👔 Best Outfit Combos <span class="badge">cheapest first · all same store</span></h2>
+
+  <div class="outfit"><div class="top"><span class="sw c-Green"></span> #1 Green polo · $31.99</div><div class="top">+ <span class="sw c-Grey"></span> #6 Grey pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-Green"></span> #1 Green polo · $31.99</div><div class="top">+ <span class="sw c-Black"></span> #8 Black pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-Green"></span> #1 Green polo · $31.99</div><div class="top">+ <span class="sw c-Tan"></span> #7 Tan pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-DarkGreen"></span> #2 Dark Green polo · $31.99</div><div class="top">+ <span class="sw c-Grey"></span> #6 Grey pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-Grey"></span> #3 Grey polo · $31.99</div><div class="top">+ <span class="sw c-Tan"></span> #7 Tan pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-Grey"></span> #3 Grey polo · $31.99</div><div class="top">+ <span class="sw c-Black"></span> #8 Black pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-Green"></span> #1 Green polo · $31.99</div><div class="top">+ <span class="sw c-Grey"></span> #5 Grey shorts · $38.39</div><div class="tot"><span>$70.38</span><span class="ss">CK ONLY</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-DarkGreen"></span> #2 Dark Green polo · $31.99</div><div class="top">+ <span class="sw c-Tan"></span> #4 Tan shorts · $38.39</div><div class="tot"><span>$70.38</span><span class="ss">CK ONLY</span></div></div>
+</section>
+
+<section>
   <h2>⭐ Top 2 Cheapest Per Type <span class="badge">tap to mark</span></h2>
 
   <div class="t2-block">
-    <h3>🎽 Polos <span class="t-count">· 3 logged · all tied at $31.99</span></h3>
+    <h3>🩳 Pants <span class="t-count">· 4 logged · all tied at $31.99</span></h3>
     <div class="t2-row">
-      <div class="t2-card rank1" data-item-id="1">
-        <div class="rank-medal">1</div>
-        <div class="t2-color"><span class="sw c-Green"></span> Green · L</div>
-        <div class="t2-price">$31.99<span class="t2-disc">20%</span></div>
-        <span class="t2-tag">$39.99</span>
-        <div class="t2-store">Calvin Klein #1700</div>
-        <div class="t2-notes">pairs grey/black/tan pants &amp; shorts</div>
-        <div class="mark-btns">
-          <button class="mark-btn" data-act="buy" data-id="1">✓ Buy</button>
-          <button class="mark-btn" data-act="skip" data-id="1">✗ Skip</button>
-        </div>
-      </div>
-      <div class="t2-card rank2" data-item-id="2">
-        <div class="rank-medal">2</div>
-        <div class="t2-color"><span class="sw c-DarkGreen"></span> Dark Green · L</div>
-        <div class="t2-price">$31.99<span class="t2-disc">20%</span></div>
-        <span class="t2-tag">$39.99</span>
-        <div class="t2-store">Calvin Klein #1700</div>
-        <div class="t2-notes">same pairings as the green</div>
-        <div class="mark-btns">
-          <button class="mark-btn" data-act="buy" data-id="2">✓ Buy</button>
-          <button class="mark-btn" data-act="skip" data-id="2">✗ Skip</button>
-        </div>
-      </div>
+      <div class="t2-card rank1" data-item-id="6"><div class="rank-medal">1</div><div class="t2-color"><span class="sw c-Grey"></span> Grey · slim</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Green/Dark Green/Grey polos</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="6">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="6">✗ Skip</button></div></div>
+      <div class="t2-card rank2" data-item-id="7"><div class="rank-medal">2</div><div class="t2-color"><span class="sw c-Tan"></span> Tan · slim</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Green/Dark Green/Grey polos</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="7">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="7">✗ Skip</button></div></div>
+    </div>
+  </div>
+
+  <div class="t2-block">
+    <h3>🩳 Shorts <span class="t-count">· 2 logged · tied at $38.39</span></h3>
+    <div class="t2-row">
+      <div class="t2-card rank1" data-item-id="4"><div class="rank-medal">1</div><div class="t2-color"><span class="sw c-Tan"></span> Tan</div><div class="t2-price">$38.39<span class="t2-disc">52%</span></div><span class="t2-tag">$79.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Green/Dark Green/Navy polos</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="4">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="4">✗ Skip</button></div></div>
+      <div class="t2-card rank2" data-item-id="5"><div class="rank-medal">2</div><div class="t2-color"><span class="sw c-Grey"></span> Grey</div><div class="t2-price">$38.39<span class="t2-disc">52%</span></div><span class="t2-tag">$79.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Green/Dark Green/Navy polos</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="5">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="5">✗ Skip</button></div></div>
+    </div>
+  </div>
+
+  <div class="t2-block">
+    <h3>🎽 Polos <span class="t-count">· 3 logged · all tied at $31.99 · all size L</span></h3>
+    <div class="t2-row">
+      <div class="t2-card rank1" data-item-id="1"><div class="rank-medal">1</div><div class="t2-color"><span class="sw c-Green"></span> Green · L</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Grey/Black/Tan bottoms</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="1">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="1">✗ Skip</button></div></div>
+      <div class="t2-card rank2" data-item-id="2"><div class="rank-medal">2</div><div class="t2-color"><span class="sw c-DarkGreen"></span> Dark Green · L</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">same pairings as Green</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="2">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="2">✗ Skip</button></div></div>
     </div>
   </div>
 </section>
 
 <section>
-  <h2>📦 All Items <span class="badge">3</span></h2>
+  <h2>📦 All Items <span class="badge">9</span></h2>
 
-  <div class="item-row" data-item-id="1">
-    <div class="item-head">
-      <div class="item-info">
-        <span class="item-id">#1</span>
-        <div class="item-name"><span class="sw c-Green"></span> Green polo <span class="size-tag">L</span></div>
-        <div class="item-store">Calvin Klein #1700</div>
-      </div>
-      <div class="item-prices">
-        <div class="item-fp">$31.99</div>
-        <div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div>
-      </div>
-    </div>
-    <div class="item-pairs">Pairs with:
-      <span class="pair-pill"><span class="sw c-Grey"></span>Grey</span>
-      <span class="pair-pill"><span class="sw c-Black"></span>Black</span>
-      <span class="pair-pill"><span class="sw c-Tan"></span>Tan</span>
-      <span style="color:var(--muted)">· pants &amp; shorts</span>
-    </div>
-    <div class="mark-btns">
-      <button class="mark-btn" data-act="buy" data-id="1">✓ Buy</button>
-      <button class="mark-btn" data-act="skip" data-id="1">✗ Skip</button>
-    </div>
-  </div>
+  <div class="cat-h">🎽 Polos (3)</div>
+  <div class="item-row" data-item-id="1"><div class="item-head"><div class="item-info"><span class="item-id">#1</span><div class="item-name"><span class="sw c-Green"></span> Green polo <span class="size-tag">L</span></div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Grey"></span>Grey</span><span class="pair-pill"><span class="sw c-Black"></span>Black</span><span class="pair-pill"><span class="sw c-Tan"></span>Tan</span><span style="color:var(--muted)">· pants &amp; shorts</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="1">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="1">✗ Skip</button></div></div>
+  <div class="item-row" data-item-id="2"><div class="item-head"><div class="item-info"><span class="item-id">#2</span><div class="item-name"><span class="sw c-DarkGreen"></span> Dark Green polo <span class="size-tag">L</span></div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Grey"></span>Grey</span><span class="pair-pill"><span class="sw c-Black"></span>Black</span><span class="pair-pill"><span class="sw c-Tan"></span>Tan</span><span style="color:var(--muted)">· pants &amp; shorts</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="2">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="2">✗ Skip</button></div></div>
+  <div class="item-row" data-item-id="3"><div class="item-head"><div class="item-info"><span class="item-id">#3</span><div class="item-name"><span class="sw c-Grey"></span> Grey polo <span class="size-tag">L</span></div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Navy"></span>Navy</span><span class="pair-pill"><span class="sw c-Tan"></span>Tan</span><span class="pair-pill"><span class="sw c-Black"></span>Black</span><span style="color:var(--muted)">· pants</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="3">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="3">✗ Skip</button></div></div>
 
-  <div class="item-row" data-item-id="2">
-    <div class="item-head">
-      <div class="item-info">
-        <span class="item-id">#2</span>
-        <div class="item-name"><span class="sw c-DarkGreen"></span> Dark Green polo <span class="size-tag">L</span></div>
-        <div class="item-store">Calvin Klein #1700</div>
-      </div>
-      <div class="item-prices">
-        <div class="item-fp">$31.99</div>
-        <div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div>
-      </div>
-    </div>
-    <div class="item-pairs">Pairs with:
-      <span class="pair-pill"><span class="sw c-Grey"></span>Grey</span>
-      <span class="pair-pill"><span class="sw c-Black"></span>Black</span>
-      <span class="pair-pill"><span class="sw c-Tan"></span>Tan</span>
-      <span style="color:var(--muted)">· pants &amp; shorts</span>
-    </div>
-    <div class="mark-btns">
-      <button class="mark-btn" data-act="buy" data-id="2">✓ Buy</button>
-      <button class="mark-btn" data-act="skip" data-id="2">✗ Skip</button>
-    </div>
-  </div>
+  <div class="cat-h">🩳 Pants (4) · slim chino</div>
+  <div class="item-row" data-item-id="6"><div class="item-head"><div class="item-info"><span class="item-id">#6</span><div class="item-name"><span class="sw c-Grey"></span> Grey slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Grey"></span>Grey</span><span style="color:var(--muted)">· polos</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="6">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="6">✗ Skip</button></div></div>
+  <div class="item-row" data-item-id="7"><div class="item-head"><div class="item-info"><span class="item-id">#7</span><div class="item-name"><span class="sw c-Tan"></span> Tan slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Grey"></span>Grey</span><span style="color:var(--muted)">· polos</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="7">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="7">✗ Skip</button></div></div>
+  <div class="item-row" data-item-id="8"><div class="item-head"><div class="item-info"><span class="item-id">#8</span><div class="item-name"><span class="sw c-Black"></span> Black slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs" style="font-style:italic">pairing TBD</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="8">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="8">✗ Skip</button></div></div>
+  <div class="item-row" data-item-id="9"><div class="item-head"><div class="item-info"><span class="item-id">#9</span><div class="item-name"><span class="sw c-LightBlue"></span> Sky Blue slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs" style="font-style:italic">pairing TBD</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="9">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="9">✗ Skip</button></div></div>
 
-  <div class="item-row" data-item-id="3">
-    <div class="item-head">
-      <div class="item-info">
-        <span class="item-id">#3</span>
-        <div class="item-name"><span class="sw c-Grey"></span> Grey polo <span class="size-tag">L</span></div>
-        <div class="item-store">Calvin Klein #1700</div>
-      </div>
-      <div class="item-prices">
-        <div class="item-fp">$31.99</div>
-        <div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div>
-      </div>
-    </div>
-    <div class="item-pairs">Pairs with:
-      <span class="pair-pill"><span class="sw c-Navy"></span>Navy</span>
-      <span class="pair-pill"><span class="sw c-Tan"></span>Tan</span>
-      <span class="pair-pill"><span class="sw c-Black"></span>Black</span>
-      <span style="color:var(--muted)">· pants</span>
-    </div>
-    <div class="mark-btns">
-      <button class="mark-btn" data-act="buy" data-id="3">✓ Buy</button>
-      <button class="mark-btn" data-act="skip" data-id="3">✗ Skip</button>
-    </div>
-  </div>
+  <div class="cat-h">🩳 Shorts (2)</div>
+  <div class="item-row" data-item-id="4"><div class="item-head"><div class="item-info"><span class="item-id">#4</span><div class="item-name"><span class="sw c-Tan"></span> Tan shorts</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$38.39</div><div><span class="item-tp">$79.99</span> <span class="item-disc">40%+20%</span></div><div class="discount-chain">52% off total</div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Navy"></span>Navy</span><span style="color:var(--muted)">· polos &amp; shirts</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="4">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="4">✗ Skip</button></div></div>
+  <div class="item-row" data-item-id="5"><div class="item-head"><div class="item-info"><span class="item-id">#5</span><div class="item-name"><span class="sw c-Grey"></span> Grey shorts</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$38.39</div><div><span class="item-tp">$79.99</span> <span class="item-disc">40%+20%</span></div><div class="discount-chain">52% off total</div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Navy"></span>Navy</span><span style="color:var(--muted)">· polos &amp; shirts</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="5">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="5">✗ Skip</button></div></div>
 </section>
 
 <section>
@@ -310,58 +221,34 @@ footer .ts{font-weight:600;color:var(--text)}
     <svg class="map-svg" viewBox="0 0 360 440" xmlns="http://www.w3.org/2000/svg">
       <rect x="10" y="20" width="155" height="155" fill="rgba(74,144,226,0.08)" stroke="#2a3654" stroke-width="1.5" rx="8"/>
       <text x="87" y="40" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER BAYSIDE</text>
-      <circle cx="40" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="40" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">7</text>
-      <text x="40" y="100" fill="#e8eef7" font-size="8" text-anchor="middle">U.Armour #610</text>
-      <circle cx="120" cy="70" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="120" y="74" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">6</text>
-      <text x="120" y="90" fill="#e8eef7" font-size="8" text-anchor="middle">N.Face #420</text>
-      <circle cx="90" cy="135" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="90" y="139" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">5</text>
-      <text x="90" y="155" fill="#e8eef7" font-size="8" text-anchor="middle">Old Navy #150</text>
+      <circle cx="40" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="40" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">7</text><text x="40" y="100" fill="#e8eef7" font-size="8" text-anchor="middle">U.Armour #610</text>
+      <circle cx="120" cy="70" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="120" y="74" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">6</text><text x="120" y="90" fill="#e8eef7" font-size="8" text-anchor="middle">N.Face #420</text>
+      <circle cx="90" cy="135" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="90" y="139" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">5</text><text x="90" y="155" fill="#e8eef7" font-size="8" text-anchor="middle">Old Navy #150</text>
 
       <rect x="195" y="20" width="155" height="170" fill="rgba(74,144,226,0.08)" stroke="#2a3654" stroke-width="1.5" rx="8"/>
       <text x="272" y="40" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER SURFSIDE</text>
-      <circle cx="225" cy="150" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="225" y="154" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">11</text>
-      <text x="225" y="172" fill="#e8eef7" font-size="8" text-anchor="middle">Polo RL #313</text>
-      <circle cx="225" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="225" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">10</text>
-      <text x="225" y="65" fill="#e8eef7" font-size="8" text-anchor="middle">Boss #307</text>
-      <circle cx="320" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="320" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">9</text>
-      <text x="320" y="65" fill="#e8eef7" font-size="8" text-anchor="middle">Lacoste #119</text>
-      <circle cx="320" cy="150" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="320" y="154" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">8</text>
-      <text x="320" y="172" fill="#e8eef7" font-size="8" text-anchor="middle">Cole Haan #107</text>
+      <circle cx="225" cy="150" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="225" y="154" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">11</text><text x="225" y="172" fill="#e8eef7" font-size="8" text-anchor="middle">Polo RL #313</text>
+      <circle cx="225" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="225" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">10</text><text x="225" y="65" fill="#e8eef7" font-size="8" text-anchor="middle">Boss #307</text>
+      <circle cx="320" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="320" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">9</text><text x="320" y="65" fill="#e8eef7" font-size="8" text-anchor="middle">Lacoste #119</text>
+      <circle cx="320" cy="150" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="320" y="154" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">8</text><text x="320" y="172" fill="#e8eef7" font-size="8" text-anchor="middle">Cole Haan #107</text>
 
       <line x1="80" y1="210" x2="290" y2="210" stroke="#4a90e2" stroke-width="2" stroke-dasharray="6,4"/>
       <text x="185" y="205" fill="#4a90e2" font-size="10" font-weight="700" text-anchor="middle">ROUTE 1 · 1.8 mi</text>
-      <text x="75" y="215" fill="#4a90e2" font-size="11" text-anchor="middle">🚌</text>
-      <text x="295" y="215" fill="#4a90e2" font-size="11" text-anchor="middle">🚌</text>
-      <line x1="90" y1="165" x2="90" y2="210" stroke="#2a3654" stroke-width="1"/>
-      <line x1="270" y1="190" x2="270" y2="210" stroke="#2a3654" stroke-width="1"/>
+      <text x="75" y="215" fill="#4a90e2" font-size="11" text-anchor="middle">🚌</text><text x="295" y="215" fill="#4a90e2" font-size="11" text-anchor="middle">🚌</text>
+      <line x1="90" y1="165" x2="90" y2="210" stroke="#2a3654" stroke-width="1"/><line x1="270" y1="190" x2="270" y2="210" stroke="#2a3654" stroke-width="1"/>
 
       <rect x="10" y="225" width="340" height="200" fill="rgba(74,144,226,0.08)" stroke="#2a3654" stroke-width="1.5" rx="8"/>
       <text x="180" y="245" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER SEASIDE</text>
       <line x1="180" y1="210" x2="180" y2="225" stroke="#2a3654" stroke-width="1"/>
 
-      <circle cx="40" cy="280" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="40" y="284" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">4</text>
-      <text x="40" y="265" fill="#e8eef7" font-size="8" text-anchor="middle">Clarks #1825</text>
-      <circle cx="40" cy="335" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="40" y="339" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">3</text>
-      <text x="40" y="355" fill="#e8eef7" font-size="8" text-anchor="middle">Banana Rep</text>
-      <circle cx="115" cy="380" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
-      <text x="115" y="384" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">2</text>
-      <text x="115" y="400" fill="#e8eef7" font-size="8" text-anchor="middle">Merrell #1750</text>
+      <circle cx="40" cy="280" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="40" y="284" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">4</text><text x="40" y="265" fill="#e8eef7" font-size="8" text-anchor="middle">Clarks #1825</text>
+      <circle cx="40" cy="335" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="40" y="339" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">3</text><text x="40" y="355" fill="#e8eef7" font-size="8" text-anchor="middle">Banana Rep</text>
+      <circle cx="115" cy="380" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="115" y="384" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">2</text><text x="115" y="400" fill="#e8eef7" font-size="8" text-anchor="middle">Merrell #1750</text>
 
-      <circle cx="195" cy="380" r="13" fill="#ff6464" stroke="#fff" stroke-width="2">
-        <animate attributeName="r" values="13;17;13" dur="1.5s" repeatCount="indefinite"/>
-      </circle>
+      <circle cx="195" cy="380" r="13" fill="#ff6464" stroke="#fff" stroke-width="2"><animate attributeName="r" values="13;17;13" dur="1.5s" repeatCount="indefinite"/></circle>
       <text x="195" y="385" fill="#fff" font-size="13" font-weight="800" text-anchor="middle">1</text>
       <text x="195" y="402" fill="#ff6464" font-size="10" font-weight="700" text-anchor="middle">Calvin Klein #1700</text>
-      <text x="195" y="413" fill="#ff6464" font-size="9" font-weight="600" text-anchor="middle">← YOU ARE HERE · 3 items</text>
+      <text x="195" y="413" fill="#ff6464" font-size="9" font-weight="600" text-anchor="middle">← YOU · 9 items</text>
 
       <text x="290" y="380" fill="#8a96ad" font-size="14" text-anchor="middle">🍔</text>
       <text x="290" y="400" fill="#8a96ad" font-size="9" text-anchor="middle">Applebee's ✓</text>
@@ -379,19 +266,10 @@ footer .ts{font-weight:600;color:var(--text)}
   <h2>📍 Route Timeline</h2>
   <div class="timeline">
     <div class="tl-leg">① SEASIDE</div>
-    <div class="tl-item done">
-      <div class="num">🍔</div>
-      <div><div class="nm">Applebee's</div><div class="ad">lunch ✓</div></div>
-    </div>
-    <div class="tl-item you">
-      <div class="num">1</div>
-      <div><div class="nm">Calvin Klein #1700</div><div class="ad">🛒 IN STORE · 3 items · 20% off all</div></div>
-    </div>
-    <div class="tl-arrow">↓ keep walking WEST when done</div>
-    <div class="tl-item next">
-      <div class="num">2</div>
-      <div><div class="nm">Merrell #1750</div><div class="ad">NEXT — shoes (optional)</div></div>
-    </div>
+    <div class="tl-item done"><div class="num">🍔</div><div><div class="nm">Applebee's</div><div class="ad">lunch ✓</div></div></div>
+    <div class="tl-item you"><div class="num">1</div><div><div class="nm">Calvin Klein #1700</div><div class="ad">🛒 IN STORE · 9 items</div></div></div>
+    <div class="tl-arrow">↓ walk WEST when done</div>
+    <div class="tl-item next"><div class="num">2</div><div><div class="nm">Merrell #1750</div><div class="ad">NEXT</div></div></div>
     <div class="tl-item"><div class="num">3</div><div><div class="nm">Banana Republic #1800</div></div></div>
     <div class="tl-item"><div class="num">4</div><div><div class="nm">Clarks Outlet #1825</div></div></div>
     <div class="tl-leg">② BAYSIDE</div>
@@ -411,7 +289,7 @@ footer .ts{font-weight:600;color:var(--text)}
 <div id="toast" class="toast hidden"></div>
 
 <footer>
-  <div class="ts">Updated 2026-05-22 16:25 · 3 items</div>
+  <div class="ts">Updated 2026-05-22 16:35 · 9 items</div>
   <div style="margin-top:4px">Marks save to your phone. Tap ✓ on items you want.</div>
 </footer>
 
@@ -420,57 +298,56 @@ const ITEMS = {
   1:{store:'Calvin Klein #1700',type:'Green polo (L)',price:31.99},
   2:{store:'Calvin Klein #1700',type:'Dark Green polo (L)',price:31.99},
   3:{store:'Calvin Klein #1700',type:'Grey polo (L)',price:31.99},
+  4:{store:'Calvin Klein #1700',type:'Tan shorts',price:38.39},
+  5:{store:'Calvin Klein #1700',type:'Grey shorts',price:38.39},
+  6:{store:'Calvin Klein #1700',type:'Grey slim pants',price:31.99},
+  7:{store:'Calvin Klein #1700',type:'Tan slim pants',price:31.99},
+  8:{store:'Calvin Klein #1700',type:'Black slim pants',price:31.99},
+  9:{store:'Calvin Klein #1700',type:'Sky Blue slim pants',price:31.99},
 };
 const STORE_ORDER={'Calvin Klein #1700':1,'Merrell #1750':2,'Banana Republic #1800':3,'Clarks #1825':4,'Old Navy #150':5,'North Face #420':6,'Under Armour #610':7,'Cole Haan #107':8,'Lacoste #119':9,'Boss #307':10,'Polo Ralph Lauren #313':11};
-const STORAGE_KEY = 'de-shopping-marks';
-
+const STORAGE_KEY='de-shopping-marks';
 function loadMarks(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}}}
 function saveMarks(m){localStorage.setItem(STORAGE_KEY,JSON.stringify(m))}
-let marks = loadMarks();
-
+let marks=loadMarks();
 function applyVisualState(){
   document.querySelectorAll('.mark-btn').forEach(b=>{
-    const id=b.dataset.id,act=b.dataset.act;
-    b.classList.remove('on-buy','on-skip');
-    if(marks[id]==='buy' && act==='buy') b.classList.add('on-buy');
-    if(marks[id]==='skip' && act==='skip') b.classList.add('on-skip');
+    const id=b.dataset.id,act=b.dataset.act;b.classList.remove('on-buy','on-skip');
+    if(marks[id]==='buy'&&act==='buy') b.classList.add('on-buy');
+    if(marks[id]==='skip'&&act==='skip') b.classList.add('on-skip');
   });
   document.querySelectorAll('[data-item-id]').forEach(el=>{
-    const id=el.dataset.itemId;
-    el.classList.remove('buy','skip');
+    const id=el.dataset.itemId;el.classList.remove('buy','skip');
     if(marks[id]==='buy') el.classList.add('buy');
     if(marks[id]==='skip') el.classList.add('skip');
   });
 }
 function fmt(n){return '$'+(Number(n)||0).toFixed(2)}
 function renderBuyList(){
-  const ids = Object.keys(marks).filter(k=>marks[k]==='buy');
-  const total = ids.reduce((s,id)=>s+(ITEMS[id]?ITEMS[id].price:0),0);
-  document.getElementById('buyTotal').textContent = fmt(total);
-  const hdStat = document.getElementById('hdBuyStat');
+  const ids=Object.keys(marks).filter(k=>marks[k]==='buy');
+  const total=ids.reduce((s,id)=>s+(ITEMS[id]?ITEMS[id].price:0),0);
+  document.getElementById('buyTotal').textContent=fmt(total);
+  const hdStat=document.getElementById('hdBuyStat');
   if(ids.length){
     hdStat.style.display='inline-flex';
-    document.getElementById('hdBuyCount').textContent = ids.length;
-    document.getElementById('hdBuyTotal').textContent = fmt(total);
+    document.getElementById('hdBuyCount').textContent=ids.length;
+    document.getElementById('hdBuyTotal').textContent=fmt(total);
     document.getElementById('buyActions').style.display='flex';
   } else {
     hdStat.style.display='none';
     document.getElementById('buyActions').style.display='none';
-    document.getElementById('buyContent').innerHTML = '<div class="buy-empty">Tap ✓ on items below to add to your buy list.</div>';
+    document.getElementById('buyContent').innerHTML='<div class="buy-empty">Tap ✓ on items below to add to your buy list.</div>';
     return;
   }
-  const byStore = {};
+  const byStore={};
   ids.forEach(id=>{const it=ITEMS[id];if(!it)return;(byStore[it.store]=byStore[it.store]||[]).push({id,...it})});
-  const storeKeys = Object.keys(byStore).sort((a,b)=>(STORE_ORDER[a]||99)-(STORE_ORDER[b]||99));
+  const storeKeys=Object.keys(byStore).sort((a,b)=>(STORE_ORDER[a]||99)-(STORE_ORDER[b]||99));
   let html='';
   storeKeys.forEach(s=>{
     const its=byStore[s],sub=its.reduce((s,i)=>s+i.price,0);
-    html += `<div class="buy-store">
-      <div class="buy-store-head"><span>${s}</span><span style="color:var(--good)">${fmt(sub)}</span></div>
-      <div class="buy-store-items">${its.map(i=>`• #${i.id} ${i.type} — ${fmt(i.price)}`).join('<br>')}</div>
-    </div>`;
+    html+=`<div class="buy-store"><div class="buy-store-head"><span>${s}</span><span style="color:var(--good)">${fmt(sub)}</span></div><div class="buy-store-items">${its.map(i=>`• #${i.id} ${i.type} — ${fmt(i.price)}`).join('<br>')}</div></div>`;
   });
-  document.getElementById('buyContent').innerHTML = html;
+  document.getElementById('buyContent').innerHTML=html;
 }
 function toast(msg){
   const t=document.getElementById('toast');t.textContent=msg;t.classList.remove('hidden');
@@ -499,19 +376,14 @@ function copyBuyList(){
     text+='\n';
   });
   text+=`IDs to buy: ${ids.sort((a,b)=>+a-+b).join(', ')}`;
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(text).then(()=>toast('Copied! Paste in chat')).catch(()=>fallbackCopy(text));
-  } else fallbackCopy(text);
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>toast('Copied! Paste in chat')).catch(()=>fallbackCopy(text))}else fallbackCopy(text);
 }
 function fallbackCopy(text){
   const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
   try{document.execCommand('copy');toast('Copied!')}catch(e){toast('Copy failed')}
   ta.remove();
 }
-function clearMarks(){
-  if(!confirm('Clear all ✓/✗ marks?'))return;
-  marks={};saveMarks(marks);applyVisualState();renderBuyList();
-}
+function clearMarks(){if(!confirm('Clear all ✓/✗ marks?'))return;marks={};saveMarks(marks);applyVisualState();renderBuyList();}
 applyVisualState();renderBuyList();
 </script>
 

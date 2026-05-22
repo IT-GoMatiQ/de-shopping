@@ -1,57 +1,21 @@
 {
   "version": 1,
-  "lastUpdate": "2026-05-22T16:25:00Z",
+  "lastUpdate": "2026-05-22T16:35:00Z",
   "currentStoreId": 1,
   "currentStoreName": "Calvin Klein #1700",
-  "nextItemId": 4,
+  "nextItemId": 10,
   "storeDiscounts": {
     "1": {"type": "pct", "value": 20, "note": "additional 20% off entire order"}
   },
   "items": [
-    {
-      "id": 1,
-      "storeId": 1,
-      "type": "polo",
-      "color": "Green",
-      "size": "L",
-      "tagPrice": 39.99,
-      "discountMode": "pct",
-      "discountValue": 20,
-      "finalPrice": 31.99,
-      "pairsWith": ["Grey", "Black", "Tan"],
-      "pairsWithTypes": ["pants", "shorts"],
-      "notes": "size L · 20% off applied",
-      "decision": "undecided"
-    },
-    {
-      "id": 2,
-      "storeId": 1,
-      "type": "polo",
-      "color": "Dark Green",
-      "size": "L",
-      "tagPrice": 39.99,
-      "discountMode": "pct",
-      "discountValue": 20,
-      "finalPrice": 31.99,
-      "pairsWith": ["Grey", "Black", "Tan"],
-      "pairsWithTypes": ["pants", "shorts"],
-      "notes": "size L · 20% off applied",
-      "decision": "undecided"
-    },
-    {
-      "id": 3,
-      "storeId": 1,
-      "type": "polo",
-      "color": "Grey",
-      "size": "L",
-      "tagPrice": 39.99,
-      "discountMode": "pct",
-      "discountValue": 20,
-      "finalPrice": 31.99,
-      "pairsWith": ["Navy", "Tan", "Black"],
-      "pairsWithTypes": ["pants"],
-      "notes": "size L · 20% off applied",
-      "decision": "undecided"
-    }
+    {"id":1,"storeId":1,"type":"polo","color":"Green","size":"L","tagPrice":39.99,"discountChain":[{"pct":20,"label":"store-wide"}],"finalPrice":31.99,"pairsWith":["Grey","Black","Tan"],"pairsWithTypes":["pants","shorts"],"notes":"size L · 20% off","decision":"undecided"},
+    {"id":2,"storeId":1,"type":"polo","color":"Dark Green","size":"L","tagPrice":39.99,"discountChain":[{"pct":20,"label":"store-wide"}],"finalPrice":31.99,"pairsWith":["Grey","Black","Tan"],"pairsWithTypes":["pants","shorts"],"notes":"size L · 20% off","decision":"undecided"},
+    {"id":3,"storeId":1,"type":"polo","color":"Grey","size":"L","tagPrice":39.99,"discountChain":[{"pct":20,"label":"store-wide"}],"finalPrice":31.99,"pairsWith":["Navy","Tan","Black"],"pairsWithTypes":["pants"],"notes":"size L · 20% off","decision":"undecided"},
+    {"id":4,"storeId":1,"type":"shorts","color":"Tan","tagPrice":79.99,"discountChain":[{"pct":40,"label":"ticket"},{"pct":20,"label":"store-wide"}],"finalPrice":38.39,"pairsWith":["Green","Dark Green","Navy"],"pairsWithTypes":["polo","shirt"],"notes":"40% off ticket + 20% off order","decision":"undecided"},
+    {"id":5,"storeId":1,"type":"shorts","color":"Grey","tagPrice":79.99,"discountChain":[{"pct":40,"label":"ticket"},{"pct":20,"label":"store-wide"}],"finalPrice":38.39,"pairsWith":["Green","Dark Green","Navy"],"pairsWithTypes":["polo","shirt"],"notes":"40% off ticket + 20% off order","decision":"undecided"},
+    {"id":6,"storeId":1,"type":"pants","color":"Grey","style":"slim chino","tagPrice":39.99,"discountChain":[{"pct":20,"label":"store-wide"}],"finalPrice":31.99,"pairsWith":["Green","Dark Green","Grey"],"pairsWithTypes":["polo"],"notes":"slim fit · 20% off","decision":"undecided"},
+    {"id":7,"storeId":1,"type":"pants","color":"Tan","style":"slim chino","tagPrice":39.99,"discountChain":[{"pct":20,"label":"store-wide"}],"finalPrice":31.99,"pairsWith":["Green","Dark Green","Grey"],"pairsWithTypes":["polo"],"notes":"slim fit · 20% off · same pairings as grey","decision":"undecided"},
+    {"id":8,"storeId":1,"type":"pants","color":"Black","style":"slim chino","tagPrice":39.99,"discountChain":[{"pct":20,"label":"store-wide"}],"finalPrice":31.99,"pairsWith":[],"pairsWithTypes":[],"notes":"slim fit · 20% off · pairing TBD","decision":"undecided"},
+    {"id":9,"storeId":1,"type":"pants","color":"Light Blue","style":"slim chino","tagPrice":39.99,"discountChain":[{"pct":20,"label":"store-wide"}],"finalPrice":31.99,"pairsWith":[],"pairsWithTypes":[],"notes":"slim fit · sky blue · 20% off · pairing TBD","decision":"undecided"}
   ]
 }
