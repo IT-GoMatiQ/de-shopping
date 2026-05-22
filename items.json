@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "lastUpdate": "2026-05-22T16:15:00Z",
+  "lastUpdate": "2026-05-22T16:25:00Z",
   "currentStoreId": 1,
   "currentStoreName": "Calvin Klein #1700",
-  "nextItemId": 2,
+  "nextItemId": 4,
   "storeDiscounts": {
     "1": {"type": "pct", "value": 20, "note": "additional 20% off entire order"}
   },
@@ -13,13 +13,44 @@
       "storeId": 1,
       "type": "polo",
       "color": "Green",
+      "size": "L",
       "tagPrice": 39.99,
       "discountMode": "pct",
       "discountValue": 20,
       "finalPrice": 31.99,
       "pairsWith": ["Grey", "Black", "Tan"],
       "pairsWithTypes": ["pants", "shorts"],
-      "notes": "store-wide 20% off applied",
+      "notes": "size L · 20% off applied",
+      "decision": "undecided"
+    },
+    {
+      "id": 2,
+      "storeId": 1,
+      "type": "polo",
+      "color": "Dark Green",
+      "size": "L",
+      "tagPrice": 39.99,
+      "discountMode": "pct",
+      "discountValue": 20,
+      "finalPrice": 31.99,
+      "pairsWith": ["Grey", "Black", "Tan"],
+      "pairsWithTypes": ["pants", "shorts"],
+      "notes": "size L · 20% off applied",
+      "decision": "undecided"
+    },
+    {
+      "id": 3,
+      "storeId": 1,
+      "type": "polo",
+      "color": "Grey",
+      "size": "L",
+      "tagPrice": 39.99,
+      "discountMode": "pct",
+      "discountValue": 20,
+      "finalPrice": 31.99,
+      "pairsWith": ["Navy", "Tan", "Black"],
+      "pairsWithTypes": ["pants"],
+      "notes": "size L · 20% off applied",
       "decision": "undecided"
     }
   ]
