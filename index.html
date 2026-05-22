@@ -79,6 +79,7 @@ h3{font-size:16px;margin:0 0 8px;font-weight:700}
 .outfit .top{font-size:13px;margin-bottom:3px;display:flex;align-items:center;gap:5px}
 .outfit .tot{margin-top:4px;padding-top:5px;border-top:1px solid var(--border);font-weight:800;color:var(--good);font-size:15px;display:flex;justify-content:space-between}
 .outfit .ss{font-size:10px;background:var(--good);color:#000;padding:1px 5px;border-radius:3px;font-weight:700}
+.outfit .ms{font-size:10px;background:var(--warn);color:#000;padding:1px 5px;border-radius:3px;font-weight:700}
 .buy-section{background:linear-gradient(135deg,rgba(69,201,122,.15),var(--card));border:2px solid var(--good);border-radius:12px;padding:14px;margin-bottom:18px}
 .buy-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .buy-title{font-size:16px;font-weight:700;color:var(--good)}
@@ -99,9 +100,11 @@ h3{font-size:16px;margin:0 0 8px;font-weight:700}
 .tl-item.you .num{background:#ff6464;color:#fff;border-color:#ff6464}
 .tl-item.next .num{background:var(--good);color:#000;border-color:var(--good)}
 .tl-item.done .num{background:var(--muted);color:#000;border-color:var(--muted)}
+.tl-item.skip .num{background:transparent;color:var(--muted);border-style:dashed}
 .tl-item .nm{font-weight:600}
 .tl-item.you .nm{color:#ff6464}.tl-item.next .nm{color:var(--good)}
 .tl-item.done .nm{color:var(--muted);text-decoration:line-through}
+.tl-item.skip .nm{color:var(--muted)}
 .tl-item .ad{font-size:11px;color:var(--muted)}
 .tl-item.next .ad{color:var(--accent);font-weight:600}
 .tl-leg{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700;padding:8px 0 4px}
@@ -109,13 +112,12 @@ h3{font-size:16px;margin:0 0 8px;font-weight:700}
 footer{text-align:center;color:var(--muted);font-size:11px;padding:20px;border-top:1px solid var(--border);margin-top:20px}
 footer .ts{font-weight:600;color:var(--text)}
 .c-Black{background:#0a0a0a}.c-White{background:#f5f5f5}.c-Grey{background:#808080}
-.c-Charcoal{background:#36454F}.c-Navy{background:#1a2848}.c-Blue{background:#2e6cd6}
+.c-Charcoal,.c-DarkGrey{background:#36454F}.c-Navy{background:#1a2848}.c-Blue{background:#2e6cd6}
 .c-LightBlue{background:#7ec0ee}.c-Green{background:#2e8b57}.c-DarkGreen{background:#1e4d2b}
 .c-Olive{background:#556B2F}.c-Khaki{background:#c3b091}.c-Tan{background:#d2b48c}
 .c-Beige{background:#e8d5b7}.c-Brown{background:#8B4513}.c-Cream{background:#fff8dc}
 .c-Red{background:#c0392b}.c-Burgundy{background:#722F37}.c-Pink{background:#f08080}
 .c-Yellow{background:#FFD700}.c-Orange{background:#ff8c00}.c-Purple{background:#7d4f9c}
-.discount-chain{font-size:10px;color:var(--muted);margin-top:2px}
 .cat-h{font-size:15px;font-weight:700;color:var(--muted);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.5px}
 </style>
 </head>
@@ -123,11 +125,11 @@ footer .ts{font-weight:600;color:var(--text)}
 
 <header>
   <div class="h-title">🛍️ Tanger Outlets Rehoboth · No Tax</div>
-  <div class="h-loc">🛒 In Calvin Klein #1700</div>
-  <div class="h-meta">Tanger Seaside · 9 items logged</div>
+  <div class="h-loc">🛒 In Express #1760</div>
+  <div class="h-meta">Tanger Seaside · 13 items logged · 2 stores</div>
   <div class="h-stats">
-    <div class="h-stat">📦 <strong>9</strong> items</div>
-    <div class="h-stat">💵 <strong>$319.10</strong> all</div>
+    <div class="h-stat">📦 <strong>13</strong> items</div>
+    <div class="h-stat">💵 <strong>$489.50</strong> all</div>
     <div class="h-stat buy" id="hdBuyStat" style="display:none">✓ <strong id="hdBuyCount">0</strong> = <strong id="hdBuyTotal">$0.00</strong></div>
   </div>
 </header>
@@ -135,12 +137,8 @@ footer .ts{font-weight:600;color:var(--text)}
 <main>
 
 <section>
-  <div class="banner deal">
-    🏷️ <strong>Calvin Klein:</strong> 20% off entire order · shorts also have 40% off ticket. Discounts stack at checkout.
-  </div>
-  <div class="banner next">
-    <strong>📍 Still in Calvin Klein.</strong> Lots of options now — you've got 3 polos, 4 pants, 2 shorts. When done, head <strong>west to Merrell #1750</strong>.
-  </div>
+  <div class="banner deal">🏷️ <strong>Express:</strong> everything 40% off (already applied)</div>
+  <div class="banner next"><strong>📍 In Express #1760.</strong> Tan/Cream/Navy items would unlock outfit combos. Next stop after: <strong>Banana Republic #1800</strong>.</div>
 </section>
 
 <section>
@@ -156,63 +154,64 @@ footer .ts{font-weight:600;color:var(--text)}
 </section>
 
 <section>
-  <h2>👔 Best Outfit Combos <span class="badge">cheapest first · all same store</span></h2>
-
-  <div class="outfit"><div class="top"><span class="sw c-Green"></span> #1 Green polo · $31.99</div><div class="top">+ <span class="sw c-Grey"></span> #6 Grey pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
-  <div class="outfit"><div class="top"><span class="sw c-Green"></span> #1 Green polo · $31.99</div><div class="top">+ <span class="sw c-Black"></span> #8 Black pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
-  <div class="outfit"><div class="top"><span class="sw c-Green"></span> #1 Green polo · $31.99</div><div class="top">+ <span class="sw c-Tan"></span> #7 Tan pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
-  <div class="outfit"><div class="top"><span class="sw c-DarkGreen"></span> #2 Dark Green polo · $31.99</div><div class="top">+ <span class="sw c-Grey"></span> #6 Grey pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
-  <div class="outfit"><div class="top"><span class="sw c-Grey"></span> #3 Grey polo · $31.99</div><div class="top">+ <span class="sw c-Tan"></span> #7 Tan pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
-  <div class="outfit"><div class="top"><span class="sw c-Grey"></span> #3 Grey polo · $31.99</div><div class="top">+ <span class="sw c-Black"></span> #8 Black pants · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
-  <div class="outfit"><div class="top"><span class="sw c-Green"></span> #1 Green polo · $31.99</div><div class="top">+ <span class="sw c-Grey"></span> #5 Grey shorts · $38.39</div><div class="tot"><span>$70.38</span><span class="ss">CK ONLY</span></div></div>
-  <div class="outfit"><div class="top"><span class="sw c-DarkGreen"></span> #2 Dark Green polo · $31.99</div><div class="top">+ <span class="sw c-Tan"></span> #4 Tan shorts · $38.39</div><div class="tot"><span>$70.38</span><span class="ss">CK ONLY</span></div></div>
+  <h2>👔 Best Outfit Combos <span class="badge">cheapest first</span></h2>
+  <div class="outfit"><div class="top"><span class="sw c-Green"></span> #1 Green polo · CK · $31.99</div><div class="top">+ <span class="sw c-Grey"></span> #6 Grey pants · CK · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-Green"></span> #1 Green polo · CK · $31.99</div><div class="top">+ <span class="sw c-Black"></span> #8 Black pants · CK · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-DarkGreen"></span> #2 Dark Green polo · CK · $31.99</div><div class="top">+ <span class="sw c-Tan"></span> #7 Tan pants · CK · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-Grey"></span> #3 Grey polo · CK · $31.99</div><div class="top">+ <span class="sw c-Tan"></span> #7 Tan pants · CK · $31.99</div><div class="tot"><span>$63.98</span><span class="ss">CK ONLY</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-DarkGreen"></span> #12 Dark Green polo · Express · $32.40</div><div class="top">+ <span class="sw c-Grey"></span> #6 Grey pants · CK · $31.99</div><div class="tot"><span>$64.39</span><span class="ms">2 STORES</span></div></div>
+  <div class="outfit"><div class="top"><span class="sw c-Green"></span> #1 Green polo · CK · $31.99</div><div class="top">+ <span class="sw c-Grey"></span> #10 Grey pants · Express · $52.80</div><div class="tot"><span>$84.79</span><span class="ms">2 STORES</span></div></div>
 </section>
 
 <section>
   <h2>⭐ Top 2 Cheapest Per Type <span class="badge">tap to mark</span></h2>
 
   <div class="t2-block">
-    <h3>🩳 Pants <span class="t-count">· 4 logged · all tied at $31.99</span></h3>
+    <h3>🩳 Pants <span class="t-count">· 6 logged</span></h3>
     <div class="t2-row">
-      <div class="t2-card rank1" data-item-id="6"><div class="rank-medal">1</div><div class="t2-color"><span class="sw c-Grey"></span> Grey · slim</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Green/Dark Green/Grey polos</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="6">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="6">✗ Skip</button></div></div>
-      <div class="t2-card rank2" data-item-id="7"><div class="rank-medal">2</div><div class="t2-color"><span class="sw c-Tan"></span> Tan · slim</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Green/Dark Green/Grey polos</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="7">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="7">✗ Skip</button></div></div>
+      <div class="t2-card rank1" data-item-id="6"><div class="rank-medal">1</div><div class="t2-color"><span class="sw c-Grey"></span> Grey slim</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Green/Dark Green/Grey polos</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="6">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="6">✗ Skip</button></div></div>
+      <div class="t2-card rank2" data-item-id="7"><div class="rank-medal">2</div><div class="t2-color"><span class="sw c-Tan"></span> Tan slim</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Green/Dark Green/Grey polos</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="7">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="7">✗ Skip</button></div></div>
     </div>
   </div>
 
   <div class="t2-block">
-    <h3>🩳 Shorts <span class="t-count">· 2 logged · tied at $38.39</span></h3>
+    <h3>🩳 Shorts <span class="t-count">· 2 logged · tied</span></h3>
     <div class="t2-row">
-      <div class="t2-card rank1" data-item-id="4"><div class="rank-medal">1</div><div class="t2-color"><span class="sw c-Tan"></span> Tan</div><div class="t2-price">$38.39<span class="t2-disc">52%</span></div><span class="t2-tag">$79.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Green/Dark Green/Navy polos</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="4">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="4">✗ Skip</button></div></div>
-      <div class="t2-card rank2" data-item-id="5"><div class="rank-medal">2</div><div class="t2-color"><span class="sw c-Grey"></span> Grey</div><div class="t2-price">$38.39<span class="t2-disc">52%</span></div><span class="t2-tag">$79.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Green/Dark Green/Navy polos</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="5">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="5">✗ Skip</button></div></div>
+      <div class="t2-card rank1" data-item-id="4"><div class="rank-medal">1</div><div class="t2-color"><span class="sw c-Tan"></span> Tan</div><div class="t2-price">$38.39<span class="t2-disc">52%</span></div><span class="t2-tag">$79.99</span><div class="t2-store">Calvin Klein #1700</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="4">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="4">✗ Skip</button></div></div>
+      <div class="t2-card rank2" data-item-id="5"><div class="rank-medal">2</div><div class="t2-color"><span class="sw c-Grey"></span> Grey</div><div class="t2-price">$38.39<span class="t2-disc">52%</span></div><span class="t2-tag">$79.99</span><div class="t2-store">Calvin Klein #1700</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="5">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="5">✗ Skip</button></div></div>
     </div>
   </div>
 
   <div class="t2-block">
-    <h3>🎽 Polos <span class="t-count">· 3 logged · all tied at $31.99 · all size L</span></h3>
+    <h3>🎽 Polos <span class="t-count">· 5 logged</span></h3>
     <div class="t2-row">
-      <div class="t2-card rank1" data-item-id="1"><div class="rank-medal">1</div><div class="t2-color"><span class="sw c-Green"></span> Green · L</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">pairs Grey/Black/Tan bottoms</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="1">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="1">✗ Skip</button></div></div>
-      <div class="t2-card rank2" data-item-id="2"><div class="rank-medal">2</div><div class="t2-color"><span class="sw c-DarkGreen"></span> Dark Green · L</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">same pairings as Green</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="2">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="2">✗ Skip</button></div></div>
+      <div class="t2-card rank1" data-item-id="1"><div class="rank-medal">1</div><div class="t2-color"><span class="sw c-Green"></span> Green · L</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="t2-notes">3 polos tied at CK</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="1">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="1">✗ Skip</button></div></div>
+      <div class="t2-card rank2" data-item-id="2"><div class="rank-medal">2</div><div class="t2-color"><span class="sw c-DarkGreen"></span> Dark Green · L</div><div class="t2-price">$31.99<span class="t2-disc">20%</span></div><span class="t2-tag">$39.99</span><div class="t2-store">Calvin Klein #1700</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="2">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="2">✗ Skip</button></div></div>
     </div>
   </div>
 </section>
 
 <section>
-  <h2>📦 All Items <span class="badge">9</span></h2>
+  <h2>📦 All Items <span class="badge">13</span></h2>
 
-  <div class="cat-h">🎽 Polos (3)</div>
-  <div class="item-row" data-item-id="1"><div class="item-head"><div class="item-info"><span class="item-id">#1</span><div class="item-name"><span class="sw c-Green"></span> Green polo <span class="size-tag">L</span></div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Grey"></span>Grey</span><span class="pair-pill"><span class="sw c-Black"></span>Black</span><span class="pair-pill"><span class="sw c-Tan"></span>Tan</span><span style="color:var(--muted)">· pants &amp; shorts</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="1">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="1">✗ Skip</button></div></div>
-  <div class="item-row" data-item-id="2"><div class="item-head"><div class="item-info"><span class="item-id">#2</span><div class="item-name"><span class="sw c-DarkGreen"></span> Dark Green polo <span class="size-tag">L</span></div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Grey"></span>Grey</span><span class="pair-pill"><span class="sw c-Black"></span>Black</span><span class="pair-pill"><span class="sw c-Tan"></span>Tan</span><span style="color:var(--muted)">· pants &amp; shorts</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="2">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="2">✗ Skip</button></div></div>
-  <div class="item-row" data-item-id="3"><div class="item-head"><div class="item-info"><span class="item-id">#3</span><div class="item-name"><span class="sw c-Grey"></span> Grey polo <span class="size-tag">L</span></div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Navy"></span>Navy</span><span class="pair-pill"><span class="sw c-Tan"></span>Tan</span><span class="pair-pill"><span class="sw c-Black"></span>Black</span><span style="color:var(--muted)">· pants</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="3">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="3">✗ Skip</button></div></div>
+  <div class="cat-h">🎽 Polos (5)</div>
+  <div class="item-row" data-item-id="1"><div class="item-head"><div class="item-info"><span class="item-id">#1</span><div class="item-name"><span class="sw c-Green"></span> Green polo <span class="size-tag">L</span></div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs: <span class="pair-pill"><span class="sw c-Grey"></span>Grey</span><span class="pair-pill"><span class="sw c-Black"></span>Black</span><span class="pair-pill"><span class="sw c-Tan"></span>Tan</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="1">✓</button><button class="mark-btn" data-act="skip" data-id="1">✗</button></div></div>
+  <div class="item-row" data-item-id="2"><div class="item-head"><div class="item-info"><span class="item-id">#2</span><div class="item-name"><span class="sw c-DarkGreen"></span> Dark Green polo <span class="size-tag">L</span></div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs: <span class="pair-pill"><span class="sw c-Grey"></span>Grey</span><span class="pair-pill"><span class="sw c-Black"></span>Black</span><span class="pair-pill"><span class="sw c-Tan"></span>Tan</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="2">✓</button><button class="mark-btn" data-act="skip" data-id="2">✗</button></div></div>
+  <div class="item-row" data-item-id="3"><div class="item-head"><div class="item-info"><span class="item-id">#3</span><div class="item-name"><span class="sw c-Grey"></span> Grey polo <span class="size-tag">L</span></div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs: <span class="pair-pill"><span class="sw c-Navy"></span>Navy</span><span class="pair-pill"><span class="sw c-Tan"></span>Tan</span><span class="pair-pill"><span class="sw c-Black"></span>Black</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="3">✓</button><button class="mark-btn" data-act="skip" data-id="3">✗</button></div></div>
+  <div class="item-row" data-item-id="12"><div class="item-head"><div class="item-info"><span class="item-id">#12</span><div class="item-name"><span class="sw c-DarkGreen"></span> Dark Green polo <small style="color:var(--muted)">w/ white pinstripe</small></div><div class="item-store">Express #1760</div></div><div class="item-prices"><div class="item-fp">$32.40</div><div><span class="item-tp">$54.00</span> <span class="item-disc">40%</span></div></div></div><div class="item-pairs">Pairs: <span class="pair-pill"><span class="sw c-Grey"></span>Grey</span><span class="pair-pill"><span class="sw c-DarkGrey"></span>Dark Grey</span><span class="pair-pill"><span class="sw c-Black"></span>Black</span><span class="pair-pill"><span class="sw c-Tan"></span>Tan</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="12">✓</button><button class="mark-btn" data-act="skip" data-id="12">✗</button></div></div>
+  <div class="item-row" data-item-id="13"><div class="item-head"><div class="item-info"><span class="item-id">#13</span><div class="item-name"><span class="sw c-Cream"></span> Cream polo <small style="color:var(--muted)">w/ black pinstripe</small></div><div class="item-store">Express #1760</div></div><div class="item-prices"><div class="item-fp">$32.40</div><div><span class="item-tp">$54.00</span> <span class="item-disc">40%</span></div></div></div><div class="item-pairs" style="font-style:italic">pairing TBD — what pants colors?</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="13">✓</button><button class="mark-btn" data-act="skip" data-id="13">✗</button></div></div>
 
-  <div class="cat-h">🩳 Pants (4) · slim chino</div>
-  <div class="item-row" data-item-id="6"><div class="item-head"><div class="item-info"><span class="item-id">#6</span><div class="item-name"><span class="sw c-Grey"></span> Grey slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Grey"></span>Grey</span><span style="color:var(--muted)">· polos</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="6">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="6">✗ Skip</button></div></div>
-  <div class="item-row" data-item-id="7"><div class="item-head"><div class="item-info"><span class="item-id">#7</span><div class="item-name"><span class="sw c-Tan"></span> Tan slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Grey"></span>Grey</span><span style="color:var(--muted)">· polos</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="7">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="7">✗ Skip</button></div></div>
-  <div class="item-row" data-item-id="8"><div class="item-head"><div class="item-info"><span class="item-id">#8</span><div class="item-name"><span class="sw c-Black"></span> Black slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs" style="font-style:italic">pairing TBD</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="8">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="8">✗ Skip</button></div></div>
-  <div class="item-row" data-item-id="9"><div class="item-head"><div class="item-info"><span class="item-id">#9</span><div class="item-name"><span class="sw c-LightBlue"></span> Sky Blue slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs" style="font-style:italic">pairing TBD</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="9">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="9">✗ Skip</button></div></div>
+  <div class="cat-h">🩳 Pants (6)</div>
+  <div class="item-row" data-item-id="6"><div class="item-head"><div class="item-info"><span class="item-id">#6</span><div class="item-name"><span class="sw c-Grey"></span> Grey slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Grey"></span>Grey</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="6">✓</button><button class="mark-btn" data-act="skip" data-id="6">✗</button></div></div>
+  <div class="item-row" data-item-id="7"><div class="item-head"><div class="item-info"><span class="item-id">#7</span><div class="item-name"><span class="sw c-Tan"></span> Tan slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs">Pairs: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Grey"></span>Grey</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="7">✓</button><button class="mark-btn" data-act="skip" data-id="7">✗</button></div></div>
+  <div class="item-row" data-item-id="8"><div class="item-head"><div class="item-info"><span class="item-id">#8</span><div class="item-name"><span class="sw c-Black"></span> Black slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs" style="font-style:italic">pairing TBD</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="8">✓</button><button class="mark-btn" data-act="skip" data-id="8">✗</button></div></div>
+  <div class="item-row" data-item-id="9"><div class="item-head"><div class="item-info"><span class="item-id">#9</span><div class="item-name"><span class="sw c-LightBlue"></span> Sky Blue slim pants</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$31.99</div><div><span class="item-tp">$39.99</span> <span class="item-disc">20%</span></div></div></div><div class="item-pairs" style="font-style:italic">pairing TBD</div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="9">✓</button><button class="mark-btn" data-act="skip" data-id="9">✗</button></div></div>
+  <div class="item-row" data-item-id="10"><div class="item-head"><div class="item-info"><span class="item-id">#10</span><div class="item-name"><span class="sw c-Grey"></span> Grey slim pants</div><div class="item-store">Express #1760</div></div><div class="item-prices"><div class="item-fp">$52.80</div><div><span class="item-tp">$88.00</span> <span class="item-disc">40%</span></div></div></div><div class="item-pairs">Pairs: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="10">✓</button><button class="mark-btn" data-act="skip" data-id="10">✗</button></div></div>
+  <div class="item-row" data-item-id="11"><div class="item-head"><div class="item-info"><span class="item-id">#11</span><div class="item-name"><span class="sw c-DarkGrey"></span> Dark Grey slim pants</div><div class="item-store">Express #1760</div></div><div class="item-prices"><div class="item-fp">$52.80</div><div><span class="item-tp">$88.00</span> <span class="item-disc">40%</span></div></div></div><div class="item-pairs">Pairs: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="11">✓</button><button class="mark-btn" data-act="skip" data-id="11">✗</button></div></div>
 
   <div class="cat-h">🩳 Shorts (2)</div>
-  <div class="item-row" data-item-id="4"><div class="item-head"><div class="item-info"><span class="item-id">#4</span><div class="item-name"><span class="sw c-Tan"></span> Tan shorts</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$38.39</div><div><span class="item-tp">$79.99</span> <span class="item-disc">40%+20%</span></div><div class="discount-chain">52% off total</div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Navy"></span>Navy</span><span style="color:var(--muted)">· polos &amp; shirts</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="4">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="4">✗ Skip</button></div></div>
-  <div class="item-row" data-item-id="5"><div class="item-head"><div class="item-info"><span class="item-id">#5</span><div class="item-name"><span class="sw c-Grey"></span> Grey shorts</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$38.39</div><div><span class="item-tp">$79.99</span> <span class="item-disc">40%+20%</span></div><div class="discount-chain">52% off total</div></div></div><div class="item-pairs">Pairs with: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Navy"></span>Navy</span><span style="color:var(--muted)">· polos &amp; shirts</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="5">✓ Buy</button><button class="mark-btn" data-act="skip" data-id="5">✗ Skip</button></div></div>
+  <div class="item-row" data-item-id="4"><div class="item-head"><div class="item-info"><span class="item-id">#4</span><div class="item-name"><span class="sw c-Tan"></span> Tan shorts</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$38.39</div><div><span class="item-tp">$79.99</span> <span class="item-disc">52%</span></div></div></div><div class="item-pairs">Pairs: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Navy"></span>Navy</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="4">✓</button><button class="mark-btn" data-act="skip" data-id="4">✗</button></div></div>
+  <div class="item-row" data-item-id="5"><div class="item-head"><div class="item-info"><span class="item-id">#5</span><div class="item-name"><span class="sw c-Grey"></span> Grey shorts</div><div class="item-store">Calvin Klein #1700</div></div><div class="item-prices"><div class="item-fp">$38.39</div><div><span class="item-tp">$79.99</span> <span class="item-disc">52%</span></div></div></div><div class="item-pairs">Pairs: <span class="pair-pill"><span class="sw c-Green"></span>Green</span><span class="pair-pill"><span class="sw c-DarkGreen"></span>Dark Green</span><span class="pair-pill"><span class="sw c-Navy"></span>Navy</span></div><div class="mark-btns"><button class="mark-btn" data-act="buy" data-id="5">✓</button><button class="mark-btn" data-act="skip" data-id="5">✗</button></div></div>
 </section>
 
 <section>
@@ -221,16 +220,16 @@ footer .ts{font-weight:600;color:var(--text)}
     <svg class="map-svg" viewBox="0 0 360 440" xmlns="http://www.w3.org/2000/svg">
       <rect x="10" y="20" width="155" height="155" fill="rgba(74,144,226,0.08)" stroke="#2a3654" stroke-width="1.5" rx="8"/>
       <text x="87" y="40" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER BAYSIDE</text>
-      <circle cx="40" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="40" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">7</text><text x="40" y="100" fill="#e8eef7" font-size="8" text-anchor="middle">U.Armour #610</text>
-      <circle cx="120" cy="70" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="120" y="74" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">6</text><text x="120" y="90" fill="#e8eef7" font-size="8" text-anchor="middle">N.Face #420</text>
-      <circle cx="90" cy="135" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="90" y="139" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">5</text><text x="90" y="155" fill="#e8eef7" font-size="8" text-anchor="middle">Old Navy #150</text>
+      <circle cx="40" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="40" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">7</text><text x="40" y="100" fill="#e8eef7" font-size="8" text-anchor="middle">U.Armour</text>
+      <circle cx="120" cy="70" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="120" y="74" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">6</text><text x="120" y="90" fill="#e8eef7" font-size="8" text-anchor="middle">N.Face</text>
+      <circle cx="90" cy="135" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="90" y="139" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">5</text><text x="90" y="155" fill="#e8eef7" font-size="8" text-anchor="middle">Old Navy</text>
 
       <rect x="195" y="20" width="155" height="170" fill="rgba(74,144,226,0.08)" stroke="#2a3654" stroke-width="1.5" rx="8"/>
       <text x="272" y="40" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER SURFSIDE</text>
-      <circle cx="225" cy="150" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="225" y="154" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">11</text><text x="225" y="172" fill="#e8eef7" font-size="8" text-anchor="middle">Polo RL #313</text>
-      <circle cx="225" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="225" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">10</text><text x="225" y="65" fill="#e8eef7" font-size="8" text-anchor="middle">Boss #307</text>
-      <circle cx="320" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="320" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">9</text><text x="320" y="65" fill="#e8eef7" font-size="8" text-anchor="middle">Lacoste #119</text>
-      <circle cx="320" cy="150" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="320" y="154" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">8</text><text x="320" y="172" fill="#e8eef7" font-size="8" text-anchor="middle">Cole Haan #107</text>
+      <circle cx="225" cy="150" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="225" y="154" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">11</text><text x="225" y="172" fill="#e8eef7" font-size="8" text-anchor="middle">Polo RL</text>
+      <circle cx="225" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="225" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">10</text><text x="225" y="65" fill="#e8eef7" font-size="8" text-anchor="middle">Boss</text>
+      <circle cx="320" cy="80" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="320" y="84" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">9</text><text x="320" y="65" fill="#e8eef7" font-size="8" text-anchor="middle">Lacoste</text>
+      <circle cx="320" cy="150" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="320" y="154" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">8</text><text x="320" y="172" fill="#e8eef7" font-size="8" text-anchor="middle">Cole Haan</text>
 
       <line x1="80" y1="210" x2="290" y2="210" stroke="#4a90e2" stroke-width="2" stroke-dasharray="6,4"/>
       <text x="185" y="205" fill="#4a90e2" font-size="10" font-weight="700" text-anchor="middle">ROUTE 1 · 1.8 mi</text>
@@ -241,22 +240,26 @@ footer .ts{font-weight:600;color:var(--text)}
       <text x="180" y="245" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER SEASIDE</text>
       <line x1="180" y1="210" x2="180" y2="225" stroke="#2a3654" stroke-width="1"/>
 
+      <!-- Clarks -->
       <circle cx="40" cy="280" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="40" y="284" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">4</text><text x="40" y="265" fill="#e8eef7" font-size="8" text-anchor="middle">Clarks #1825</text>
-      <circle cx="40" cy="335" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="40" y="339" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">3</text><text x="40" y="355" fill="#e8eef7" font-size="8" text-anchor="middle">Banana Rep</text>
-      <circle cx="115" cy="380" r="8" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/><text x="115" y="384" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">2</text><text x="115" y="400" fill="#e8eef7" font-size="8" text-anchor="middle">Merrell #1750</text>
-
-      <circle cx="195" cy="380" r="13" fill="#ff6464" stroke="#fff" stroke-width="2"><animate attributeName="r" values="13;17;13" dur="1.5s" repeatCount="indefinite"/></circle>
-      <text x="195" y="385" fill="#fff" font-size="13" font-weight="800" text-anchor="middle">1</text>
-      <text x="195" y="402" fill="#ff6464" font-size="10" font-weight="700" text-anchor="middle">Calvin Klein #1700</text>
-      <text x="195" y="413" fill="#ff6464" font-size="9" font-weight="600" text-anchor="middle">← YOU · 9 items</text>
-
-      <text x="290" y="380" fill="#8a96ad" font-size="14" text-anchor="middle">🍔</text>
-      <text x="290" y="400" fill="#8a96ad" font-size="9" text-anchor="middle">Applebee's ✓</text>
+      <!-- Banana Rep — NEXT highlighted -->
+      <circle cx="40" cy="335" r="10" fill="#45c97a" stroke="#fff" stroke-width="2"/><text x="40" y="339" fill="#000" font-size="10" font-weight="800" text-anchor="middle">3</text><text x="40" y="355" fill="#45c97a" font-size="8" font-weight="700" text-anchor="middle">Banana Rep #1800</text><text x="40" y="365" fill="#45c97a" font-size="7" text-anchor="middle">← NEXT</text>
+      <!-- Merrell (skipped, faded) -->
+      <circle cx="115" cy="380" r="8" fill="transparent" stroke="#8a96ad" stroke-width="1.5" stroke-dasharray="3,2"/><text x="115" y="384" fill="#8a96ad" font-size="9" font-weight="700" text-anchor="middle">2</text><text x="115" y="400" fill="#8a96ad" font-size="8" text-anchor="middle">Merrell · skip?</text>
+      <!-- Express — YOU ARE HERE -->
+      <circle cx="155" cy="345" r="13" fill="#ff6464" stroke="#fff" stroke-width="2"><animate attributeName="r" values="13;17;13" dur="1.5s" repeatCount="indefinite"/></circle>
+      <text x="155" y="350" fill="#fff" font-size="11" font-weight="800" text-anchor="middle">E</text>
+      <text x="155" y="365" fill="#ff6464" font-size="9" font-weight="700" text-anchor="middle">Express #1760</text>
+      <text x="155" y="375" fill="#ff6464" font-size="8" font-weight="600" text-anchor="middle">← YOU · 4 items</text>
+      <!-- Calvin Klein (done) -->
+      <circle cx="220" cy="380" r="9" fill="#8a96ad" stroke="#fff" stroke-width="1"/><text x="220" y="384" fill="#000" font-size="10" font-weight="800" text-anchor="middle">1</text><text x="220" y="400" fill="#8a96ad" font-size="8" text-anchor="middle">CK ✓ 9 items</text>
+      <!-- Applebee's -->
+      <text x="295" y="380" fill="#8a96ad" font-size="14" text-anchor="middle">🍔</text>
+      <text x="295" y="400" fill="#8a96ad" font-size="8" text-anchor="middle">Applebee's ✓</text>
     </svg>
     <div class="map-legend">
       <span class="lg"><span class="lg-dot you"></span> You</span>
       <span class="lg"><span class="lg-dot next"></span> Next</span>
-      <span class="lg"><span class="lg-dot todo"></span> To visit</span>
       <span class="lg"><span class="lg-dot done"></span> Done</span>
     </div>
   </div>
@@ -267,10 +270,11 @@ footer .ts{font-weight:600;color:var(--text)}
   <div class="timeline">
     <div class="tl-leg">① SEASIDE</div>
     <div class="tl-item done"><div class="num">🍔</div><div><div class="nm">Applebee's</div><div class="ad">lunch ✓</div></div></div>
-    <div class="tl-item you"><div class="num">1</div><div><div class="nm">Calvin Klein #1700</div><div class="ad">🛒 IN STORE · 9 items</div></div></div>
-    <div class="tl-arrow">↓ walk WEST when done</div>
-    <div class="tl-item next"><div class="num">2</div><div><div class="nm">Merrell #1750</div><div class="ad">NEXT</div></div></div>
-    <div class="tl-item"><div class="num">3</div><div><div class="nm">Banana Republic #1800</div></div></div>
+    <div class="tl-item done"><div class="num">1</div><div><div class="nm">Calvin Klein #1700</div><div class="ad">9 items logged ✓</div></div></div>
+    <div class="tl-item skip"><div class="num">2</div><div><div class="nm">Merrell #1750</div><div class="ad">skipped</div></div></div>
+    <div class="tl-item you"><div class="num">E</div><div><div class="nm">Express #1760</div><div class="ad">🛒 IN STORE · 4 items · 40% off</div></div></div>
+    <div class="tl-arrow">↓ continue west</div>
+    <div class="tl-item next"><div class="num">3</div><div><div class="nm">Banana Republic #1800</div><div class="ad">NEXT</div></div></div>
     <div class="tl-item"><div class="num">4</div><div><div class="nm">Clarks Outlet #1825</div></div></div>
     <div class="tl-leg">② BAYSIDE</div>
     <div class="tl-item"><div class="num">5</div><div><div class="nm">Old Navy #150</div></div></div>
@@ -289,12 +293,11 @@ footer .ts{font-weight:600;color:var(--text)}
 <div id="toast" class="toast hidden"></div>
 
 <footer>
-  <div class="ts">Updated 2026-05-22 16:35 · 9 items</div>
-  <div style="margin-top:4px">Marks save to your phone. Tap ✓ on items you want.</div>
+  <div class="ts">Updated 2026-05-22 16:50 · 13 items · 2 stores</div>
 </footer>
 
 <script>
-const ITEMS = {
+const ITEMS={
   1:{store:'Calvin Klein #1700',type:'Green polo (L)',price:31.99},
   2:{store:'Calvin Klein #1700',type:'Dark Green polo (L)',price:31.99},
   3:{store:'Calvin Klein #1700',type:'Grey polo (L)',price:31.99},
@@ -304,8 +307,12 @@ const ITEMS = {
   7:{store:'Calvin Klein #1700',type:'Tan slim pants',price:31.99},
   8:{store:'Calvin Klein #1700',type:'Black slim pants',price:31.99},
   9:{store:'Calvin Klein #1700',type:'Sky Blue slim pants',price:31.99},
+  10:{store:'Express #1760',type:'Grey slim pants',price:52.80},
+  11:{store:'Express #1760',type:'Dark Grey slim pants',price:52.80},
+  12:{store:'Express #1760',type:'Dark Green polo (w/pinstripe)',price:32.40},
+  13:{store:'Express #1760',type:'Cream polo (w/pinstripe)',price:32.40},
 };
-const STORE_ORDER={'Calvin Klein #1700':1,'Merrell #1750':2,'Banana Republic #1800':3,'Clarks #1825':4,'Old Navy #150':5,'North Face #420':6,'Under Armour #610':7,'Cole Haan #107':8,'Lacoste #119':9,'Boss #307':10,'Polo Ralph Lauren #313':11};
+const STORE_ORDER={'Calvin Klein #1700':1,'Merrell #1750':2,'Express #1760':2.5,'Banana Republic #1800':3,'Clarks #1825':4,'Old Navy #150':5,'North Face #420':6,'Under Armour #610':7,'Cole Haan #107':8,'Lacoste #119':9,'Boss #307':10,'Polo Ralph Lauren #313':11};
 const STORAGE_KEY='de-shopping-marks';
 function loadMarks(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}}}
 function saveMarks(m){localStorage.setItem(STORAGE_KEY,JSON.stringify(m))}
@@ -349,10 +356,7 @@ function renderBuyList(){
   });
   document.getElementById('buyContent').innerHTML=html;
 }
-function toast(msg){
-  const t=document.getElementById('toast');t.textContent=msg;t.classList.remove('hidden');
-  clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.add('hidden'),2500);
-}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.add('hidden'),2500)}
 document.querySelectorAll('.mark-btn').forEach(btn=>{
   btn.addEventListener('click',e=>{
     e.stopPropagation();
@@ -376,16 +380,11 @@ function copyBuyList(){
     text+='\n';
   });
   text+=`IDs to buy: ${ids.sort((a,b)=>+a-+b).join(', ')}`;
-  if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>toast('Copied! Paste in chat')).catch(()=>fallbackCopy(text))}else fallbackCopy(text);
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>toast('Copied!')).catch(()=>fallbackCopy(text))}else fallbackCopy(text);
 }
-function fallbackCopy(text){
-  const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
-  try{document.execCommand('copy');toast('Copied!')}catch(e){toast('Copy failed')}
-  ta.remove();
-}
-function clearMarks(){if(!confirm('Clear all ✓/✗ marks?'))return;marks={};saveMarks(marks);applyVisualState();renderBuyList();}
+function fallbackCopy(text){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copied!')}catch(e){toast('Copy failed')}ta.remove()}
+function clearMarks(){if(!confirm('Clear all marks?'))return;marks={};saveMarks(marks);applyVisualState();renderBuyList()}
 applyVisualState();renderBuyList();
 </script>
-
 </body>
 </html>
