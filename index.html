@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DE Outlets">
+<meta name="theme-color" content="#0b1220">
+<title>DE Outlet Tracker</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%9B%8D%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b1220;--card:#151c2e;--card2:#1c2540;--border:#2a3654;
+  --text:#e8eef7;--muted:#8a96ad;--accent:#4a90e2;--good:#45c97a;
+  --warn:#f0a035;--gold:#f0c040;--silver:#b8c0d4;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);color:var(--text);font-size:15px;line-height:1.45;
+  padding:0 0 40px;-webkit-text-size-adjust:100%;
+}
+header{
+  background:linear-gradient(180deg,#1a2342,var(--card));
+  padding:calc(14px + env(safe-area-inset-top)) 16px 16px;
+  border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5;
+  box-shadow:0 2px 10px rgba(0,0,0,.3);
+}
+.h-title{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:600}
+.h-loc{font-size:20px;font-weight:700;margin-top:3px}
+.h-meta{font-size:12px;color:var(--muted);margin-top:2px}
+.h-stats{display:flex;gap:14px;margin-top:10px;flex-wrap:wrap}
+.h-stat{background:var(--card2);padding:6px 10px;border-radius:8px;
+  font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;
+  border:1px solid var(--border)}
+.h-stat strong{color:var(--good);font-size:14px}
+
+main{max-width:760px;margin:0 auto;padding:16px}
+section{margin-bottom:24px}
+h2{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;
+  margin:0 0 10px;font-weight:700;display:flex;align-items:center;gap:8px}
+h2 .badge{background:var(--card2);color:var(--muted);font-size:11px;padding:2px 8px;
+  border-radius:999px;text-transform:none;letter-spacing:0;font-weight:600}
+h3{font-size:16px;margin:0 0 8px;font-weight:700;color:var(--text);
+  display:flex;align-items:center;gap:6px}
+.t-count{font-size:11px;color:var(--muted);font-weight:500}
+
+.banner{background:linear-gradient(135deg,rgba(240,192,64,.18),rgba(240,192,64,.04));
+  border:1px solid rgba(240,192,64,.4);padding:10px 14px;border-radius:10px;
+  font-size:13px;margin-bottom:14px}
+
+/* TOP 2 cards */
+.t2-block{margin-bottom:16px}
+.t2-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:380px){.t2-row{grid-template-columns:1fr}}
+.t2-card{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:12px;position:relative;overflow:hidden}
+.t2-card.rank1{border-color:rgba(240,192,64,.6);
+  background:linear-gradient(135deg,rgba(240,192,64,.1),var(--card))}
+.t2-card.rank2{border-color:rgba(184,192,212,.4)}
+.rank-medal{position:absolute;top:8px;right:8px;width:24px;height:24px;
+  border-radius:50%;background:var(--gold);color:#000;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:12px;border:2px solid var(--bg)}
+.rank2 .rank-medal{background:var(--silver)}
+.t2-color{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:5px;font-weight:600}
+.t2-price{font-size:22px;font-weight:800;color:var(--good);margin:6px 0 2px;line-height:1.1}
+.t2-disc{display:inline-block;background:var(--warn);color:#000;padding:1px 6px;
+  border-radius:4px;font-size:10px;font-weight:800;margin-left:4px;vertical-align:middle}
+.t2-store{font-size:11px;color:var(--muted);margin-top:2px}
+.t2-tag{font-size:11px;color:var(--muted);text-decoration:line-through;display:inline-block;margin-top:2px}
+.t2-notes{font-size:11px;color:var(--muted);font-style:italic;margin-top:4px}
+
+/* color swatches */
+.sw{width:12px;height:12px;border-radius:50%;border:1px solid rgba(255,255,255,.2);
+  display:inline-block;vertical-align:middle;flex-shrink:0}
+.sw-lg{width:16px;height:16px}
+
+/* item cards */
+.item{background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:10px 12px;margin-bottom:6px}
+.item .row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.item-t{font-weight:600;font-size:15px;display:flex;align-items:center;gap:6px}
+.item-p{font-size:17px;font-weight:700;color:var(--good)}
+.item-tag{font-size:11px;color:var(--muted);text-decoration:line-through;margin-right:4px}
+.item-disc{background:var(--warn);color:#000;font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px}
+.item-pairs{font-size:11px;color:var(--muted);margin-top:4px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.pair{background:var(--card2);padding:1px 6px;border-radius:999px;display:inline-flex;align-items:center;gap:3px}
+.item-notes{font-size:11px;color:var(--muted);font-style:italic;margin-top:2px}
+.item-tags{display:flex;gap:4px;align-items:center;margin-top:4px;flex-wrap:wrap}
+.itag{font-size:10px;padding:1px 5px;border-radius:3px;font-weight:600;background:var(--card2);color:var(--muted)}
+.itag.best{background:var(--gold);color:#000}
+
+/* store group cards */
+.store-grp{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:12px;margin-bottom:10px}
+.sg-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+  padding-bottom:8px;border-bottom:1px solid var(--border)}
+.sg-name{font-weight:700;font-size:15px}
+.sg-num{font-size:11px;color:var(--muted);background:var(--card2);padding:1px 6px;border-radius:4px;margin-left:4px}
+.sg-total{font-weight:700;color:var(--good)}
+.sg-count{font-size:11px;color:var(--muted)}
+
+/* outfit cards */
+.outfit{background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:12px;margin-bottom:6px;display:flex;flex-direction:column;gap:4px}
+.outfit.same-store{border-color:rgba(69,201,122,.4);background:linear-gradient(135deg,rgba(69,201,122,.08),var(--card))}
+.outfit .ot{font-size:13px}
+.outfit .ot strong{font-weight:600}
+.outfit .total{margin-top:4px;padding-top:6px;border-top:1px solid var(--border);
+  font-weight:800;color:var(--good);font-size:15px;display:flex;justify-content:space-between}
+.outfit .ss{font-size:10px;background:var(--good);color:#000;padding:1px 5px;
+  border-radius:3px;font-weight:700}
+
+.route{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;font-size:13px;line-height:1.6}
+.route .leg{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.route .leg:last-child{border:none;margin-bottom:0;padding-bottom:0}
+.route strong{color:var(--accent)}
+.route .now{background:rgba(74,144,226,.15);border:1px solid var(--accent);padding:10px;border-radius:8px;margin-bottom:12px}
+
+.note{font-size:12px;color:var(--muted);padding:10px;text-align:center}
+
+table{width:100%;border-collapse:collapse;font-size:12px}
+table th{text-align:left;color:var(--muted);font-weight:600;padding:6px 4px;border-bottom:1px solid var(--border);text-transform:uppercase;font-size:10px;letter-spacing:.4px}
+table td{padding:6px 4px;border-bottom:1px solid var(--border)}
+table tr:last-child td{border:none}
+table .price{color:var(--good);font-weight:700;text-align:right}
+table .disc{color:var(--warn);font-weight:700;font-size:11px}
+
+footer{text-align:center;color:var(--muted);font-size:11px;padding:20px;border-top:1px solid var(--border);margin-top:20px}
+footer .ts{font-weight:600;color:var(--text)}
+
+/* color hexes for swatches */
+.c-Black{background:#0a0a0a}.c-White{background:#f5f5f5}.c-Grey{background:#808080}
+.c-Charcoal{background:#36454F}.c-Navy{background:#1a2848}.c-Blue{background:#2e6cd6}
+.c-LightBlue{background:#7ec0ee}.c-Green{background:#2e8b57}.c-Olive{background:#556B2F}
+.c-Khaki{background:#c3b091}.c-Tan{background:#d2b48c}.c-Beige{background:#e8d5b7}
+.c-Brown{background:#8B4513}.c-Cream{background:#fff8dc}.c-Red{background:#c0392b}
+.c-Burgundy{background:#722F37}.c-Pink{background:#f08080}.c-Yellow{background:#FFD700}
+.c-Orange{background:#ff8c00}.c-Purple{background:#7d4f9c}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-title">🛍️ Tanger Outlets Rehoboth · No Tax</div>
+  <div class="h-loc">🍔 Currently at Applebee's</div>
+  <div class="h-meta">Sample data loaded · last update 2026-05-22</div>
+  <div class="h-stats">
+    <div class="h-stat">📦 <strong>27</strong> items</div>
+    <div class="h-stat">🏪 <strong>7</strong> stores</div>
+    <div class="h-stat">💵 <strong>$1,401.61</strong> total</div>
+    <div class="h-stat">🎯 <strong>0</strong> marked buy</div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <h2>⭐ Top 2 Cheapest Per Type</h2>
+  <div class="banner">Best value pick of every item category. 🥇 Gold = #1 cheapest, 🥈 Silver = #2.</div>
+
+  <div class="t2-block">
+    <h3>🩳 Pants <span class="t-count">· 9 logged</span></h3>
+    <div class="t2-row">
+      <div class="t2-card rank1">
+        <div class="rank-medal">1</div>
+        <div class="t2-color"><span class="sw c-Black"></span> Black</div>
+        <div class="t2-price">$27.99<span class="t2-disc">30%</span></div>
+        <div class="t2-tag">$39.99</div>
+        <div class="t2-store">Old Navy #150</div>
+      </div>
+      <div class="t2-card rank2">
+        <div class="rank-medal">2</div>
+        <div class="t2-color"><span class="sw c-Khaki"></span> Khaki</div>
+        <div class="t2-price">$29.99<span class="t2-disc">40%</span></div>
+        <div class="t2-tag">$49.99</div>
+        <div class="t2-store">Old Navy #150</div>
+        <div class="t2-notes">budget chinos</div>
+      </div>
+    </div>
+    <div class="note">🔥 Biggest discount: <strong>Khaki at Banana Republic #1800 — 60% off → $39.20</strong></div>
+  </div>
+
+  <div class="t2-block">
+    <h3>👔 Slacks <span class="t-count">· 5 logged</span></h3>
+    <div class="t2-row">
+      <div class="t2-card rank1">
+        <div class="rank-medal">1</div>
+        <div class="t2-color"><span class="sw c-Charcoal"></span> Charcoal</div>
+        <div class="t2-price">$49.00<span class="t2-disc">50%</span></div>
+        <div class="t2-tag">$98.00</div>
+        <div class="t2-store">Banana Republic #1800</div>
+      </div>
+      <div class="t2-card rank2">
+        <div class="rank-medal">2</div>
+        <div class="t2-color"><span class="sw c-Charcoal"></span> Charcoal</div>
+        <div class="t2-price">$64.75<span class="t2-disc">50%</span></div>
+        <div class="t2-tag">$129.50</div>
+        <div class="t2-store">Calvin Klein #1700</div>
+        <div class="t2-notes">dress slacks</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="t2-block">
+    <h3>👕 Shirts <span class="t-count">· 7 logged</span></h3>
+    <div class="t2-row">
+      <div class="t2-card rank1">
+        <div class="rank-medal">1</div>
+        <div class="t2-color"><span class="sw c-White"></span> White</div>
+        <div class="t2-price">$24.49<span class="t2-disc">30%</span></div>
+        <div class="t2-tag">$34.99</div>
+        <div class="t2-store">Old Navy #150</div>
+      </div>
+      <div class="t2-card rank2">
+        <div class="rank-medal">2</div>
+        <div class="t2-color"><span class="sw c-White"></span> White</div>
+        <div class="t2-price">$39.75<span class="t2-disc">50%</span></div>
+        <div class="t2-tag">$79.50</div>
+        <div class="t2-store">Banana Republic #1800</div>
+        <div class="t2-notes">button-up</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="t2-block">
+    <h3>🎽 Polos <span class="t-count">· 6 logged</span></h3>
+    <div class="t2-row">
+      <div class="t2-card rank1">
+        <div class="rank-medal">1</div>
+        <div class="t2-color"><span class="sw c-Navy"></span> Navy</div>
+        <div class="t2-price">$24.49<span class="t2-disc">30%</span></div>
+        <div class="t2-tag">$34.99</div>
+        <div class="t2-store">Old Navy #150</div>
+      </div>
+      <div class="t2-card rank2">
+        <div class="rank-medal">2</div>
+        <div class="t2-color"><span class="sw c-Navy"></span> Navy</div>
+        <div class="t2-price">$44.75<span class="t2-disc">50%</span></div>
+        <div class="t2-tag">$89.50</div>
+        <div class="t2-store">Polo Ralph Lauren #313</div>
+        <div class="t2-notes">classic fit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>👔 Best Outfit Combos <span class="badge">cheapest first</span></h2>
+
+  <div class="outfit same-store">
+    <div class="ot"><span class="sw c-Black"></span> <strong>Black pants</strong> · Old Navy #150 · $27.99</div>
+    <div class="ot">+ <span class="sw c-White"></span> <strong>White shirt</strong> · Old Navy #150 · $24.49</div>
+    <div class="total"><span>$52.48 <span class="ss">SAME STORE ✨</span></span></div>
+  </div>
+
+  <div class="outfit same-store">
+    <div class="ot"><span class="sw c-Khaki"></span> <strong>Khaki pants</strong> · Old Navy #150 · $29.99</div>
+    <div class="ot">+ <span class="sw c-Navy"></span> <strong>Navy polo</strong> · Old Navy #150 · $24.49</div>
+    <div class="total"><span>$54.48 <span class="ss">SAME STORE ✨</span></span></div>
+  </div>
+
+  <div class="outfit same-store">
+    <div class="ot"><span class="sw c-Khaki"></span> <strong>Khaki pants</strong> · Old Navy #150 · $29.99</div>
+    <div class="ot">+ <span class="sw c-White"></span> <strong>White shirt</strong> · Old Navy #150 · $24.49</div>
+    <div class="total"><span>$54.48 <span class="ss">SAME STORE ✨</span></span></div>
+  </div>
+
+  <div class="outfit">
+    <div class="ot"><span class="sw c-Grey"></span> <strong>Grey joggers</strong> · Under Armour #610 · $39.00</div>
+    <div class="ot">+ <span class="sw c-White"></span> <strong>White shirt</strong> · Old Navy #150 · $24.49</div>
+    <div class="total"><span>$63.49</span></div>
+  </div>
+
+  <div class="outfit">
+    <div class="ot"><span class="sw c-Grey"></span> <strong>Grey joggers</strong> · Under Armour #610 · $39.00</div>
+    <div class="ot">+ <span class="sw c-Navy"></span> <strong>Navy polo</strong> · Old Navy #150 · $24.49</div>
+    <div class="total"><span>$63.49</span></div>
+  </div>
+
+  <div class="outfit">
+    <div class="ot"><span class="sw c-Khaki"></span> <strong>Khaki pants</strong> · Banana Republic #1800 · $39.20</div>
+    <div class="ot">+ <span class="sw c-Navy"></span> <strong>Navy polo</strong> · Old Navy #150 · $24.49</div>
+    <div class="total"><span>$63.69</span></div>
+  </div>
+
+  <div class="outfit">
+    <div class="ot"><span class="sw c-Navy"></span> <strong>Navy pants</strong> · Calvin Klein #1700 · $39.50</div>
+    <div class="ot">+ <span class="sw c-White"></span> <strong>White shirt</strong> · Old Navy #150 · $24.49</div>
+    <div class="total"><span>$63.99</span></div>
+  </div>
+
+  <div class="outfit same-store">
+    <div class="ot"><span class="sw c-Khaki"></span> <strong>Khaki pants</strong> · Banana Republic #1800 · $39.20</div>
+    <div class="ot">+ <span class="sw c-White"></span> <strong>White shirt</strong> · Banana Republic #1800 · $39.75</div>
+    <div class="total"><span>$78.95 <span class="ss">SAME STORE ✨</span></span></div>
+  </div>
+</section>
+
+<section>
+  <h2>🏪 All Items by Store</h2>
+
+  <div class="store-grp">
+    <div class="sg-head">
+      <div><span class="sg-name">Calvin Klein</span><span class="sg-num">#1700</span><div class="sg-count">4 items · Tanger Seaside</div></div>
+      <div class="sg-total">$222.70</div>
+    </div>
+    <table>
+      <tr><th>#</th><th>Item</th><th>Tag</th><th>Off</th><th class="price">Final</th></tr>
+      <tr><td>1</td><td><span class="sw c-Grey"></span> Grey pants <small style="color:var(--muted)">· slim 32</small></td><td>$89.50</td><td class="disc">40%</td><td class="price">$53.70</td></tr>
+      <tr><td>2</td><td><span class="sw c-Navy"></span> Navy pants <small style="color:var(--muted)">· straight</small></td><td>$79.00</td><td class="disc">50%</td><td class="price">$39.50</td></tr>
+      <tr><td>10</td><td><span class="sw c-Charcoal"></span> Charcoal slacks <small style="color:var(--muted)">· dress</small></td><td>$129.50</td><td class="disc">50%</td><td class="price">$64.75</td></tr>
+      <tr><td>11</td><td><span class="sw c-Black"></span> Black slacks</td><td>$129.50</td><td class="disc">50%</td><td class="price">$64.75</td></tr>
+    </table>
+  </div>
+
+  <div class="store-grp">
+    <div class="sg-head">
+      <div><span class="sg-name">Banana Republic</span><span class="sg-num">#1800</span><div class="sg-count">5 items · Tanger Seaside</div></div>
+      <div class="sg-total">$216.70</div>
+    </div>
+    <table>
+      <tr><th>#</th><th>Item</th><th>Tag</th><th>Off</th><th class="price">Final</th></tr>
+      <tr><td>3</td><td><span class="sw c-Khaki"></span> Khaki pants <span class="itag best">🔥 60% off</span></td><td>$98.00</td><td class="disc">60%</td><td class="price">$39.20</td></tr>
+      <tr><td>4</td><td><span class="sw c-Olive"></span> Olive pants</td><td>$98.00</td><td class="disc">50%</td><td class="price">$49.00</td></tr>
+      <tr><td>12</td><td><span class="sw c-Charcoal"></span> Charcoal slacks <span class="itag best">🥇 cheap</span></td><td>$98.00</td><td class="disc">50%</td><td class="price">$49.00</td></tr>
+      <tr><td>15</td><td><span class="sw c-White"></span> White shirt <small style="color:var(--muted)">· button-up</small></td><td>$79.50</td><td class="disc">50%</td><td class="price">$39.75</td></tr>
+      <tr><td>16</td><td><span class="sw c-LightBlue"></span> Light Blue shirt</td><td>$79.50</td><td class="disc">50%</td><td class="price">$39.75</td></tr>
+    </table>
+  </div>
+
+  <div class="store-grp">
+    <div class="sg-head">
+      <div><span class="sg-name">Old Navy</span><span class="sg-num">#150</span><div class="sg-count">4 items · Tanger Bayside · 🏆 budget MVP</div></div>
+      <div class="sg-total">$106.96</div>
+    </div>
+    <table>
+      <tr><th>#</th><th>Item</th><th>Tag</th><th>Off</th><th class="price">Final</th></tr>
+      <tr><td>5</td><td><span class="sw c-Khaki"></span> Khaki pants <span class="itag best">🥈 #2 cheap</span></td><td>$49.99</td><td class="disc">40%</td><td class="price">$29.99</td></tr>
+      <tr><td>6</td><td><span class="sw c-Black"></span> Black pants <span class="itag best">🥇 cheapest</span></td><td>$39.99</td><td class="disc">30%</td><td class="price">$27.99</td></tr>
+      <tr><td>17</td><td><span class="sw c-White"></span> White shirt <span class="itag best">🥇 cheapest</span></td><td>$34.99</td><td class="disc">30%</td><td class="price">$24.49</td></tr>
+      <tr><td>22</td><td><span class="sw c-Navy"></span> Navy polo <span class="itag best">🥇 cheapest</span></td><td>$34.99</td><td class="disc">30%</td><td class="price">$24.49</td></tr>
+    </table>
+  </div>
+
+  <div class="store-grp">
+    <div class="sg-head">
+      <div><span class="sg-name">Under Armour</span><span class="sg-num">#610</span><div class="sg-count">1 item · Tanger Bayside</div></div>
+      <div class="sg-total">$39.00</div>
+    </div>
+    <table>
+      <tr><th>#</th><th>Item</th><th>Tag</th><th>Off</th><th class="price">Final</th></tr>
+      <tr><td>7</td><td><span class="sw c-Grey"></span> Grey joggers</td><td>$65.00</td><td class="disc">40%</td><td class="price">$39.00</td></tr>
+    </table>
+  </div>
+
+  <div class="store-grp">
+    <div class="sg-head">
+      <div><span class="sg-name">Lacoste</span><span class="sg-num">#119</span><div class="sg-count">4 items · Tanger Surfside</div></div>
+      <div class="sg-total">$245.40</div>
+    </div>
+    <table>
+      <tr><th>#</th><th>Item</th><th>Tag</th><th>Off</th><th class="price">Final</th></tr>
+      <tr><td>18</td><td><span class="sw c-White"></span> White shirt <small style="color:var(--muted)">· premium</small></td><td>$115.00</td><td class="disc">40%</td><td class="price">$69.00</td></tr>
+      <tr><td>23</td><td><span class="sw c-White"></span> White polo <small style="color:var(--muted)">· L.12.12</small></td><td>$98.00</td><td class="disc">40%</td><td class="price">$58.80</td></tr>
+      <tr><td>24</td><td><span class="sw c-Navy"></span> Navy polo</td><td>$98.00</td><td class="disc">40%</td><td class="price">$58.80</td></tr>
+      <tr><td>25</td><td><span class="sw c-Burgundy"></span> Burgundy polo</td><td>$98.00</td><td class="disc">40%</td><td class="price">$58.80</td></tr>
+    </table>
+  </div>
+
+  <div class="store-grp">
+    <div class="sg-head">
+      <div><span class="sg-name">Boss</span><span class="sg-num">#307</span><div class="sg-count">2 items · Tanger Surfside</div></div>
+      <div class="sg-total">$217.80</div>
+    </div>
+    <table>
+      <tr><th>#</th><th>Item</th><th>Tag</th><th>Off</th><th class="price">Final</th></tr>
+      <tr><td>13</td><td><span class="sw c-Charcoal"></span> Charcoal slacks <small style="color:var(--muted)">· wool</small></td><td>$198.00</td><td class="disc">50%</td><td class="price">$99.00</td></tr>
+      <tr><td>14</td><td><span class="sw c-Navy"></span> Navy slacks</td><td>$198.00</td><td class="disc">40%</td><td class="price">$118.80</td></tr>
+    </table>
+  </div>
+
+  <div class="store-grp">
+    <div class="sg-head">
+      <div><span class="sg-name">Polo Ralph Lauren</span><span class="sg-num">#313</span><div class="sg-count">7 items · Tanger Surfside</div></div>
+      <div class="sg-total">$346.45</div>
+    </div>
+    <table>
+      <tr><th>#</th><th>Item</th><th>Tag</th><th>Off</th><th class="price">Final</th></tr>
+      <tr><td>8</td><td><span class="sw c-Navy"></span> Navy pants <small style="color:var(--muted)">· chinos</small></td><td>$98.50</td><td class="disc">40%</td><td class="price">$59.10</td></tr>
+      <tr><td>9</td><td><span class="sw c-Khaki"></span> Khaki pants</td><td>$98.50</td><td class="disc">50%</td><td class="price">$49.25</td></tr>
+      <tr><td>19</td><td><span class="sw c-White"></span> White shirt <small style="color:var(--muted)">· oxford</small></td><td>$89.50</td><td class="disc">50%</td><td class="price">$44.75</td></tr>
+      <tr><td>20</td><td><span class="sw c-LightBlue"></span> Light Blue shirt <small style="color:var(--muted)">· oxford</small></td><td>$98.50</td><td class="disc">40%</td><td class="price">$59.10</td></tr>
+      <tr><td>21</td><td><span class="sw c-Pink"></span> Pink shirt <small style="color:var(--muted)">· oxford</small></td><td>$89.50</td><td class="disc">50%</td><td class="price">$44.75</td></tr>
+      <tr><td>26</td><td><span class="sw c-Navy"></span> Navy polo <small style="color:var(--muted)">· classic</small></td><td>$89.50</td><td class="disc">50%</td><td class="price">$44.75</td></tr>
+      <tr><td>27</td><td><span class="sw c-White"></span> White polo</td><td>$89.50</td><td class="disc">50%</td><td class="price">$44.75</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>💸 Top Discounts</h2>
+  <table style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 12px">
+    <tr><th>Off</th><th>Item</th><th>Store</th><th class="price">Final</th></tr>
+    <tr><td class="disc">60%</td><td><span class="sw c-Khaki"></span> Khaki pants</td><td>Banana Republic</td><td class="price">$39.20</td></tr>
+    <tr><td class="disc">50%</td><td><span class="sw c-Charcoal"></span> Charcoal slacks</td><td>Boss</td><td class="price">$99.00</td></tr>
+    <tr><td class="disc">50%</td><td><span class="sw c-Khaki"></span> Khaki pants</td><td>Polo Ralph Lauren</td><td class="price">$49.25</td></tr>
+    <tr><td class="disc">50%</td><td><span class="sw c-Black"></span> Black slacks</td><td>Calvin Klein</td><td class="price">$64.75</td></tr>
+    <tr><td class="disc">50%</td><td><span class="sw c-Charcoal"></span> Charcoal slacks</td><td>Calvin Klein</td><td class="price">$64.75</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>🗺️ Route from Applebee's</h2>
+  <div class="route">
+    <div class="now"><strong>📍 Currently:</strong> 🍔 Applebee's (Tanger Seaside, east-center)</div>
+    <div class="leg">
+      <strong>① Tanger Seaside</strong> — walk <strong>west</strong> out of Applebee's<br>
+      Calvin Klein #1700 → Merrell #1750 → Banana Republic #1800 → Clarks #1825
+    </div>
+    <div class="leg">
+      <strong>② Tanger Bayside</strong> — cross Rt 1 <strong>north</strong> (or DART shuttle)<br>
+      Old Navy #150 → North Face #420 → Under Armour #610
+    </div>
+    <div class="leg">
+      <strong>③ Tanger Surfside</strong> — 1.8 mi <strong>east</strong> on Rt 1 (shuttle or drive)<br>
+      Cole Haan #107 → Lacoste #119 → Boss #307 → Polo Ralph Lauren #313
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>📋 Cheapest of Every Type + Color</h2>
+  <table style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 12px">
+    <tr><th>Type</th><th>Color</th><th>Store</th><th class="price">Final</th></tr>
+    <tr><td>pants</td><td><span class="sw c-Black"></span> Black</td><td>Old Navy</td><td class="price">$27.99</td></tr>
+    <tr><td>pants</td><td><span class="sw c-Grey"></span> Grey</td><td>Under Armour</td><td class="price">$39.00</td></tr>
+    <tr><td>pants</td><td><span class="sw c-Khaki"></span> Khaki</td><td>Old Navy</td><td class="price">$29.99</td></tr>
+    <tr><td>pants</td><td><span class="sw c-Navy"></span> Navy</td><td>Calvin Klein</td><td class="price">$39.50</td></tr>
+    <tr><td>pants</td><td><span class="sw c-Olive"></span> Olive</td><td>Banana Republic</td><td class="price">$49.00</td></tr>
+    <tr><td>slacks</td><td><span class="sw c-Black"></span> Black</td><td>Calvin Klein</td><td class="price">$64.75</td></tr>
+    <tr><td>slacks</td><td><span class="sw c-Charcoal"></span> Charcoal</td><td>Banana Republic</td><td class="price">$49.00</td></tr>
+    <tr><td>slacks</td><td><span class="sw c-Navy"></span> Navy</td><td>Boss</td><td class="price">$118.80</td></tr>
+    <tr><td>shirt</td><td><span class="sw c-LightBlue"></span> Light Blue</td><td>Banana Republic</td><td class="price">$39.75</td></tr>
+    <tr><td>shirt</td><td><span class="sw c-Pink"></span> Pink</td><td>Polo Ralph Lauren</td><td class="price">$44.75</td></tr>
+    <tr><td>shirt</td><td><span class="sw c-White"></span> White</td><td>Old Navy</td><td class="price">$24.49</td></tr>
+    <tr><td>polo</td><td><span class="sw c-Burgundy"></span> Burgundy</td><td>Lacoste</td><td class="price">$58.80</td></tr>
+    <tr><td>polo</td><td><span class="sw c-Navy"></span> Navy</td><td>Old Navy</td><td class="price">$24.49</td></tr>
+    <tr><td>polo</td><td><span class="sw c-White"></span> White</td><td>Polo Ralph Lauren</td><td class="price">$44.75</td></tr>
+  </table>
+</section>
+
+</main>
+
+<footer>
+  <div class="ts">Last updated: 2026-05-22 · sample data</div>
+  <div style="margin-top:4px">Refresh this page after sending me items in chat to see updates.</div>
+</footer>
+
+</body>
+</html>
