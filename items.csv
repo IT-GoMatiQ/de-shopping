@@ -1,0 +1,28 @@
+id,store,store_num,type,color,tag_price,discount_pct,final_price,pairs_with,decision,notes,sample
+1,Calvin Klein,1700,pants,Grey,89.50,40,53.70,White;Light Blue;Navy;Burgundy,undecided,slim fit size 32,yes
+2,Calvin Klein,1700,pants,Navy,79.00,50,39.50,White;Light Blue;Pink,undecided,straight fit,yes
+3,Banana Republic,1800,pants,Khaki,98.00,60,39.20,Navy;White;Burgundy;Green,undecided,chinos athletic fit,yes
+4,Banana Republic,1800,pants,Olive,98.00,50,49.00,White;Tan;Burgundy,undecided,,yes
+5,Old Navy,150,pants,Khaki,49.99,40,29.99,Navy;White;Black,undecided,budget chinos,yes
+6,Old Navy,150,pants,Black,39.99,30,27.99,White;Grey;Light Blue,undecided,,yes
+7,Under Armour,610,pants,Grey,65.00,40,39.00,White;Black;Navy,undecided,joggers,yes
+8,Polo Ralph Lauren,313,pants,Navy,98.50,40,59.10,White;Light Blue;Red;Pink,undecided,classic chinos,yes
+9,Polo Ralph Lauren,313,pants,Khaki,98.50,50,49.25,Navy;White;Burgundy,undecided,,yes
+10,Calvin Klein,1700,slacks,Charcoal,129.50,50,64.75,White;Light Blue;Pink,undecided,dress slacks,yes
+11,Calvin Klein,1700,slacks,Black,129.50,50,64.75,White;Light Blue,undecided,,yes
+12,Banana Republic,1800,slacks,Charcoal,98.00,50,49.00,White;Light Blue;Pink,undecided,,yes
+13,Boss,307,slacks,Charcoal,198.00,50,99.00,White;Light Blue,undecided,wool blend,yes
+14,Boss,307,slacks,Navy,198.00,40,118.80,White;Light Blue;Pink,undecided,,yes
+15,Banana Republic,1800,shirt,White,79.50,50,39.75,,undecided,button-up,yes
+16,Banana Republic,1800,shirt,Light Blue,79.50,50,39.75,,undecided,button-up,yes
+17,Old Navy,150,shirt,White,34.99,30,24.49,,undecided,,yes
+18,Lacoste,119,shirt,White,115.00,40,69.00,,undecided,premium button-up,yes
+19,Polo Ralph Lauren,313,shirt,White,89.50,50,44.75,,undecided,oxford,yes
+20,Polo Ralph Lauren,313,shirt,Light Blue,98.50,40,59.10,,undecided,oxford,yes
+21,Polo Ralph Lauren,313,shirt,Pink,89.50,50,44.75,,undecided,oxford,yes
+22,Old Navy,150,polo,Navy,34.99,30,24.49,,undecided,,yes
+23,Lacoste,119,polo,White,98.00,40,58.80,,undecided,classic L.12.12,yes
+24,Lacoste,119,polo,Navy,98.00,40,58.80,,undecided,,yes
+25,Lacoste,119,polo,Burgundy,98.00,40,58.80,,undecided,,yes
+26,Polo Ralph Lauren,313,polo,Navy,89.50,50,44.75,,undecided,classic fit,yes
+27,Polo Ralph Lauren,313,polo,White,89.50,50,44.75,,undecided,,yes

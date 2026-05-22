@@ -1,51 +1,39 @@
 # Delaware Outlet Shopping Tracker
 
-Personal shopping helper for Delaware outlet malls (no sales tax!).
-
-## How this works
-
-As you walk into each store, tell me about items you're considering. I'll log
-them and at the end I'll tell you exactly where to buy what — based on price,
-discounts, and color pairings.
+Personal shopping helper for Tanger Rehoboth (no sales tax!).
+**Chat-based.** No app. You talk, I track.
 
 ## Files
 
-- `stores.md` — list of stores we plan to visit + map / route notes
-- `items.json` — source of truth: every item you've shown me
-- `tracker.md` — human-readable running view of all logged items
-- `recommendations.md` — final "buy this here, pair with that" output (filled
-  in when you say "I'm finished")
+- `items.csv` — every item, source of truth (sample data pre-loaded)
+- `tracker.md` — readable manifest view, updates as items are added/changed
+- `stores.md` — store list and walking route from Applebee's
+
+## How it works
+
+You walk into a store and tell me about anything you're considering. I log
+it to `items.csv` and reply in chat with:
+
+1. ✅ Confirmation of what was logged
+2. 📋 Current manifest (counts + total)
+3. ⭐ Top-2 cheapest of each item type
+4. 📍 Current store + 🚶 Next direction
+
+You can also ask me anytime:
+- "What's the cheapest green shirt I've seen?"
+- "What pairs with my grey Calvin Klein pants?"
+- "How much would I spend if I bought everything marked Buy?"
+- "Mark item #5 as buy" / "Skip item #3"
+- "I'm finished" → final buy plan by store
 
 ## What to tell me per item
 
-When you're in a store and find something, just say it however is natural.
-I need (in any order):
+In any order:
+- Item type (pants, shorts, shirt, polo, slacks, belt, shoes, etc.)
+- Color
+- Tag price
+- Discount (% or $)
+- Colors you'd pair it with (optional)
+- Notes (size, fit, etc. — optional)
 
-1. **Item type** — pants / shorts / shirt / belt / shoes / socks / etc.
-2. **Color** — of the item itself
-3. **Price tag** — the listed/original price
-4. **Discount** — % off, $ off, or "buy one get one", etc.
-5. **Pairs with** — colors you'd wear it with (e.g. "I'd wear with green or
-   white shirts")
-6. **Store** — which store you're in (I'll remember it for follow-up items
-   in the same store)
-7. **Notes** *(optional)* — size, material, fit, "maybe", etc.
-
-Example you can paste:
-> "Polo Ralph Lauren — grey chino pants, tag $89.50, 40% off, would pair
-> with green / white / navy shirts."
-
-You don't have to be that structured. Just give me the facts; I'll log them.
-
-## Useful commands while shopping
-
-- **"What did I see in [store]?"** — I'll list items from that store
-- **"What [color] shirts have I seen?"** — color/category lookup
-- **"What pairs with my grey pants?"** — pairing lookup
-- **"I'm finished"** — I'll produce final buy-list + route in
-  `recommendations.md`
-
-## Prices
-
-All prices are recorded post-discount, pre-tax. Delaware = no sales tax, so
-the final price you'll actually pay is what I show.
+Store is whatever you're "currently in" — I'll remember it across items.
