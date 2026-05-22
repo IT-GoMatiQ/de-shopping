@@ -44,7 +44,6 @@ h2{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.6p
 .banner.next{background:linear-gradient(135deg,rgba(74,144,226,.2),rgba(74,144,226,.05));border:1px solid var(--accent)}
 .banner.next strong{color:var(--accent)}
 .banner.info{background:rgba(69,201,122,.1);border:1px solid var(--good)}
-.banner.gold{background:linear-gradient(135deg,rgba(240,192,64,.15),rgba(240,192,64,.04));border:1px solid rgba(240,192,64,.4)}
 
 .empty-state{background:var(--card);border:2px dashed var(--border);border-radius:12px;
   padding:30px 20px;text-align:center;color:var(--muted)}
@@ -52,12 +51,37 @@ h2{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.6p
 .empty-state strong{color:var(--text);font-size:16px}
 .empty-state .hint{margin-top:8px;font-size:13px}
 
-.route-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;font-size:13px;line-height:1.6}
-.route-card .now{background:rgba(74,144,226,.15);border:1px solid var(--accent);padding:10px;border-radius:8px;margin-bottom:12px}
-.route-card .leg{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.route-card .leg:last-child{border:none;margin-bottom:0;padding-bottom:0}
-.route-card strong{color:var(--accent)}
-.route-card .next-stop{color:var(--good);font-weight:700}
+/* MAP */
+.map-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px;overflow:hidden}
+.map-svg{width:100%;height:auto;display:block}
+.map-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)}
+.map-legend .lg{display:inline-flex;align-items:center;gap:5px}
+.lg-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.lg-dot.you{background:#ff6464;box-shadow:0 0 0 3px rgba(255,100,100,.3)}
+.lg-dot.next{background:var(--good);box-shadow:0 0 0 3px rgba(69,201,122,.3)}
+.lg-dot.todo{background:var(--card2);border:1px solid var(--muted)}
+.lg-dot.done{background:var(--muted)}
+
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6}}
+.you-pulse{animation:pulse 1.5s infinite}
+
+/* TIMELINE */
+.timeline{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;font-size:13px}
+.tl-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;position:relative}
+.tl-item .num{width:26px;height:26px;border-radius:50%;background:var(--card2);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--muted);flex-shrink:0;margin-top:1px}
+.tl-item.you .num{background:#ff6464;color:#fff;border-color:#ff6464}
+.tl-item.next .num{background:var(--good);color:#000;border-color:var(--good)}
+.tl-item.done .num{background:var(--muted);color:#000;border-color:var(--muted)}
+.tl-item .body{flex:1}
+.tl-item .nm{font-weight:600}
+.tl-item.you .nm,.tl-item.next .nm{color:var(--good)}
+.tl-item .ad{font-size:11px;color:var(--muted)}
+.tl-item.next .ad{color:var(--accent);font-weight:600}
+.tl-leg{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.tl-leg::before{content:'';flex:1;height:1px;background:var(--border)}
+.tl-leg::after{content:'';flex:1;height:1px;background:var(--border)}
+.tl-arrow{margin-left:12px;font-size:14px;color:var(--accent);line-height:1}
 
 footer{text-align:center;color:var(--muted);font-size:11px;padding:20px;border-top:1px solid var(--border);margin-top:20px}
 footer .ts{font-weight:600;color:var(--text)}
@@ -67,11 +91,11 @@ footer .ts{font-weight:600;color:var(--text)}
 
 <header>
   <div class="h-title">🛍️ Tanger Outlets Rehoboth · No Tax</div>
-  <div class="h-loc">🚶 Walking to Calvin Klein #1700</div>
+  <div class="h-loc">🚶 Leaving Applebee's → Calvin Klein #1700</div>
   <div class="h-meta">Real shopping started · 2026-05-22</div>
   <div class="h-stats">
     <div class="h-stat">📦 <strong>0</strong> items</div>
-    <div class="h-stat">🏪 <strong>0</strong> stores visited</div>
+    <div class="h-stat">🏪 <strong>0</strong> visited</div>
     <div class="h-stat">💵 <strong>$0.00</strong></div>
   </div>
 </header>
@@ -81,9 +105,219 @@ footer .ts{font-weight:600;color:var(--text)}
 <section>
   <div class="banner next">
     <strong>🚶 NEXT STOP — Calvin Klein #1700</strong><br>
-    Exit Applebee's heading <strong>west</strong>.<br>
-    Walk past Jockey / Lee &amp; Wrangler → Hey Dude / Zumiez → The Children's Place.<br>
-    Calvin Klein is on the <strong>south side of the strip</strong>, ~3 min walk.
+    Exit Applebee's <strong>WEST</strong>. Pass Jockey → Hey Dude → Children's Place. CK is on the <strong>south side</strong>, ~3 min walk.
+  </div>
+</section>
+
+<section>
+  <h2>🗺️ Map</h2>
+  <div class="map-wrap">
+    <svg class="map-svg" viewBox="0 0 360 440" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L8,3 z" fill="#45c97a"/>
+        </marker>
+      </defs>
+
+      <!-- BAYSIDE box (top left) -->
+      <rect x="10" y="20" width="155" height="155" fill="rgba(74,144,226,0.08)" stroke="#2a3654" stroke-width="1.5" rx="8"/>
+      <text x="87" y="40" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER BAYSIDE</text>
+      <!-- Stores in Bayside -->
+      <!-- ⑦ Under Armour (far west) -->
+      <circle cx="40" cy="80" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="40" y="84" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">7</text>
+      <text x="40" y="105" fill="#e8eef7" font-size="9" text-anchor="middle">U.Armour</text>
+      <text x="40" y="116" fill="#8a96ad" font-size="8" text-anchor="middle">#610</text>
+      <!-- ⑥ North Face (upper right) -->
+      <circle cx="120" cy="70" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="120" y="74" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">6</text>
+      <text x="120" y="95" fill="#e8eef7" font-size="9" text-anchor="middle">N.Face</text>
+      <text x="120" y="106" fill="#8a96ad" font-size="8" text-anchor="middle">#420</text>
+      <!-- ⑤ Old Navy (south, near Rt 1) -->
+      <circle cx="90" cy="145" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="90" y="149" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">5</text>
+      <text x="90" y="165" fill="#e8eef7" font-size="9" text-anchor="middle">Old Navy #150</text>
+
+      <!-- SURFSIDE box (top right) -->
+      <rect x="195" y="20" width="155" height="170" fill="rgba(74,144,226,0.08)" stroke="#2a3654" stroke-width="1.5" rx="8"/>
+      <text x="272" y="40" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER SURFSIDE</text>
+      <!-- ⑪ Polo RL (west leg, south) -->
+      <circle cx="225" cy="155" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="225" y="159" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">11</text>
+      <text x="225" y="178" fill="#e8eef7" font-size="9" text-anchor="middle">Polo RL #313</text>
+      <!-- ⑩ Boss (west leg, north) -->
+      <circle cx="225" cy="80" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="225" y="84" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">10</text>
+      <text x="225" y="65" fill="#e8eef7" font-size="9" text-anchor="middle">Boss #307</text>
+      <!-- ⑨ Lacoste (east leg, north) -->
+      <circle cx="320" cy="80" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="320" y="84" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">9</text>
+      <text x="320" y="65" fill="#e8eef7" font-size="9" text-anchor="middle">Lacoste #119</text>
+      <!-- ⑧ Cole Haan (east leg, south) -->
+      <circle cx="320" cy="155" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="320" y="159" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">8</text>
+      <text x="320" y="178" fill="#e8eef7" font-size="9" text-anchor="middle">Cole Haan #107</text>
+
+      <!-- ROUTE 1 -->
+      <line x1="80" y1="210" x2="290" y2="210" stroke="#4a90e2" stroke-width="2" stroke-dasharray="6,4"/>
+      <text x="185" y="205" fill="#4a90e2" font-size="10" font-weight="700" text-anchor="middle">ROUTE 1 · 1.8 mi</text>
+      <!-- bus icons -->
+      <text x="75" y="215" fill="#4a90e2" font-size="11" text-anchor="middle">🚌</text>
+      <text x="295" y="215" fill="#4a90e2" font-size="11" text-anchor="middle">🚌</text>
+
+      <!-- connectors from centers to Rt 1 -->
+      <line x1="90" y1="175" x2="90" y2="210" stroke="#2a3654" stroke-width="1"/>
+      <line x1="270" y1="190" x2="270" y2="210" stroke="#2a3654" stroke-width="1"/>
+
+      <!-- SEASIDE box (bottom) -->
+      <rect x="10" y="225" width="340" height="200" fill="rgba(74,144,226,0.08)" stroke="#2a3654" stroke-width="1.5" rx="8"/>
+      <text x="180" y="245" fill="#8a96ad" font-size="11" font-weight="700" text-anchor="middle">TANGER SEASIDE</text>
+
+      <!-- connector from Rt 1 down -->
+      <line x1="180" y1="210" x2="180" y2="225" stroke="#2a3654" stroke-width="1"/>
+
+      <!-- Seaside stores (along south strip, west→east) -->
+      <!-- ④ Clarks (far west, north corner) -->
+      <circle cx="40" cy="280" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="40" y="284" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">4</text>
+      <text x="40" y="265" fill="#e8eef7" font-size="9" text-anchor="middle">Clarks #1825</text>
+      <!-- ③ Banana Republic (far west) -->
+      <circle cx="40" cy="335" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="40" y="339" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">3</text>
+      <text x="40" y="357" fill="#e8eef7" font-size="9" text-anchor="middle">Banana Rep</text>
+      <text x="40" y="368" fill="#8a96ad" font-size="8" text-anchor="middle">#1800</text>
+      <!-- ② Merrell -->
+      <circle cx="115" cy="380" r="9" fill="#1c2540" stroke="#8a96ad" stroke-width="1.5"/>
+      <text x="115" y="384" fill="#8a96ad" font-size="10" font-weight="700" text-anchor="middle">2</text>
+      <text x="115" y="402" fill="#e8eef7" font-size="9" text-anchor="middle">Merrell #1750</text>
+      <!-- ① Calvin Klein (NEXT) -->
+      <circle cx="195" cy="380" r="12" fill="#45c97a" stroke="#fff" stroke-width="2"/>
+      <text x="195" y="385" fill="#000" font-size="12" font-weight="800" text-anchor="middle">1</text>
+      <text x="195" y="402" fill="#45c97a" font-size="10" font-weight="700" text-anchor="middle">Calvin Klein #1700</text>
+      <text x="195" y="413" fill="#45c97a" font-size="9" font-weight="600" text-anchor="middle">← NEXT STOP</text>
+      <!-- 🍔 Applebee's (YOU) -->
+      <circle cx="290" cy="380" r="11" fill="#ff6464" stroke="#fff" stroke-width="2">
+        <animate attributeName="r" values="11;15;11" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <text x="290" y="385" fill="#fff" font-size="11" text-anchor="middle">🍔</text>
+      <text x="290" y="402" fill="#ff6464" font-size="10" font-weight="700" text-anchor="middle">Applebee's</text>
+      <text x="290" y="413" fill="#ff6464" font-size="9" font-weight="600" text-anchor="middle">← YOU ARE HERE</text>
+
+      <!-- WALKING ARROW from Applebee's → Calvin Klein -->
+      <path d="M 278 380 Q 240 365 215 378" stroke="#45c97a" stroke-width="2.5" fill="none" marker-end="url(#arr)" stroke-dasharray="4,3"/>
+      <text x="245" y="358" fill="#45c97a" font-size="9" font-weight="700" text-anchor="middle">walk west</text>
+    </svg>
+    <div class="map-legend">
+      <span class="lg"><span class="lg-dot you you-pulse"></span> You</span>
+      <span class="lg"><span class="lg-dot next"></span> Next stop</span>
+      <span class="lg"><span class="lg-dot todo"></span> To visit</span>
+      <span class="lg">🚌 DART shuttle stop</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>📍 Route Timeline</h2>
+  <div class="timeline">
+    <div class="tl-leg">① SEASIDE — walk west</div>
+    <div class="tl-item you">
+      <div class="num">🍔</div>
+      <div class="body">
+        <div class="nm">Applebee's</div>
+        <div class="ad">YOU ARE HERE · Tanger Seaside east-center</div>
+      </div>
+    </div>
+    <div class="tl-arrow">↓ walk WEST along south strip · ~3 min</div>
+    <div class="tl-item next">
+      <div class="num">1</div>
+      <div class="body">
+        <div class="nm">Calvin Klein #1700</div>
+        <div class="ad">NEXT — pants &amp; slacks</div>
+      </div>
+    </div>
+    <div class="tl-arrow">↓ keep walking west</div>
+    <div class="tl-item">
+      <div class="num">2</div>
+      <div class="body">
+        <div class="nm">Merrell #1750</div>
+        <div class="ad">shoes (optional)</div>
+      </div>
+    </div>
+    <div class="tl-arrow">↓ west then turn right (north) onto west spur</div>
+    <div class="tl-item">
+      <div class="num">3</div>
+      <div class="body">
+        <div class="nm">Banana Republic Factory #1800</div>
+        <div class="ad">pants, slacks, shirts</div>
+      </div>
+    </div>
+    <div class="tl-arrow">↓ one door north</div>
+    <div class="tl-item">
+      <div class="num">4</div>
+      <div class="body">
+        <div class="nm">Clarks Outlet #1825</div>
+        <div class="ad">shoes (optional)</div>
+      </div>
+    </div>
+    <div class="tl-leg">② BAYSIDE — cross Rt 1 north</div>
+    <div class="tl-arrow">↓ exit Seaside west, cross Route 1</div>
+    <div class="tl-item">
+      <div class="num">5</div>
+      <div class="body">
+        <div class="nm">Old Navy #150</div>
+        <div class="ad">budget pants &amp; shirts · right at south entry</div>
+      </div>
+    </div>
+    <div class="tl-arrow">↓ walk north to upper strip</div>
+    <div class="tl-item">
+      <div class="num">6</div>
+      <div class="body">
+        <div class="nm">The North Face #420</div>
+        <div class="ad">technical pants</div>
+      </div>
+    </div>
+    <div class="tl-arrow">↓ walk west, far end</div>
+    <div class="tl-item">
+      <div class="num">7</div>
+      <div class="body">
+        <div class="nm">Under Armour #610</div>
+        <div class="ad">athletic pants &amp; shorts</div>
+      </div>
+    </div>
+    <div class="tl-leg">③ SURFSIDE — DART east 1.8 mi</div>
+    <div class="tl-arrow">↓ shuttle or drive east on Rt 1</div>
+    <div class="tl-item">
+      <div class="num">8</div>
+      <div class="body">
+        <div class="nm">Cole Haan #107</div>
+        <div class="ad">pants · enter east leg of U</div>
+      </div>
+    </div>
+    <div class="tl-arrow">↓ continue up east leg</div>
+    <div class="tl-item">
+      <div class="num">9</div>
+      <div class="body">
+        <div class="nm">Lacoste #119</div>
+        <div class="ad">polos &amp; pants</div>
+      </div>
+    </div>
+    <div class="tl-arrow">↓ cross top of U to west leg</div>
+    <div class="tl-item">
+      <div class="num">10</div>
+      <div class="body">
+        <div class="nm">Boss #307</div>
+        <div class="ad">slacks · dressier</div>
+      </div>
+    </div>
+    <div class="tl-arrow">↓ one door south</div>
+    <div class="tl-item">
+      <div class="num">11</div>
+      <div class="body">
+        <div class="nm">Polo Ralph Lauren #313</div>
+        <div class="ad">pants, shirts, polos — last stop!</div>
+      </div>
+    </div>
+    <div class="tl-arrow">✅ DONE — review buy list and go shopping</div>
   </div>
 </section>
 
@@ -97,33 +331,11 @@ footer .ts{font-weight:600;color:var(--text)}
 </section>
 
 <section>
-  <h2>🗺️ Full Route</h2>
-  <div class="route-card">
-    <div class="now"><strong>📍 Currently:</strong> Leaving Applebee's → heading to Calvin Klein</div>
-    <div class="leg">
-      <strong>① Seaside</strong> — walk <strong>west</strong> out of Applebee's<br>
-      <span class="next-stop">→ 1. Calvin Klein #1700</span><br>
-      &nbsp;&nbsp; 2. Merrell #1750<br>
-      &nbsp;&nbsp; 3. Banana Republic #1800<br>
-      &nbsp;&nbsp; 4. Clarks Outlet #1825
-    </div>
-    <div class="leg">
-      <strong>② Bayside</strong> — cross Rt 1 <strong>north</strong><br>
-      5. Old Navy #150 · 6. North Face #420 · 7. Under Armour #610
-    </div>
-    <div class="leg">
-      <strong>③ Surfside</strong> — 1.8 mi <strong>east</strong> on Rt 1<br>
-      8. Cole Haan #107 · 9. Lacoste #119 · 10. Boss #307 · 11. Polo Ralph Lauren #313
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>💬 How to log items</h2>
+  <h2>💬 How to log</h2>
   <div class="banner info">
     Tell me in chat like:<br>
     <em style="color:var(--text)">"Grey chinos, tag $89.50, 40% off, pairs with white &amp; navy"</em><br>
-    I'll add it here and update the rankings. Refresh this page to see updates.
+    I'll add it here. Pull down to refresh after each item.
   </div>
 </section>
 
